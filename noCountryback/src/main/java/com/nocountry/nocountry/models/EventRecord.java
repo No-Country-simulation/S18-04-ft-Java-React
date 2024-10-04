@@ -15,13 +15,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "event_record")
+@Table(name = "event_records")
 public class EventRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "event_record_id")
-    private UUID id;
+    @Column(name = "envent_record_id")
+    private UUID id=UUID.randomUUID();
 
     @Enumerated(EnumType.STRING)
     private Schedule schedule;
@@ -37,10 +37,16 @@ public class EventRecord {
     @JoinTable(name = "register_stack",joinColumns = @JoinColumn(name = "event_record_id",referencedColumnName = "envent_record_id"),inverseJoinColumns = @JoinColumn(name = "framework_id",referencedColumnName = "framework_id"))
     private List<Framework>stack;
 
-    @Column(name = "languages",nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "language_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_LANGUAGE"))
     private Languages language;
 
     @ManyToOne
-    @JoinColumn(name = "profile_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_PROFILE"))
+    @JoinColumn(name = "profile_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_PROFILE"))
     private Profile profile;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORDS_EVENT"))
+    private Event event;
 }

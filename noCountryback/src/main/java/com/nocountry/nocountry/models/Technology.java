@@ -1,5 +1,6 @@
 package com.nocountry.nocountry.models;
 
+import com.nocountry.nocountry.models.enums.TechnologyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,17 +15,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "languages")
-public class Languages {
+@Table(name = "technologies")
+public class Technology {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "language_id")
+    @Column(name = "technology_id")
     private UUID id=UUID.randomUUID();
 
-    @Column(name = "language_name",nullable = false)
-    private String languageName;
+    private String technologyName;
 
-    @OneToMany(mappedBy = "language", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<EventRecord>eventRecords;
+    private List<TechnologyType>technologyTypes;
 }
