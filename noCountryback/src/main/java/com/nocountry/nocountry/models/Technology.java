@@ -25,5 +25,6 @@ public class Technology {
 
     private String technologyName;
 
+    @ElementCollection
     private List<TechnologyType>technologyTypes;
 }
