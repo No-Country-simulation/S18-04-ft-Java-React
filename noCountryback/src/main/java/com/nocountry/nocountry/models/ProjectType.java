@@ -28,7 +28,7 @@ public class ProjectType {
     private String projectTypeName;
 
     @Column(name = "project_type_description",nullable = false)
-    private String project_type_description;
+    private String projectTypeDescription;
 
     @OneToMany(mappedBy = "projectType",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
