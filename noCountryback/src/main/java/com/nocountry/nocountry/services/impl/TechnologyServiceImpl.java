@@ -4,6 +4,7 @@ import com.nocountry.nocountry.models.Technology;
 import com.nocountry.nocountry.repository.GenericRepo;
 import com.nocountry.nocountry.repository.TechnologyRepo;
 import com.nocountry.nocountry.services.ITechnologyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class TechnologyServiceImpl extends CRUDServiceImpl<Technology, UUID> imp
     private final TechnologyRepo repo;
 
     public TechnologyServiceImpl(TechnologyRepo repo) {
-        this.repo=repo;
+        this.repo = repo;
     }
 
     @Override
