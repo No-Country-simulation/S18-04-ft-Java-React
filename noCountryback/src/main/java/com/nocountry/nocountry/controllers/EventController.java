@@ -1,5 +1,9 @@
 package com.nocountry.nocountry.controllers;
 
+import com.nocountry.nocountry.config.mapper.EventMapper;
+import com.nocountry.nocountry.dto.request.EventRequestDTO;
+import com.nocountry.nocountry.dto.response.EventResponseDTO;
+import com.nocountry.nocountry.models.Event;
 import com.nocountry.nocountry.services.IEventService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -17,15 +21,17 @@ import java.util.stream.Collectors;
 public class EventController {
 
     private final IEventService service;
+    private final EventMapper mapper;
 
-    public EventController(IEventService service) {
+    public EventController(IEventService service, EventMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookingResponseDTO> findById(
+    public ResponseEntity<EventResponseDTO> findById(
             @PathVariable("id")  UUID id) {
-        Booking obj = service.findById(id);
+        Event obj = service.findById(id);
         if (obj == null) {
             throw new NotAuthorizedException("ID NOT FOUND: " + id);
         } else {
@@ -34,34 +40,34 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<BookingResponseDTO> save(@Valid @RequestBody BookingRequestDTO dto, @CurrentUser UserPrincipal user) {
-        BookingResponseDTO obj = service.save(mapper.toBooking(dto), user);
+    public ResponseEntity<EventResponseDTO> save(@Valid @RequestBody EventRequestDTO dto, @CurrentUser UserPrincipal user) {
+        EventResponseDTO obj = service.create(mapper.toEvent(dto, user);
         return ResponseEntity.status(201).body(obj);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Booking> update(@Valid @RequestBody BookingRequestDTO dto,
+    public ResponseEntity<Event> update(@Valid @RequestBody EventRequestDTO dto,
                                           @PathVariable("id") @Parameter(name = "id", description = "ID del Reserva", example = "6097656c-e788-45cb-a41f-73d4e031ee60") UUID id) {
-        Booking obj = service.updateById(id, mapper.toBooking(dto));
+        Event obj = service.update(mapper.toEvent(dto));
         return ResponseEntity.status(200).body(obj);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") @Parameter(example = "") UUID id) {
-        Booking obj = service.findById(id);
+    public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
+        Event obj = service.findById(id);
         if (obj == null) {
             throw new NotFoundException("ID NOT FOUND: " + id);
         }
-        service.deleteById(id);
+        service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping
-    public ResponseEntity<Page<BookingResponseDTO>> findAll(@RequestParam(defaultValue = "0") int page,
-                                                            @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "bookingReason") String sortField,
-                                                            @RequestParam(defaultValue = "desc") String sortOrder) {
+    public ResponseEntity<Page<EventResponseDTO>> findAll(@RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "bookingReason") String sortField,
+                                                          @RequestParam(defaultValue = "desc") String sortOrder) {
         try {
 
-            List<BookingResponseDTO> list = service.findAll(page, size, sortField, sortOrder).stream()
-                    .map(p -> mapper.toBookingDTO(p)).collect(Collectors.toList());
-            Page<BookingResponseDTO> listResponse = new PageImpl<>(list);
+            List<EventResponseDTO> list = service.findById().stream()
+                    .map(p -> mapper.toEventDTO(p)).collect(Collectors.toList());
+            Page<EventResponseDTO> listResponse = new PageImpl<>(list);
             return new ResponseEntity<>(listResponse, HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException("Error al obtener reservas", e);

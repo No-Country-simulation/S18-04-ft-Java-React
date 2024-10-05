@@ -11,7 +11,9 @@ public record TeamResponseDTO(
         List<TechnologyResponseDTO>technologies,
         String meetUrl,
         String whatsappUrl,
-        ParticipantResponseDTO tl,
+        String tlId,
+        String tlName,
+        String tlLastname,
         List<ParticipantResponseDTO>participants
 ) {
 }
