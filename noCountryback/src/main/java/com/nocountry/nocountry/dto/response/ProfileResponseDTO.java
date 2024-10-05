@@ -11,7 +11,7 @@ public record ProfileResponseDTO(
         String githubUrl,
         String linkedinUrl,
         String avatarUrl,
-        UserResponseDTO user
-
+        String userId,
+        String email
 ) {
 }

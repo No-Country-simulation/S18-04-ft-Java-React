@@ -1,0 +1,31 @@
+package com.nocountry.nocountry.config.mapper;
+
+import com.nocountry.nocountry.dto.request.EventRecordRequestDTO;
+import com.nocountry.nocountry.dto.response.EventRecordResponseDTO;
+import com.nocountry.nocountry.models.EventRecord;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+
+@Mapper(componentModel = "spring")
+public interface EventRecordMapper {
+
+    EventRecordMapper INSTANCE = Mappers.getMapper(EventRecordMapper.class);
+
+    @Mapping(source = "schedule", target = "schedule")
+    @Mapping(source = "tl", target = "tl")
+    @Mapping(source = "roleType", target = "roleType")
+    @Mapping(source = "stack", target = "stack")
+    @Mapping(source = "language", target = "language")
+    @Mapping(source = "profile", target = "profile")
+    EventRecord toEventRecord(EventRecordRequestDTO dto);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "schedule", target = "schedule")
+    @Mapping(source = "tl", target = "tl")
+    @Mapping(source = "roleType", target = "roleType")
+    @Mapping(source = "stack", target = "stack")
+    @Mapping(source = "language", target = "language")
+    @Mapping(source = "profile", target = "profile")
+    EventRecordResponseDTO toEventRecordDTO(EventRecord eventRecord);
+}

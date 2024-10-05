@@ -10,6 +10,8 @@ public record SessionResponseDTO(
         LocalDate sessionDate,
         Boolean sessionPresent,
         String sessionObservable,
-        ParticipantResponseDTO participant
+        String participantName,
+        String participantLastname,
+        String  teamName
 ) {
 }

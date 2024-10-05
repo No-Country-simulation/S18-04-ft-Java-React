@@ -10,7 +10,12 @@ import java.util.UUID;
 public record ParticipantResponseDTO(
         UUID id,
         Boolean isTl,
-        TeamResponseDTO team,
+        String  teamName,
+        String projectName,
+        String participantName,
+        String participantLastname,
+        String tlLastname,
+        String tlName,
         List<SurveyResponseDTO> participants,
         List<SurveyResponseDTO> buddy,
         List<SessionResponseDTO>sessions
