@@ -1,19 +1,24 @@
 package com.nocountry.nocountry.security.oauth2;
 
+import com.nocountry.nocountry.exceptions.BadRequestException;
 import com.nocountry.nocountry.security.filter.JwtUtils;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
+import com.nocountry.nocountry.utils.AppProperties;
+import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 import static com.nocountry.nocountry.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.*;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
+@Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtUtils jwtUtils;
     private final AppProperties appProperties;

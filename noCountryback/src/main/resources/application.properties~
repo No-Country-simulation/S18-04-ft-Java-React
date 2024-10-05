@@ -27,3 +27,5 @@ spring.security.user.password=admin
 
 
 jwt.secret=${JWT_SECRET}
+jwt.duration=${JWT_DURATION}
+authorized.redirect.uri=${AUTHORIZED_REDIRECT_URI}
