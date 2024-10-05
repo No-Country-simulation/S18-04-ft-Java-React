@@ -17,7 +17,8 @@ public interface ProfileMapper {
     @Mapping(source = "githubUrl", target = "githubUrl")
     @Mapping(source = "linkedinUrl", target = "linkedinUrl")
     @Mapping(source = "avatarUrl", target = "avatarUrl")
-    @Mapping(source = "user", target = "user")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.email", target = "email")
     ProfileResponseDTO toProfileResponseDTO(Profile profile);
 
     @Mapping(source = "profileName", target = "profileName")

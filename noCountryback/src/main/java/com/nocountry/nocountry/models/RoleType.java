@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+// Roles de un equipo: Ejemplo: De WebApp: Backend, Frontend, UX/UI, QA,etc
 @Getter
 @Setter
 @AllArgsConstructor

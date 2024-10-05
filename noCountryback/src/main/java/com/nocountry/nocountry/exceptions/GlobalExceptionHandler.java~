@@ -1,0 +1,2 @@
+package com.nocountry.nocountry.exceptions;public class GlobalExceptionHandler {
+}

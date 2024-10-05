@@ -25,7 +25,15 @@ public interface EventRecordMapper {
     @Mapping(source = "tl", target = "tl")
     @Mapping(source = "roleType", target = "roleType")
     @Mapping(source = "stack", target = "stack")
-    @Mapping(source = "language", target = "language")
-    @Mapping(source = "profile", target = "profile")
+    @Mapping(source = "language.id", target = "languageId")
+    @Mapping(source = "language.languageName", target = "languageName")
+    @Mapping(source = "profile.id", target = "profileId")
+    @Mapping(source = "profile.profileName", target = "profileName")
+    @Mapping(source = "profile.profileLastname", target = "profileLastname")
+    @Mapping(source = "event.id", target = "eventId")
+    @Mapping(source = "event.eventName", target = "eventName")
+    @Mapping(source = "event.eventDescription", target = "eventDescription")
+    @Mapping(source = "event.eventDateStart", target = "eventDateStart")
+    @Mapping(source = "event.eventDateEnd", target = "eventDateEnd")
     EventRecordResponseDTO toEventRecordDTO(EventRecord eventRecord);
 }

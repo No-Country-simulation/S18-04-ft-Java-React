@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+// Tecnologias usadas por equipo. Lo recopila el tl
 @Getter
 @Setter
 @AllArgsConstructor

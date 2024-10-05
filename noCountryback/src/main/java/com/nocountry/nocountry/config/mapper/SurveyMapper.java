@@ -12,9 +12,9 @@ public interface SurveyMapper {
 
     SurveyMapper INSTANCE = Mappers.getMapper(SurveyMapper.class);
 
-    @Mapping(source = "participant", target = "participant")
-    @Mapping(source = "buddy", target = "buddy")
-    SurveyResponseDTO toSurveyResponseDTO(Survey survey);
+//    @Mapping(source = "participant", target = "participant")
+//    @Mapping(source = "buddy", target = "buddy")
+//    SurveyResponseDTO toSurveyResponseDTO(Survey survey);
 
     @Mapping(source = "participantId", target = "participant.id")
     @Mapping(source = "buddyId", target = "buddy.id")

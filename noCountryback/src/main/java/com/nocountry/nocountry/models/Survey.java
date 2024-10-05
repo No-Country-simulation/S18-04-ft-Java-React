@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+// Encuestas de habilidades blandas de un participante del equipo
 @Getter
 @Setter
 @AllArgsConstructor

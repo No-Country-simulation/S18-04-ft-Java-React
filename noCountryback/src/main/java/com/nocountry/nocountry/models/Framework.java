@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+// El stack que te preguntan cuando te registras: Angular, Spring, React,
 @Getter
 @Setter
 @AllArgsConstructor
