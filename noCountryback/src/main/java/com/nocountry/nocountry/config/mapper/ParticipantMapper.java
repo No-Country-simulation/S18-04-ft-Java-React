@@ -14,10 +14,10 @@ public interface ParticipantMapper {
     ParticipantMapper INSTANCE = Mappers.getMapper(ParticipantMapper.class);
 
     @Mapping(source = "isTl", target = "isTl")
-    @Mapping(source = "team", target = "team") // Mapea el TeamResponseDTO al equipo
-    @Mapping(source = "participants", target = "participants") // Mapea la lista de encuestas
-    @Mapping(source = "buddy", target = "buddy") // Mapea la lista de compañeros
-    @Mapping(source = "sessions", target = "sessions") // Mapea la lista de sesiones
+    @Mapping(source = "team", target = "team")
+    @Mapping(source = "participants", target = "participants")
+    @Mapping(source = "buddy", target = "buddy")
+    @Mapping(source = "sessions", target = "sessions")
     Participant toParticipant(ParticipantRequestDTO dto);
 
     @Mapping(source = "id", target = "id")
