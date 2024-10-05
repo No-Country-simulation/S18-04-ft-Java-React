@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.security.filter;
 
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
+import com.nocountry.nocountry.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -46,10 +47,10 @@ public class JwtUtils {
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User userDetails) {
         Map<String,Object> claims = new HashMap<>();
-        claims.put("roles",userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
-        return createToke(userDetails.getUsername() , claims);
+        claims.put("roles",userDetails.getAuthorities());
+        return createToke(userDetails.getEmail() , claims);
     }
 
 

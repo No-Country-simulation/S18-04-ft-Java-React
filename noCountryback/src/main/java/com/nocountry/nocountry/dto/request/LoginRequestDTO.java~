@@ -1,0 +1,2 @@
+package com.nocountry.nocountry.dto.request;public class LoginRequestDTO {
+}
