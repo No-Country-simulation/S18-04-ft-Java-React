@@ -6,7 +6,6 @@ import java.util.UUID;
 public record RoleResponseDTO(
         UUID id,
         String roleName,
-        String roleDescription,
-        List<String> permissions
+        String roleDescription
 ) {
 }

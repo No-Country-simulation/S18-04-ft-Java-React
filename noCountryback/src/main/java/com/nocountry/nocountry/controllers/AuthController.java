@@ -59,4 +59,9 @@ public class AuthController {
             return ResponseEntity.status(500).body(errorResponse);
         }
     }
+
+    @GetMapping("/saludo")
+    public String saludo() {
+        return "Hola";
+    }
 }

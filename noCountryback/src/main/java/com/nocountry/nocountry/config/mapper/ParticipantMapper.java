@@ -20,13 +20,13 @@ public interface ParticipantMapper {
     @Mapping(source = "sessions", target = "sessions")
     Participant toParticipant(ParticipantRequestDTO dto);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "isTl", target = "isTl")
-    @Mapping(source = "team.teamName", target = "teamName")
-    @Mapping(source = "team.projectName", target = "projectName")
-    @Mapping(source = "team.", target = "tlLastname") // TODO : REVISAR ESTO
-    @Mapping(source = "participants", target = "participants")
-    @Mapping(source = "buddy", target = "buddy")
-    @Mapping(source = "sessions", target = "sessions")
-    ParticipantResponseDTO toParticipantDTO(Participant participant);
+//    @Mapping(source = "id", target = "id")
+//    @Mapping(source = "isTl", target = "isTl")
+//    @Mapping(source = "team.teamName", target = "teamName")
+//    @Mapping(source = "team.projectName", target = "projectName")
+//    @Mapping(source = "team.", target = "tlLastname") // TODO : REVISAR ESTO
+//    @Mapping(source = "participants", target = "participants")
+//    @Mapping(source = "buddy", target = "buddy")
+//    @Mapping(source = "sessions", target = "sessions")
+//    ParticipantResponseDTO toParticipantDTO(Participant participant);
 }

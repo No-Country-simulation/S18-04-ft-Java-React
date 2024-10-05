@@ -7,6 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepo extends GenericRepo<User,UUID> {
-    @Query(value = "SELECT u FROM User u WHERE u.email = ?1",nativeQuery = true)
-    Optional<User> findByEmail(String username);
+    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
+    Optional<User> findByEmail(String email);
 }

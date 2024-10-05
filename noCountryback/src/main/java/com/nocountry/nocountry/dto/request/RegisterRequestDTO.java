@@ -19,13 +19,11 @@ import java.util.UUID;
 public class RegisterRequestDTO {
     @NotBlank
     @Email
-    private String username;
+    private String email;
 
     @NotBlank
     @Size(min = 8)
     private String password;
 
-    @NotEmpty
-    private List<UUID> rolesId;
 }
 

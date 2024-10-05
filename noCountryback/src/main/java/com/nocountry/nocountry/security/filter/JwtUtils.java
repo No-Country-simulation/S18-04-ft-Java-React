@@ -10,10 +10,12 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.crypto.SecretKey;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +25,12 @@ import java.util.stream.Collectors;
 @Configuration
 public class JwtUtils {
 
+
     @Value("${jwt.secret}")
     private  String JWT_SECRET;
 
-    @Value("${jwt.expiration}")
-    private Long JWT_EXPIRATION;
+
+    private Long JWT_EXPIRATION =360000L;
 
 
     private SecretKey getKey() {
@@ -68,10 +71,10 @@ public class JwtUtils {
         } catch (ExpiredJwtException | MalformedJwtException e) {
             throw e;
         } catch (SignatureException e) {
-            ErrorResponseDTO error = new ErrorResponseDTO("Invalid token", "Token is invalid or tampered with");
+            ErrorResponseDTO error = new ErrorResponseDTO("Invalid token", HttpStatus.UNAUTHORIZED,"Token is invalid or tampered with", LocalDateTime.now());
             throw new RuntimeException(String.valueOf(error));
         } catch (Exception e) {
-            ErrorResponseDTO error = new ErrorResponseDTO("Internal Server Error", "Error interno del servidor");
+            ErrorResponseDTO error = new ErrorResponseDTO("Internal Server Error", HttpStatus.UNAUTHORIZED, "Error interno del servidor",LocalDateTime.now());
             throw new RuntimeException(String.valueOf(error));
         }
     }

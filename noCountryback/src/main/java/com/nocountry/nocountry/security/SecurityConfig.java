@@ -56,6 +56,7 @@ public class SecurityConfig {
     private static final String[] AUTH_ENDPOINTS_PUBLIC = {
             "/api/auth/login",
             "/api/auth/greet",
+            "/api/auth/saludo",
             "/api/auth/register",
             "/api/auth/check-login",
             "/api/auth/login/oauth",
@@ -67,25 +68,6 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(AUTH_ENDPOINTS_PUBLIC).permitAll();
-                    authConfig.requestMatchers("/private").hasRole("USER");
-                    authConfig.requestMatchers("/api/profiles").hasAnyRole("USER", "ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/profiles/**").hasAnyRole("USER", "ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/specialist/**").hasAnyRole("ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/bookings/**").hasAnyRole("ADMIN", "USER",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/schedules/**").hasAnyRole("ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/schedule/**").hasAnyRole("ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "USER",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/clinicalHistory-histories").hasAnyRole("ADMIN",
-                            "SPECIALIST");
-                    authConfig.requestMatchers("/api/clinical-records").hasAnyRole("ADMIN",
-                            "SPECIALIST");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2

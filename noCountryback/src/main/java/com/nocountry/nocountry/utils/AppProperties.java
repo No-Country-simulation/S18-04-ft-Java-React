@@ -29,8 +29,8 @@ public class AppProperties {
     public static final class OAuth2 {
         @Value("${authorized.redirect.uri}")
         private String redirectUri;
-        private List<String> authorizedRedirectUris = List.of(this.redirectUri);
-//        private List<String> authorizedRedirectUris = List.of("http://localhost:3000/login");
+//        private List<String> authorizedRedirectUris = List.of(this.redirectUri);
+        private List<String> authorizedRedirectUris = List.of("http://localhost:3000/login");
 
         public OAuth2 authorizedRedirectUris(List<String> authorizedRedirectUris) {
             this.authorizedRedirectUris = authorizedRedirectUris;

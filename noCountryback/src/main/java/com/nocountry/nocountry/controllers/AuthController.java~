@@ -25,6 +25,7 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
 
         AuthResponseDTO response = authService.login(loginRequestDTO);

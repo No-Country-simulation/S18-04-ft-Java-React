@@ -12,7 +12,7 @@ public interface SessionMapper {
 
     SessionMapper INSTANCE = Mappers.getMapper(SessionMapper.class);
 
-    @Mapping(source = "participant", target = "participant")
+    @Mapping(source = "participant", target = "participant") // TODO: REVISAR.
     SessionResponseDTO toSessionResponseDTO(Session session);
 
     @Mapping(source = "participantId", target = "participant.id")

@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -21,12 +22,13 @@ import java.util.Optional;
 
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-    private final JwtUtils jwtUtils;
-    private final AppProperties appProperties;
+    @Autowired
+    private  JwtUtils jwtUtils;
+    @Autowired
+    private  AppProperties appProperties;
 
-    public OAuth2AuthenticationSuccessHandler(JwtUtils jwtUtils, AppProperties appProperties, HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
-        this.jwtUtils = jwtUtils;
-        this.appProperties = appProperties;
+    public OAuth2AuthenticationSuccessHandler( HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
+
         this.httpCookieOAuth2AuthorizationRequestRepository = httpCookieOAuth2AuthorizationRequestRepository;
     }
 

@@ -20,6 +20,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,23 +33,22 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
     private final UserRepo userRepo;
+
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     private RoleRepo roleRepo;
 
+    @Autowired
 
     private AuthenticationManager authenticationManager;
 
-
+    @Autowired
     private JwtUtils jwtUtils;
-    public AuthServiceImpl( UserRepo userRepo, PasswordEncoder passwordEncoder, RoleRepo roleRepo, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
-        this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
-        this.roleRepo = roleRepo;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtils = jwtUtils;
-    }
 
 
     public AuthServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
@@ -62,27 +63,27 @@ public class AuthServiceImpl implements AuthService {
         try {
             authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(
-                            dto.getUsername(), dto.getPassword()));
+                            dto.getEmail(), dto.getPassword()));
         } catch (Exception e) {
             throw new BadRequestException("Invalid username or password");
         }
-        User user = userRepo.findByEmail(dto.getUsername()).orElseThrow(
-                () -> new NotFoundException("User not found with username: " + dto.getUsername()));
+        User user = userRepo.findByEmail(dto.getEmail()).orElseThrow(
+                () -> new NotFoundException("User not found with username: " + dto.getEmail()));
        return generateResponse(user);
     }
 
     @Transactional
     public AuthResponseDTO register(RegisterRequestDTO registerRequestDTO) {
-        Optional<User> userFound = userRepo.findByEmail(registerRequestDTO.getUsername());
+        Optional<User> userFound = userRepo.findByEmail(registerRequestDTO.getEmail());
         if (userFound.isPresent()) {
             throw new BadRequestException("Email already registered");
         }
         User user = new User();
-        user.setEmail(registerRequestDTO.getUsername());
+        user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
-        UUID idRandom = UUID.randomUUID();
-        Role role = roleRepo.findById(idRandom).orElseThrow(() -> new NotFoundException(String.format("Role not found with id: %s",idRandom)));
-        user.getRoles().add(role);
+        UUID roleId = UUID.fromString("340ddc49-1214-4e00-9a77-2334334b23d3");
+        Role role = roleRepo.findById(roleId).orElseThrow(() -> new NotFoundException(String.format("Role not found with id: %s",roleId)));
+        user.setRoles(Arrays.asList(role));
         userRepo.save(user);
 
         return generateResponse(user);
