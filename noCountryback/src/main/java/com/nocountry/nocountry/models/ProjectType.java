@@ -11,6 +11,7 @@ import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 import java.util.UUID;
 
+// Tipo de Equipo: WebApp, NoCode, Mobile, Data Bi
 @Getter
 @Setter
 @AllArgsConstructor

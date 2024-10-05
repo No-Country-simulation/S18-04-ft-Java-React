@@ -10,6 +10,7 @@ import net.minidev.json.annotate.JsonIgnore;
 import java.util.List;
 import java.util.UUID;
 
+// Perfil del Usuario
 @Getter
 @Setter
 @AllArgsConstructor

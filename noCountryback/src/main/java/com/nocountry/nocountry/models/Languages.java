@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+// Lenguajes de programación: Java,JavaScript,Python
 @Getter
 @Setter
 @AllArgsConstructor

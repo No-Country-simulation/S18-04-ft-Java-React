@@ -11,6 +11,7 @@ import net.minidev.json.annotate.JsonIgnore;
 import java.util.List;
 import java.util.UUID;
 
+// Equipo de una simulacion o hackaton
 @Getter
 @Setter
 @AllArgsConstructor

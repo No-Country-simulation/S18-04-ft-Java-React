@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+// Registro en una simulacion o hackaton
 @Getter
 @Setter
 @AllArgsConstructor
@@ -49,4 +50,8 @@ public class EventRecord {
     @ManyToOne
     @JoinColumn(name = "event_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORDS_EVENT"))
     private Event event;
+
+    @OneToMany(mappedBy = "eventRecord",cascade = {CascadeType.ALL},orphanRemoval = true)
+    @JoinColumn
+    private List<Participant> participants;
 }

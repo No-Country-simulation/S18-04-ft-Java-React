@@ -10,6 +10,7 @@ import java.security.Permission;
 import java.util.List;
 import java.util.UUID;
 
+// Roles de usuario se necesita 2 usuarios por defecto: User, Admin(Desarrollador)
 @Getter
 @Setter
 @AllArgsConstructor
