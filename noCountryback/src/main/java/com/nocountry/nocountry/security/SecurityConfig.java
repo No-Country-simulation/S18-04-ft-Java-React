@@ -49,9 +49,7 @@ public class SecurityConfig {
     private final ClientRegistrationRepository clientRegistrationRepository;
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
-    @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
-    @Autowired
     private AuthenticationProvider authenticationProvider;
     private static final String[] AUTH_ENDPOINTS_PUBLIC = {
             "/api/auth/login",
@@ -61,6 +59,17 @@ public class SecurityConfig {
             "/api/auth/check-login",
             "/api/auth/login/oauth",
     };
+
+    @Autowired
+    public SecurityConfig(HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository, CustomOAuth2UserService customOAuth2UserService, ClientRegistrationRepository clientRegistrationRepository, OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler, OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler, AuthenticationProvider authenticationProvider, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.httpCookieOAuth2AuthorizationRequestRepository = httpCookieOAuth2AuthorizationRequestRepository;
+        this.customOAuth2UserService = customOAuth2UserService;
+        this.clientRegistrationRepository = clientRegistrationRepository;
+        this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
+        this.oAuth2AuthenticationFailureHandler = oAuth2AuthenticationFailureHandler;
+        this.authenticationProvider = authenticationProvider;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
