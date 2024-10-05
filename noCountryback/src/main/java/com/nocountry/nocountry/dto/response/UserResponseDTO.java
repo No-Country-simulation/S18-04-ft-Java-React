@@ -8,7 +8,6 @@ import java.util.UUID;
 public record UserResponseDTO(
         UUID id,
         String email,
-        String password,
         List<RoleResponseDTO> roles
 ) {
 }
