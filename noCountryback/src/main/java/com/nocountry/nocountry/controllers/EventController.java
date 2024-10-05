@@ -40,7 +40,7 @@ public class EventController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Event> update(@Valid @RequestBody EventRequestDTO dto, @PathVariable("id")  UUID id) {
-        return ResponseEntity.status(200).body(service.update(mapper.toEvent(dto), id));
+        return ResponseEntity.status(200).body(service.updateById(mapper.toEvent(dto), id));
     }
 
     @DeleteMapping("/{id}")

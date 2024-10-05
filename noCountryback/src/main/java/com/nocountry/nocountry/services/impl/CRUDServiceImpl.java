@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 public abstract class  CRUDServiceImpl<T,ID> implements ICRUDService<T,ID> {
 
@@ -28,11 +29,8 @@ public abstract class  CRUDServiceImpl<T,ID> implements ICRUDService<T,ID> {
     }
 
     @Override
-    public T update(T t, ID id) { //TODO: revisar este con respecto al id
-        if (t == null || !getRepo().existsById(id)) {
-            throw new NotFoundException("Entity to update not found");
-        }
-        return getRepo().save(t);
+    public T updateById(T t, ID id) {
+        return getRepo().updateById(t,id).orElseThrow(() -> new NotFoundException("ID NOT FOUND: " + id));
     }
 
     @Override
