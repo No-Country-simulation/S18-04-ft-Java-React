@@ -27,4 +27,3 @@ spring.security.user.password=admin
 
 
 jwt.secret=${JWT_SECRET}
-jwt.duration=${JWT_DURATION}

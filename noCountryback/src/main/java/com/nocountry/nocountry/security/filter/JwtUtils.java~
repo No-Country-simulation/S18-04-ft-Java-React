@@ -1,0 +1,39 @@
+package com.nocountry.nocountry.security.filter;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+import javax.crypto.SecretKey;
+import java.util.Date;
+import java.util.Map;
+
+@Configuration
+public class JwtUtils {
+
+    @Value("${jwt.secret}")
+    private  String JWT_SECRET;
+
+    @Value("${jwt.expiration}")
+    private Long JWT_EXPIRATION;
+
+
+    private SecretKey getKey() {
+        return Keys.hmacShaKeyFor(JWT_SECRET.getBytes());
+    }
+
+    public Date expiration() {return new Date(System.currentTimeMillis() + JWT_EXPIRATION);}
+
+    public String createToke(String username, Map<String, Object> claims) {
+
+        return Jwts.builder()
+                .claims(claims)
+                .subject(username)
+                .expiration(expiration())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .signWith(getKey())
+                .compact();
+    }
+    
+}
