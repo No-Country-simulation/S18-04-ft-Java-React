@@ -1,5 +1,8 @@
 package com.nocountry.nocountry.dto.request;
 
+import com.nocountry.nocountry.models.Framework;
+import com.nocountry.nocountry.models.Participant;
+import com.nocountry.nocountry.models.Technology;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -14,9 +17,9 @@ public class TeamRequestDTO {
     @NotNull(message = "El nombre del proyecto es obligatorio.")
     private String projectName;
 
-    private List<UUID> teamFrameworks;
+    private List<Framework> teamFrameworks;
 
-    private List<UUID> technologies;
+    private List<Technology> technologies;
 
     private String meetUrl;
 
@@ -25,5 +28,5 @@ public class TeamRequestDTO {
     @NotNull(message = "El ID del líder de equipo es obligatorio.")
     private UUID tl;
 
-    private List<UUID> participants;
+    private List<Participant> participants;
 }

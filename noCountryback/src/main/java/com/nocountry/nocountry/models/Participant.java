@@ -30,9 +30,6 @@ public class Participant {
     @JoinColumn(name = "team_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PARTICIPANTS_TEAM"))
     private Team team;
 
-    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<Survey> participants;
 
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

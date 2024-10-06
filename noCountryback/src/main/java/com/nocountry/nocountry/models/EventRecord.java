@@ -1,5 +1,6 @@
 package com.nocountry.nocountry.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nocountry.nocountry.models.enums.Schedule;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -52,6 +53,6 @@ public class EventRecord {
     private Event event;
 
     @OneToMany(mappedBy = "eventRecord",cascade = {CascadeType.ALL},orphanRemoval = true)
-    @JoinColumn
+    @JsonIgnore
     private List<Participant> participants;
 }
