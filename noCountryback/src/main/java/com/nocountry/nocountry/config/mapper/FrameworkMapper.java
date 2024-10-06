@@ -12,10 +12,7 @@ public interface FrameworkMapper {
 
     FrameworkMapper INSTANCE = Mappers.getMapper(FrameworkMapper.class);
 
-    @Mapping(source = "frameworkName", target = "frameworkName")
     Framework toFramework(FrameworkRequestDTO dto);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "frameworkName", target = "frameworkName")
     FrameworkResponseDTO toFrameworkDTO(Framework framework);
 }

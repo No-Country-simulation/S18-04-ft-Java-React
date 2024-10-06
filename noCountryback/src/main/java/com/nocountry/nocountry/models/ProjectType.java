@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 import java.util.UUID;
 

@@ -16,8 +16,7 @@ public interface LanguagesMapper {
     @Mapping(source = "eventRecords", target = "eventRecords")
     Languages toLanguages(LanguagesRequestDTO dto);
 
-    @Mapping(source = "id", target = "id")
     @Mapping(source = "languageName", target = "languageName")
     @Mapping(source = "eventRecords", target = "eventRecords")
-    LanguagesResponseDTO toLanguagesDTO(Languages languages);
+    LanguagesResponseDTO toLanguagesResponseDTO(Languages languages);
 }
