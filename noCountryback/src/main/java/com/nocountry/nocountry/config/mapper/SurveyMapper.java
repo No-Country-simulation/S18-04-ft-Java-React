@@ -14,7 +14,7 @@ public interface SurveyMapper {
 
 //    @Mapping(source = "participant", target = "participant")
 //    @Mapping(source = "buddy", target = "buddy")
-//    SurveyResponseDTO toSurveyResponseDTO(Survey survey);
+    SurveyResponseDTO toSurveyResponseDTO(Survey survey);
 
     @Mapping(source = "participantId", target = "participant.id")
     @Mapping(source = "buddyId", target = "buddy.id")

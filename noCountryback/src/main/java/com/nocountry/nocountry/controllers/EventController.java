@@ -49,7 +49,6 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
     @GetMapping("/page")
     public ResponseEntity<Page<EventResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
