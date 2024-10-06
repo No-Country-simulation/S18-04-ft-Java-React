@@ -39,8 +39,8 @@ public class EventController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Event> update(@Valid @RequestBody EventRequestDTO dto, @PathVariable("id")  UUID id) {
-        return ResponseEntity.status(200).body(service.updateById(mapper.toEvent(dto), id));
+    public ResponseEntity<EventResponseDTO> update(@Valid @RequestBody EventRequestDTO dto, @PathVariable("id")  UUID id) {
+        return ResponseEntity.status(200).body(mapper.toEventDTO(service.updateById(mapper.toEvent(dto), id)));
     }
 
     @DeleteMapping("/{id}")
@@ -49,14 +49,6 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping
-    public ResponseEntity<List<EventResponseDTO>> findAll() {
-        List<Event> events = service.getAll();
-        List<EventResponseDTO> eventResponseDTOs = events.stream()
-                .map(mapper::toEventDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(eventResponseDTOs, HttpStatus.OK);
-    }
 
     @GetMapping("/page")
     public ResponseEntity<Page<EventResponseDTO>> findAll(

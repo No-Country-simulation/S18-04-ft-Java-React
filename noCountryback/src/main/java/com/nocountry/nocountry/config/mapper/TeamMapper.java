@@ -12,13 +12,9 @@ public interface TeamMapper {
 
     TeamMapper INSTANCE = Mappers.getMapper(TeamMapper.class);
 
-//    @Mapping(source = "tl", target = "tl")
     @Mapping(source = "teamFrameworks", target = "teamFrameworks")
     @Mapping(source = "technologies", target = "technologies")
     TeamResponseDTO toTeamResponseDTO(Team team);
 
-//    @Mapping(source = "tl", target = "tl")
-//    @Mapping(source = "teamFrameworks", target = "teamFrameworks")
-//    @Mapping(source = "technologies", target = "technologies")
-//    Team toTeam(TeamRequestDTO dto);
+    Team toTeam(TeamRequestDTO dto);
 }
