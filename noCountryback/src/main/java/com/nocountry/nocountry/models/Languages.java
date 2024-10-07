@@ -1,5 +1,6 @@
 package com.nocountry.nocountry.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,6 @@ public class Languages {
     private String languageName;
 
     @OneToMany(mappedBy = "language", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
     private List<EventRecord>eventRecords;
 }

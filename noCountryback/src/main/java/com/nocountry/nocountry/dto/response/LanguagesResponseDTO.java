@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public record LanguagesResponseDTO(
         UUID id,
-        String languageName,
-        List<EventRecordResponseDTO> eventRecords
+        String languageName
 ) {
 }
