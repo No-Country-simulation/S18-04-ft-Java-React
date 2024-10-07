@@ -21,10 +21,10 @@ FROM amazoncorretto:21-alpine3.20
 WORKDIR /app
 
 # Copiar el JAR generado desde la etapa de construcción
-COPY --from=build /app/target/noCountry-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/noCountry-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Exponer el puerto en el que la aplicación correrá
 EXPOSE 8090
 
 # Comando para ejecutar el JAR
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
