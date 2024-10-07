@@ -1,13 +1,11 @@
-# Paso 1: Usar una imagen de Maven para construir el JAR
-FROM maven:3.8.4-amazoncorretto-21 AS build
+# Paso 1: Usar una imagen de Maven con OpenJDK 21 para construir el JAR
+FROM maven:3.8.4-openjdk-21 AS build
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar el archivo pom.xml y las dependencias del proyecto
+# Copiar el archivo pom.xml y descargar las dependencias
 COPY pom.xml .
-
-# Descargar las dependencias del proyecto (esto se hace primero para aprovechar el cache de Docker)
 RUN mvn dependency:go-offline -B
 
 # Copiar el resto del código del proyecto
@@ -23,7 +21,7 @@ FROM amazoncorretto:21-alpine3.20
 WORKDIR /app
 
 # Copiar el JAR generado desde la etapa de construcción
-COPY --from=build /app/target/noCountry-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/telemedicina-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto en el que la aplicación correrá
 EXPOSE 8090
