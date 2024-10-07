@@ -21,7 +21,7 @@ FROM amazoncorretto:21-alpine3.20
 WORKDIR /app
 
 # Copiar el JAR generado desde la etapa de construcción
-COPY --from=build /app/target/telemedicina-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/noCountry-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto en el que la aplicación correrá
 EXPOSE 8090
