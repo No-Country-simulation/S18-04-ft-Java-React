@@ -1,13 +1,17 @@
 package com.nocountry.nocountry.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -28,10 +32,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
         ),
         servers = {
                 @Server(description = "Development Server", url = "http://localhost:8080"),
-                @Server(description = "Production Server", url = "https://techsimulations.com")
-        }
+                @Server(description = "Production Server", url = "https://s18-04-ft-java-react-production.up.railway.app")
+        },
+        security = @SecurityRequirement(name = "bearerAuth")
 )
 @Configuration
+@SecurityScheme(
+        name = "bearerAuth",
+        description = "Bearer authentication scheme for accessing the API. A valid JWT token is required.",
+        type = SecuritySchemeType.HTTP,
+        scheme = "bearer",
+        bearerFormat = "JWT"
+)
+@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class OpenAPIConfig implements WebMvcConfigurer {
     @Bean
     public GroupedOpenApi publicApi() {
