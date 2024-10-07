@@ -58,6 +58,8 @@ public class SecurityConfig {
             "/api/auth/register",
             "/api/auth/check-login",
             "/api/auth/login/oauth",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
     };
 
     @Autowired
