@@ -12,7 +12,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Construir el proyecto y empaquetarlo en un JAR
-RUN mvn clean package -DskipTests
+#RUN mvn clean package -DskipTests
 RUN mvn clean
 
 # Paso 2: Crear una nueva imagen para la ejecución del JAR
