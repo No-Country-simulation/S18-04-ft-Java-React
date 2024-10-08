@@ -63,4 +63,13 @@ public class ParticipantController {
                 .collect(Collectors.toList());
         return new ResponseEntity<>(new PageImpl<>(participantResponseDTOs, participantsPage.getPageable(), participantsPage.getTotalElements()), HttpStatus.OK);
     }
+
+    @GetMapping("/find_all_by_team_id")
+    public ResponseEntity<List<ParticipantResponseDTO>> findAllParticipantsByTeamId(
+            @RequestBody String teamId ){
+        return ResponseEntity.ok(service
+                .findAllParticipantsByTeamId(teamId).stream()
+                .map(mapper::toParticipantDTO)
+                .collect(Collectors.toList()));
+    }
 }
