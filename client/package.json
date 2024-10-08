@@ -2,21 +2,62 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env FORCE_COLOR=1 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --check \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --ignore-path .prettierignore .",
+    "commitlint:last": "npx commitlint --from HEAD~1 --to HEAD --verbose || $1",
+    "prepare": "node setup-husky.js",
+    "test": "cross-env FORCE_COLOR=1 vitest run --passWithNoTests",
+    "test:watch": "vitest --passWithNoTests --watch",
+    "postinstall": "npx patch-package && node setup-husky.js"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.14"
+    "@radix-ui/react-slot": "1.1.0",
+    "class-variance-authority": "0.7.0",
+    "clsx": "2.1.1",
+    "next": "14.2.14",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "sharp": "0.33.5",
+    "tailwind-merge": "2.5.3",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.14"
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.0.1",
+    "@vitejs/plugin-react": "4.3.2",
+    "@vitest/coverage-v8": "2.1.2",
+    "@vitest/expect": "2.1.2",
+    "autoprefixer": "10.4.20",
+    "cross-env": "7.0.3",
+    "cssnano": "6.1.2",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.14",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-react": "7.37.1",
+    "eslint-plugin-tailwindcss": "3.17.4",
+    "fetch-mock": "11.1.5",
+    "husky": "9.1.6",
+    "jsdom": "25.0.1",
+    "lint-staged": "15.2.10",
+    "patch-package": "8.0.0",
+    "postcss": "8.4.41",
+    "prettier": "3.3.3",
+    "prettier-plugin-tailwindcss": "0.6.8",
+    "tailwindcss": "3.4.10",
+    "vitest": "2.1.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
