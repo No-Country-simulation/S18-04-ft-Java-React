@@ -1,5 +1,9 @@
 package com.nocountry.nocountry.security.filter;
 
+import com.nocountry.nocountry.models.User;
+import com.nocountry.nocountry.repository.UserRepo;
+import com.nocountry.nocountry.security.CustomUserDetailsService;
+import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -18,11 +23,13 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtils jwtUtils;
-    private final UserDetailsService userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
+    private final UserRepo userRepo;
 
-    public JwtAuthenticationFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
+    public JwtAuthenticationFilter(UserRepo userRepo, JwtUtils jwtUtils, CustomUserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = userDetailsService;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -36,7 +43,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         username = jwtUtils.getUsernameFromToken(token);
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails user = userDetailsService.loadUserByUsername(username);
+            User userEntity = userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User with email %s not found",username)));
+
+            UserDetails user = UserPrincipal.create(userEntity);
+
             if(jwtUtils.isTokenValid(token, user)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user, null,
                         user.getAuthorities());

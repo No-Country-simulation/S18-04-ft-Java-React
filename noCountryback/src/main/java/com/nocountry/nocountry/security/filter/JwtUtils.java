@@ -30,7 +30,8 @@ public class JwtUtils {
     private  String JWT_SECRET;
 
 
-    private Long JWT_EXPIRATION =360000L;
+    @Value("${jwt.duration}")
+    private  int JWT_EXPIRATION ;
 
 
     private SecretKey getKey() {

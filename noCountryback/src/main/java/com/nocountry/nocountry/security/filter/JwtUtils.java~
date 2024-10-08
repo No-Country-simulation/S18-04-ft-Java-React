@@ -27,10 +27,11 @@ public class JwtUtils {
 
 
     @Value("${jwt.secret}")
-    private  String JWT_SECRET = "asdkjasjkdasdaskjd";
+    private  String JWT_SECRET;
 
 
-    private Long JWT_EXPIRATION =360000L;
+    @Value("${jwt.expiration}")
+    private  int JWT_EXPIRATION ;
 
 
     private SecretKey getKey() {
