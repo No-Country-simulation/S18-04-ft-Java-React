@@ -1,0 +1,3 @@
+En esta carpeta puedes meter clases, funciones o servicios que depandan de una api externa
+
+Por ejemlo en "utils.js" se utiliza la libreria twMerge y clsx
