@@ -10,6 +10,7 @@ import java.security.Permission;
 import java.util.List;
 import java.util.UUID;
 
+// Roles de usuario se necesita 2 usuarios por defecto: User, Admin(Desarrollador)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,7 +30,7 @@ public class Role {
     @Column(name = "role_description", nullable = false)
     private String roleDescription;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_permission",joinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_id"),inverseJoinColumns = @JoinColumn(name = "permission_id",referencedColumnName = "permission_id"))
     private List<PPermission> permissions;
 }

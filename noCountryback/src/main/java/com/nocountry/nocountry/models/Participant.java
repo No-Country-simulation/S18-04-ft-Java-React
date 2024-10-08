@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+// Participante de un equipo
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,9 +30,6 @@ public class Participant {
     @JoinColumn(name = "team_id", nullable = false, foreignKey = @ForeignKey(name = "FK_PARTICIPANTS_TEAM"))
     private Team team;
 
-    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<Survey> participants;
 
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -40,4 +38,8 @@ public class Participant {
     @OneToMany(mappedBy = "participant",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Session>sessions;
+
+    @ManyToOne
+    @JoinColumn(name = "event_record_id", nullable = false, foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_PARTICIPANT"))
+    private EventRecord eventRecord;
 }

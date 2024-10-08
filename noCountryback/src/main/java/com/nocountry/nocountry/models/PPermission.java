@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+// Permisos de autorizacion
 @Getter
 @Setter
 @AllArgsConstructor

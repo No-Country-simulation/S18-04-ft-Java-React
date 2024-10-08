@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.UUID;
 
+// Registro de asistencias y observaciones por parte del tl a un participante de un equipo
 @Getter
 @Setter
 @AllArgsConstructor
