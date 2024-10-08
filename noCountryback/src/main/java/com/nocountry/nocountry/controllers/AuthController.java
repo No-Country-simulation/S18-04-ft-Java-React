@@ -4,10 +4,12 @@ import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
 import com.nocountry.nocountry.dto.response.AuthResponseDTO;
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
+import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.AuthService;
 import io.jsonwebtoken.security.SignatureException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +28,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<UserResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO, HttpServletResponse resp) {
 
-        AuthResponseDTO response = authService.login(loginRequestDTO);
+//        AuthResponseDTO response = authService.login(loginRequestDTO,resp);
+        UserResponseDTO response = authService.login(loginRequestDTO,resp);
         return ResponseEntity.status(200).body(response);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponseDTO> register(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
-        AuthResponseDTO response = authService.register(registerRequestDTO);
+    public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody RegisterRequestDTO registerRequestDTO, HttpServletResponse resp) {
+        UserResponseDTO response = authService.register(registerRequestDTO, resp);
         // Envio de correo de confirmacion del registro
 //        emailService.registerConfirmation(registerRequestDTO.getUsername());
         return ResponseEntity.status(201).body(response);
@@ -42,10 +45,10 @@ public class AuthController {
 
 
     @GetMapping("/check-login")
-    public ResponseEntity<?> checkLogin(@CurrentUser UserPrincipal userPrincipal) {
+    public ResponseEntity<?> checkLogin(@CurrentUser UserPrincipal userPrincipal, HttpServletResponse resp) {
         try {
             if (userPrincipal != null) {
-                AuthResponseDTO response = authService.getUserByUsername(userPrincipal.getUsername());
+                UserResponseDTO response = authService.getUserByUsername(userPrincipal.getUsername(),resp);
                 return ResponseEntity.status(200).body(response);
             } else {
                 ErrorResponseDTO error = new ErrorResponseDTO("Forbidden", HttpStatus.UNAUTHORIZED,"/api/check-out",LocalDateTime.now());

@@ -4,10 +4,12 @@ import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
 import com.nocountry.nocountry.dto.response.AuthResponseDTO;
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
+import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.AuthService;
 import io.jsonwebtoken.security.SignatureException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,10 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<UserResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO, HttpServletResponse resp) {
 
-        AuthResponseDTO response = authService.login(loginRequestDTO);
+//        AuthResponseDTO response = authService.login(loginRequestDTO,resp);
+        UserResponseDTO response = authService.login(loginRequestDTO,resp);
         return ResponseEntity.status(200).body(response);
     }
 
@@ -58,5 +61,10 @@ public class AuthController {
             ErrorResponseDTO errorResponse = new ErrorResponseDTO("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor",LocalDateTime.now());
             return ResponseEntity.status(500).body(errorResponse);
         }
+    }
+
+    @GetMapping("/saludo")
+    public String saludo() {
+        return "Hola";
     }
 }

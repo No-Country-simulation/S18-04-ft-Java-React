@@ -36,6 +36,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         this.userRepository = userRepository;
         this.roleRepo = roleRepo;
     }
+    @Transactional
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
@@ -62,7 +63,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             user = new User();
             user.setEmail(userInfoOAuth.getEmail());
             user.setRoles(new ArrayList<>());
-            Role role = roleRepo.findById(UUID.fromString("2326ec2c-4f97-4007-b52c-ba5561b434b9")).orElseThrow(() -> new NotFoundException("Role not found"));
+            Role role = roleRepo.findById(UUID.fromString("340ddc49-1214-4e00-9a77-2334334b23d3")).orElseThrow(() -> new NotFoundException("Role not found"));
             user.getRoles().add(role);
             userRepository.save(user);
         }

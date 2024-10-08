@@ -52,9 +52,4 @@ public class User implements UserDetails {
         permissions.stream().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getPermissionName())));
         return authorities;
     }
-
-    @Override
-    public String getUsername() {
-        return getEmail();
-    }
 }

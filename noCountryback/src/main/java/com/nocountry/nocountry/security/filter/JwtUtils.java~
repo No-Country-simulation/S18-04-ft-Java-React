@@ -30,7 +30,7 @@ public class JwtUtils {
     private  String JWT_SECRET;
 
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.duration}")
     private  int JWT_EXPIRATION ;
 
 

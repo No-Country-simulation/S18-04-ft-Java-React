@@ -60,11 +60,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-        User userPrincipal = (User) authentication.getPrincipal();
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
         String token = jwtUtils.generateToken(userPrincipal);
+        CookieUtils.addCookie(response, "token", token, 3600);
         return UriComponentsBuilder.fromUriString(targetUrl)
-                .queryParam("token", token)
+//                .queryParam("token", token)
                 .build().toUriString();
     }
 

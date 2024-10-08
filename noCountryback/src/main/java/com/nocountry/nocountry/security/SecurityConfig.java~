@@ -110,8 +110,12 @@ public class SecurityConfig {
                         .successHandler(oAuth2AuthenticationSuccessHandler)
                         .failureHandler(oAuth2AuthenticationFailureHandler))
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                                .accessDeniedHandler(accessDeniedHandler())
-                                .authenticationEntryPoint(authenticationEntryPoint())
+                                .accessDeniedHandler(accessDeniedHandler()) // Custom handler for access
+                                // denied
+                                .authenticationEntryPoint(authenticationEntryPoint()) // Custom entry
+                        // point for
+                        // authentication
+                        // errors
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session

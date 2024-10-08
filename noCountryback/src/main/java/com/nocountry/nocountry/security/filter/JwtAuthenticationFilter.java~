@@ -1,9 +1,11 @@
 package com.nocountry.nocountry.security.filter;
 
+import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.models.User;
 import com.nocountry.nocountry.repository.UserRepo;
 import com.nocountry.nocountry.security.CustomUserDetailsService;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
+import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +36,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        final String token = getTokenFromRequest(request);
+//        final String token = getTokenFromRequest(request);
+        String token = CookieUtils.getCookie(request, "token").orElseThrow(() -> new UnAuthorizedException("No Authorized")).getValue();
         final String username;
 
         if(token == null) {
@@ -44,14 +47,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         username = jwtUtils.getUsernameFromToken(token);
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User userEntity = userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User with email %s not found",username)));
+
             UserDetails user = UserPrincipal.create(userEntity);
+
             if(jwtUtils.isTokenValid(token, user)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user, null,
                         user.getAuthorities());
 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+            } else {
+                CookieUtils.deleteCookie(request, response, "token");
             }
+
         }
         filterChain.doFilter(request, response);
     }

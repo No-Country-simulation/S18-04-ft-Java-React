@@ -1,11 +1,14 @@
 package com.nocountry.nocountry.security.filter;
 
+import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.models.User;
 import com.nocountry.nocountry.repository.UserRepo;
 import com.nocountry.nocountry.security.CustomUserDetailsService;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
+import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +23,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Optional;
+
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtils jwtUtils;
@@ -34,8 +39,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        final String token = getTokenFromRequest(request);
+//        final String token = getTokenFromRequest(request);
+        Optional<Cookie> cookie = CookieUtils.getCookie(request, "token");
+        if(cookie.isEmpty()) {
+            filterChain.doFilter(request, response);
+            return ;
+        }
         final String username;
+        String token = cookie.get().getValue();
 
         if(token == null) {
             filterChain.doFilter(request, response);
@@ -53,7 +64,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+            } else {
+                CookieUtils.deleteCookie(request, response, "token");
             }
+
         }
         filterChain.doFilter(request, response);
     }

@@ -40,5 +40,6 @@ app.auth.tokenExpirationMsec=864000000
 spring.security.oauth2.client.registration.google.clientId=${GOOGLE_CLIENT_ID}
 spring.security.oauth2.client.registration.google.clientSecret=${GOOGLE_CLIENT_SECRET}
 spring.security.oauth2.client.registration.google.redirectUri=http://localhost:8090/oauth2/callback/google
+spring.security.oauth2.client.registration.google.redirect-uri=
 
 spring.security.oauth2.client.registration.google.scope=email, profile

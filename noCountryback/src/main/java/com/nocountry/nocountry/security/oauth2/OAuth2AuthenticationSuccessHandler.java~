@@ -27,7 +27,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Autowired
     private  AppProperties appProperties;
 
-    public OAuth2AuthenticationSuccessHandler(JwtUtils jwtUtils, AppProperties appProperties, HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
+    public OAuth2AuthenticationSuccessHandler( HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
 
         this.httpCookieOAuth2AuthorizationRequestRepository = httpCookieOAuth2AuthorizationRequestRepository;
     }
@@ -63,8 +63,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         User userPrincipal = (User) authentication.getPrincipal();
 
         String token = jwtUtils.generateToken(userPrincipal);
+        CookieUtils.addCookie(response, "token", token, 3600);
         return UriComponentsBuilder.fromUriString(targetUrl)
-                .queryParam("token", token)
+//                .queryParam("token", token)
                 .build().toUriString();
     }
 

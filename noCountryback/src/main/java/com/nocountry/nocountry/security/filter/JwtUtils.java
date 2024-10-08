@@ -51,10 +51,10 @@ public class JwtUtils {
                 .compact();
     }
 
-    public String generateToken(User userDetails) {
+    public String generateToken(UserDetails userDetails) {
         Map<String,Object> claims = new HashMap<>();
         claims.put("roles",userDetails.getAuthorities());
-        return createToke(userDetails.getEmail() , claims);
+        return createToke(userDetails.getUsername() , claims);
     }
 
 
