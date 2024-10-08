@@ -12,9 +12,9 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Construir el proyecto y empaquetarlo en un JAR
-#RUN mvn clean package -DskipTests
-RUN mvn clean
-RUN mvn install -e POSTGRES_URL=${POSTGRES_URL} -e POSTGRES_USER=${POSTGRES_USER} -e baseUrl=${baseUrl} -e GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET} -e JWT_SECRET=${JWT_SECRET} -e GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID} -e JWT_DURATION=${JWT_DURATION} -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -e AUTHORIZED_REDIRECT_URI=${AUTHORIZED_REDIRECT_URI}
+RUN mvn clean package -DskipTests
+#RUN mvn clean
+#RUN mvn install -e POSTGRES_URL=${POSTGRES_URL} -e POSTGRES_USER=${POSTGRES_USER} -e baseUrl=${baseUrl} -e GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET} -e JWT_SECRET=${JWT_SECRET} -e GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID} -e JWT_DURATION=${JWT_DURATION} -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -e AUTHORIZED_REDIRECT_URI=${AUTHORIZED_REDIRECT_URI}
 # Paso 2: Crear una nueva imagen para la ejecución del JAR
 FROM amazoncorretto:21-alpine3.20
 
