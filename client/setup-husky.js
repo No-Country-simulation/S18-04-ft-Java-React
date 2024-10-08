@@ -57,12 +57,7 @@ npx --no lint-staged || { echo -e "$(tput setaf 1)❌There is a bug in Eslint or
   const prePushPath = path.join(huskyDir, 'pre-push');
   const prePushHook = `set +e
 if [ ! -d "client" ]; then
-  echo "Not found client skip pre-commit for client."
-  exit 0
-fi
-
-if ! git diff --cached --name-only | grep -q '^client/'; then
-  echo "No changes in client, skipping pre-commit for client."
+  echo "Not found client skip pre-push for client."
   exit 0
 fi
 
