@@ -63,4 +63,11 @@ public class EventRecordController {
                 eventRecordsPage.getPageable(),
                 eventRecordsPage.getTotalElements()));
     }
+
+    @GetMapping("/find_all_by_user_id")
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllEventsByUserId(
+            @RequestBody String userId){
+        return ResponseEntity.ok(service.findAllEventByUserId(userId)
+                .stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
+    }
 }

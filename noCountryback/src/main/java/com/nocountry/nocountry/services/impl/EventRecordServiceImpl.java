@@ -7,6 +7,7 @@ import com.nocountry.nocountry.services.IEventRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,5 +22,12 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
     @Override
     protected GenericRepo<EventRecord, UUID> getRepo() {
         return repo;
+    }
+
+    @Override
+    public List<EventRecord> findAllEventByUserId(String userId) {
+        return repo.findAll().stream()
+                .filter(e -> e.getParticipants().stream()
+                        .anyMatch(p -> p.getId().toString().equals(userId)) ).toList();
     }
 }
