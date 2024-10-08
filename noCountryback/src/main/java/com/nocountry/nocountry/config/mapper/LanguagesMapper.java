@@ -13,10 +13,8 @@ public interface LanguagesMapper {
     LanguagesMapper INSTANCE = Mappers.getMapper(LanguagesMapper.class);
 
     @Mapping(source = "languageName", target = "languageName")
-    @Mapping(source = "eventRecords", target = "eventRecords")
     Languages toLanguages(LanguagesRequestDTO dto);
 
     @Mapping(source = "languageName", target = "languageName")
-    @Mapping(source = "eventRecords", target = "eventRecords")
     LanguagesResponseDTO toLanguagesResponseDTO(Languages languages);
 }
