@@ -76,22 +76,7 @@ public class AuthServiceImpl implements AuthService {
        return generateResponse(user,resp);
     }
 
-//    @Override
-//    @Transactional
-//    public AuthResponseDTO login(LoginRequestDTO dto, HttpServletResponse response) {
-//        try {
-//            authenticationManager
-//                    .authenticate(new UsernamePasswordAuthenticationToken(
-//                            dto.getEmail(), dto.getPassword()));
-//        } catch (Exception e) {
-//            throw new BadRequestException("Invalid username or password");
-//        }
-//        User user = userRepo.findByEmail(dto.getEmail()).orElseThrow(
-//                () -> new NotFoundException("User not found with username: " + dto.getEmail()));
-//        String token = jwtUtils.generateToken(user);
-//        CookieUtils.addCookie(response,"token",token,3600);
-//       return generateResponse(user);
-//    }
+
 
     @Transactional
     public UserResponseDTO register(RegisterRequestDTO registerRequestDTO, HttpServletResponse resp) {

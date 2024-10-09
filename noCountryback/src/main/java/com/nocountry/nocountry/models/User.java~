@@ -39,7 +39,6 @@ public class User implements UserDetails {
     private List<Role>roles;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private Profile profile;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -51,5 +50,10 @@ public class User implements UserDetails {
                 .map(rol -> new SimpleGrantedAuthority(rol.getRoleName())).collect(Collectors.toList());
         permissions.stream().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getPermissionName())));
         return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return getEmail();
     }
 }
