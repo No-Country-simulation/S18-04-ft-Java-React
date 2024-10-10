@@ -139,9 +139,10 @@ export default function Home() {
           </div>
           <div className="mx-auto mt-[29px] flex max-w-[900px] flex-col place-content-center items-center lg:col-span-2">
             <a href="" className="block w-full">
-              {/* <img/> */}
               <Image
-                className="h-8 w-72 justify-self-center fill-none md:w-96"
+                width={144}
+                height={32}
+                className="h-8 w-36 justify-self-center"
                 src={Logo}
                 alt="logo"
               />
