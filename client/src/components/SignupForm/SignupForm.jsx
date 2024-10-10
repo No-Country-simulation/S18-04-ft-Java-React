@@ -54,7 +54,7 @@ export const SignupForm = () => {
         />
         <Image src="/images/noCountry.png" alt="No Country" width={66} height={16} />
       </div>
-      <form className={style.signupFormContent} onSubmit={handleSubmit}>
+      <form className={style.signupFormContent}>
         <fieldset className={style.signupFieldSet}>
           <div className={style.signupContent}>
             <div className={style.signupContentLabel}>
@@ -86,7 +86,7 @@ export const SignupForm = () => {
               </label>
             </div>
           </div>
-          <button className={style.signupButton} type="submit" disabled={isPending}>
+          <button className={style.signupButton} type="submit">
             Continuar
           </button>
         </fieldset>
