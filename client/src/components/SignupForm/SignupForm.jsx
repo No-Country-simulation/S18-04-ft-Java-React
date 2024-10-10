@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useTransition } from 'react';
-import { useFormState } from 'react-dom';
-import { signup } from './action';
+// import { useEffect, useTransition } from 'react';
+// import { useFormState } from 'react-dom';
+// import { signup } from './action';
 import style from '../../styles/signup.module.css';
 
 // **Este componente solo es ejemplo**
@@ -22,25 +22,25 @@ export const SignupForm = () => {
   // que se ejecuta en el cliente recibe los datos del formulario
   // y ejecuta la funcion 'signup' del lado del servidor
   // El segundo parametro 'result' es la respuesta(return) de la funcion 'signup'
-  const [result, dispatch] = useFormState(signup, undefined);
-  const [isPending, startTransition] = useTransition();
+  // const [result, dispatch] = useFormState(signup, undefined);
+  // const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    if (result) {
-      // De esta forma se asegura el RESET de isPending
-      startTransition(() => {});
-    }
-  }, [result]);
+  // useEffect(() => {
+  //   if (result) {
+  //     // De esta forma se asegura el RESET de isPending
+  //     startTransition(() => {});
+  //   }
+  // }, [result]);
 
-  const handleSubmit = event => {
-    //Prevent default para evitar que recargue la pagina (accion por defecto)
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    // start transition es una funcion que se utiliza, para indicar una transicion
-    // desde que se inicia a ejecutar hasta que se termine de ejecutar
-    // En este caso la transicion es mientras se ejecuta 'dispatch"
-    startTransition(() => dispatch(formData));
-  };
+  // const handleSubmit = event => {
+  //   //Prevent default para evitar que recargue la pagina (accion por defecto)
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   // start transition es una funcion que se utiliza, para indicar una transicion
+  //   // desde que se inicia a ejecutar hasta que se termine de ejecutar
+  //   // En este caso la transicion es mientras se ejecuta 'dispatch"
+  //   startTransition(() => dispatch(formData));
+  // };
 
   return (
     <div className={style.signup}>
