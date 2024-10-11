@@ -4,30 +4,25 @@ import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 //Ejemplo de como usar CVA(Class variant authority) para estilizar un boton
-// Hay que actualizar estos estilos y variante segun lo que necesitemos
 const btnCVA = cva(
-  'inline-flex items-center justify-center outline-none rounded-xl focus:outline-none active:outline-none focus-visible:outline-none no-underline truncate disabled:opacity-60 disabled:cursor-default disabled:bg-neutral-90 disable:text-neutral-10 transition-all ease-in-out duration-300',
+  `inline-flex items-center justify-center  rounded-lg no-outline truncate disabled:opacity-60 disabled:cursor-default disabled:bg-neutral-500 disable:text-neutral-800 transition-all ease-in-out duration-300`,
   {
     variants: {
       variant: {
-        default:
-          'bg-primario-70 text-primario-10 [&:not(:disabled)]:hover:bg-primario-80 [&:not(:disabled)]:hover:shadow-[0px_1px_2px_0px_rgba(0,0,0,0.3)] [&:not(:disabled)]:active:bg-primario-70',
-        outline:
-          'bg-transparent text-primario-60 border border-primario-70 [&:not(:disabled)]:hover:bg-neutral-40 [&:not(:disabled)]:hover:shadow-[0px_1px_2px_0px_rgba(0,0,0,0.3)] [&:not(:disabled)]:active:bg-transparent',
-        elevated: `bg-primario-70 shadow-[0px_2px_2px_0px_rgba(0,0,0,0.3)] text-primario-10
-          [&:not(:disabled)]:hover:shadow-[0px_2px_2px_0px_rgba(0,0,0,0.6)] [&:not(:disabled)]:active:bg-primario-70,`,
-        disabled: 'bg-[rgba(229,229,225,1)] cursor-not-allowed',
+        primary:
+          'bg-accent-400 text-primary-300 font-medium [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(12,252,167,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
+        secondary:
+          'bg-secondary-300 text-white font-medium [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(94,23,235,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
+        disabled: 'bg-neutral-500 text-neutral-800 cursor-not-allowed',
         transparent: 'bg-transparent text-white border-transparent',
       },
       size: {
-        default: 'h-[42px] px-6',
-        sm: 'h-[42px] px-6',
-        lg: 'h-[42px] px-6',
-        full: 'h-[42px] px-6 w-full max-w-[100cqw]',
-        fit: 'size-fit p-1',
+        default: 'h-[44px] py-[10px] px-7',
+        full: 'h-[44px] py-[10px] px-7 w-full max-w-[100cqw]',
+        fit: 'size-fit py-[10px] px-7',
       },
     },
-    defaultVariants: { variant: 'default', size: 'default' },
+    defaultVariants: { variant: 'primary', size: 'default' },
   }
 );
 

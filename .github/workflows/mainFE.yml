@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [ciFE]
+    types:
+      - completed
+    branches:
+      - develop
+
+concurrency:
+  group: gd-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.RAILWAY_TOKEN != '' }}
+
+    steps:
+      - name: Setup/ Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup/ Install pnpm 9.7.0 manually
+        run: npm install -g pnpm@9.7.0
+
+      - name: Install Vercel CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

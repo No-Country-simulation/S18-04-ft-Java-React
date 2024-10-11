@@ -31,6 +31,19 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .no-outline {
+    @apply no-underline outline-none focus:outline-none focus-visible:outline-none active:outline-none;
+  }
+  .border-gradient-green-to-blue {
+    border: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(225deg, #0cfca7, #1d90fc);
+    text-decoration: inherit;
+    border-width: 1px;
+  }
 }
 
 body {

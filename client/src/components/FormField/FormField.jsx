@@ -1,50 +1,76 @@
 import { cva } from 'class-variance-authority';
+import Image from 'next/image';
 import { forwardRef } from 'react';
+import EyeButton from '../EyeButton/EyeButton';
 import { cn } from '@/lib/utils';
 
 //Ejemplo de estilo de un form field
-// Hay que actualizar estos estilos y variante segun lo que necesitemos
 const formFieldCVA = cva(
-  'w-full bg-transparent outline-none rounded-md focus:outline-none active:outline-none border border-secundario-99 transition-all duration-300 ease-in-out text-sm peer placeholder:text-secundario-99 placeholder:opacity-0 focus:placeholder:opacity-100 h-12 px-3 py-1 focus:border-secundario-70 [:not(:placeholder-shown)]:border-secundario-70',
+  'w-full bg-transparent relative z-10 no-outline rounded-md transition-all duration-300 ease-in-out text-sm  h-12 px-3 py-2 border-none',
   {
     variants: {
       error: {
-        true: 'border-error-60 focus:border-error-60 placeholder:text-error-60',
+        true: 'border-red-400 focus:border-red-400',
         false: '',
       },
+      icon: {
+        true: 'pl-10',
+        false: '',
+      },
+      password: {
+        true: 'pr-10',
+        false: '',
+      },
+      defaultVariants: { error: false, icon: false, password: false },
     },
-    defaultVariants: { onAction: 'disabled', error: false },
   }
 );
-
+const labelCVA = cva('text-base font-normal leading-4 text-white', {
+  variants: {
+    error: {
+      true: 'text-red-500',
+      false: '',
+    },
+    defaultVariants: { error: false },
+  },
+});
+// Icons: EyeOff, Github, Linkedin, Unlock, User, Whatsapp (Actualmente)
 const FormField = forwardRef(function FormField(
-  { className = '', id = '', label = '', type = 'text', placeholder = '', error, ...props },
+  { className = '', id = '', label = '', type = 'text', error, icon, onTypeChange, ...props },
   ref
 ) {
   const defaultID = id ? id : crypto.randomUUID();
 
   return (
     <div className="group relative w-full max-w-lg text-sm">
-      <input
-        {...props}
-        id={defaultID}
-        placeholder={placeholder}
-        ref={ref}
-        type={type}
-        className={cn(formFieldCVA({ error: !!error, className }))}
-      />
-      <label
-        className={cn(
-          'bg-neutral-20 text-secundario-99 peer-focus:text-secundario-95 pointer-events-none absolute left-4 top-1/2 w-fit -translate-y-1/2 truncate px-2 py-1 text-base transition-all duration-500 ease-in-out peer-focus:-top-4 peer-focus:left-3 peer-focus:translate-y-0 peer-focus:scale-[.85] peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:scale-[.85]',
-          error
-            ? 'text-error-60 peer-focus:text-error-60 peer-[:not(:placeholder-shown)]:text-error-60'
-            : ''
-        )}
-        htmlFor={defaultID}>
+      <label className={cn(labelCVA({ error: !!error }))} htmlFor={defaultID}>
         {label}
       </label>
+      <div className="relative mt-4">
+        {icon ? (
+          <Image
+            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 text-gray-400"
+            width={18}
+            height={18}
+            src={`/images/${icon}.svg`}
+            alt="Icon field"
+          />
+        ) : null}
+        <div className="absolute inset-0 rounded-md bg-gradient-to-r from-accent-400 to-primary-50"></div>
+        <div className="absolute inset-px rounded-md bg-gradient-field"></div>
+        <input
+          {...props}
+          id={defaultID}
+          ref={ref}
+          type={type}
+          className={cn(
+            formFieldCVA({ error: !!error, className, icon: !!icon, password: !!onTypeChange })
+          )}
+        />
+        {onTypeChange ? <EyeButton onTypeChange={onTypeChange} /> : null}
+      </div>
       {error ? (
-        <span className="text-error-60 absolute -bottom-5 left-0 text-xs">{error}</span>
+        <span className="absolute -bottom-5 left-0 text-xs text-red-400">{error}</span>
       ) : null}
     </div>
   );

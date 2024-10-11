@@ -9,6 +9,7 @@ describe('Root page test', () => {
 
   it('should find root-page id', () => {
     render(<RootPage />);
+
     expect(screen.getByTestId('root-page')).toBeDefined();
   });
 });
