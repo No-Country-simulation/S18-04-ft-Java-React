@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 // import { useEffect, useTransition } from 'react';
 // import { useFormState } from 'react-dom';
@@ -43,7 +42,7 @@ export const SignupForm = () => {
   // };
 
   return (
-    <div className={style.signup}>
+    <section className={style.signup}>
       <div className={style.signupContentLogo}>
         <Image
           className={style.signupLogo}
@@ -63,6 +62,7 @@ export const SignupForm = () => {
                 <input className={style.signupInput} id="user" type="text" name="userField" />
               </label>
             </div>
+
             <div className={style.signupContentLabel}>
               <label className={style.signupLabel} htmlFor="passwordField">
                 Contraseña
@@ -86,11 +86,12 @@ export const SignupForm = () => {
               </label>
             </div>
           </div>
+
           <button className={style.signupButton} type="submit">
             Continuar
           </button>
         </fieldset>
       </form>
-    </div>
+    </section>
   );
 };
