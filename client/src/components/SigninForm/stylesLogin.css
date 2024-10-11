@@ -22,7 +22,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
+
   .formLogin {
     background-color: #0A2140;
     padding: 2rem;
@@ -37,11 +37,17 @@
   }
   
   .formLogin input {
-    padding: 1rem;
+    padding: 0.5rem;
     border: 1px solid #5CD4A3;
     border-radius: 4px;
     background-color: #0A2140;
     color: white;
+    width: 100%;
+  }
+
+  .labelForm{
+    margin-bottom: 2rem;
+
   }
   
   .formLogin input:focus {
@@ -49,11 +55,10 @@
     border-color: #5CD4A3;
     box-shadow: 0 0 0 1px #5CD4A3;
   }
-  
-  .formLogin button {
+  .submitButton {
     background-color: #00FF94;
     color: #0A2140;
-    padding: 1rem;
+    padding: 0.5rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -61,24 +66,39 @@
     transition: background-color 0.3s ease;
   }
   
-  .formLogin button:hover {
+  .submitButton:hover {
     background-color: #05e68a;
   }
   
-  .formLogin button:disabled {
+  .submitButton:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
   .forgotPassword{
     font-size: 0.7rem;
+    text-align: center;
   }
 
   .socialIcons{
     display: flex;
     margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
+  .styled-hr {
+    border: none;
+    height: 1px;
+    width: 100px; 
+    background-color: #00ff66; 
+  }
+    
   .iconLogin{
     width: 2rem;
     height: 2rem;

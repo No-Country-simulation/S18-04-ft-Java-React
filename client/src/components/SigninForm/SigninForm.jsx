@@ -3,6 +3,7 @@
 import { useEffect, useTransition } from 'react';
 import { useFormState } from 'react-dom';
 import { signin } from './action';
+import Image from 'next/image';
 import './stylesLogin.css';
 
 export const SigninForm = () => {
@@ -29,29 +30,34 @@ export const SigninForm = () => {
       <h6 className="titleGradient">Transformando talento en experiencia</h6>
       <div className="formWrapper">
         <form className="formLogin" onSubmit={handleSubmit}>
-        <label htmlFor="emailField">Usuario</label>
+        
           <div className="inputWrapper">
+            <label className='labelForm' htmlFor="emailField">Usuario</label>
             
-            <input
-              id="emailField"
-              type="email"
-              name="emailField"
-              className="inputField"
-              placeholder="Ingresa tu usuario"
-            />
+              
+              <input
+                id="emailField"
+                type="email"
+                name="emailField"
+                className="inputField"
+                // placeholder="Ingresa tu usuario"
+              />
           </div>
-          <label htmlFor="passwordField">Contraseña</label>
+    
           <div className="inputWrapper">
-           
-            <input
-              id="passwordField"
-              type="password"
-              name="passwordField"
-              className="inputField"
-              placeholder="Ingresa tu contraseña"
-            />
+            <label className='labelForm' htmlFor="passwordField">Contraseña</label>
+            
+              <input
+                id="passwordField"
+                type="password"
+                name="passwordField"
+                className="inputField"
+                // placeholder="Ingresa tu contraseña"
+              />
           </div>
+
           <a href="#" className="forgotPassword">¿Olvidaste tu contraseña?</a>
+          
           <button
             type="submit"
             disabled={isPending}
@@ -59,10 +65,17 @@ export const SigninForm = () => {
           >
             Iniciar Sesión
           </button>
+
+          <div className="line-container">
+              <hr class="styled-hr" />
+                      <p> O </p>
+              <hr class="styled-hr" />
+          </div>
+
           <div className="socialIcons">
-            <img className='iconLogin' src="images/iconGoogle.png" alt="Google" />
-            <img className='iconLogin' src="images/iconFace.png" alt="Facebook" />
-            <img className='iconLogin' src="images/iconMac.png" alt="Apple" />
+            <Image width={30} height={30}  src="/images/iconGoogle.png" alt="Google" />
+            <Image width={30} height={30}  src="/images/iconFace.png" alt="Facebook" />
+            <Image width={30} height={30}  src="/images/iconMac.png" alt="Apple" />
           </div>
         </form>
       </div>
