@@ -2,20 +2,10 @@
   background-color: inherit;
   border-radius: 5%;
   width: 500px;
-  height: 600px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.signupContentLogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signupLogo {
-  margin-bottom: 10px;
 }
 
 .signupFormContent {
@@ -42,6 +32,8 @@
 .signupContentLabel {
   display: flex;
   flex-direction: column;
+  position: relative;
+  width: 100%;
 }
 
 .signupLabel {
@@ -61,30 +53,27 @@
   height: 60%;
   width: 100%;
   background-color: inherit;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 18px;
+  color: white;
 }
 
 .signupInput:focus {
   outline: none;
 }
 
-.signupButton {
-  width: 240px;
-  height: 40px;
-  background-color: #0ff29f;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-  font-size: 18px;
-  line-height: 16px;
-  font-weight: 400;
-  color: black;
+.signupIconSpan {
+  position: absolute;
+  left: 30px;
+  top: 60%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
-.signupButton:hover {
-  font-size: 19px;
-  box-shadow:
-    0 4px 15px rgba(255, 255, 255, 0.8),
-    0 4px 30px rgba(12, 252, 167, 0.7);
-  transform: translateY(-5px);
+.signupIconSpanRight {
+  width: auto;
+  left: 260px;
+  top: 60%;
+  cursor: pointer;
 }

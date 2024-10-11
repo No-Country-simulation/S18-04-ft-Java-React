@@ -1,11 +1,12 @@
 'use client';
 import Image from 'next/image';
 // import { useEffect, useTransition } from 'react';
-// import { useFormState } from 'react-dom';
 // import { signup } from './action';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import style from '../../styles/signup.module.css';
-
-// **Este componente solo es ejemplo**
+import Button from '../Button/Button';
+import { Divider } from '../Divider/Divider';
 
 /**
  Como se ve al principio del archivo esta el string 'use client'
@@ -41,25 +42,36 @@ export const SignupForm = () => {
   //   startTransition(() => dispatch(formData));
   // };
 
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const IconSpan = (iconSrc, extraClass = '', onClick) => (
+    <span className={[style.signupIconSpan, extraClass].join(' ')} onClick={onClick}>
+      <Image src={iconSrc} width={18} height={18} alt="iconos de contraseña" />
+    </span>
+  );
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    router.push('/signupSecond');
+  };
+
   return (
-    <section className={style.signup}>
-      <div className={style.signupContentLogo}>
-        <Image
-          className={style.signupLogo}
-          src="/images/noCountryLogo.png"
-          alt="No Country logo"
-          width={56}
-          height={46}
-        />
-        <Image src="/images/noCountry.png" alt="No Country" width={66} height={16} />
-      </div>
-      <form className={style.signupFormContent}>
+    <div className={style.signup}>
+      <form className={style.signupFormContent} onSubmit={handleSubmit}>
         <fieldset className={style.signupFieldSet}>
           <div className={style.signupContent}>
             <div className={style.signupContentLabel}>
               <label className={style.signupLabel} htmlFor="userField">
                 Usuario
                 <input className={style.signupInput} id="user" type="text" name="userField" />
+                <span className={style.signupIconSpan}>
+                  <Image src="/images/user.png" width={18} height={18} alt="icono usuario" />
+                </span>
               </label>
             </div>
 
@@ -69,11 +81,14 @@ export const SignupForm = () => {
                 <input
                   className={style.signupInput}
                   id="password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="passwordField"
                 />
+                {IconSpan('/images/unlock.png')}
+                {IconSpan('/images/eyeOff.png', style.signupIconSpanRight)}
               </label>
             </div>
+
             <div className={style.signupContentLabel}>
               <label className={style.signupLabel} htmlFor="repeatPasswordField">
                 Repetir contraseña
@@ -83,15 +98,19 @@ export const SignupForm = () => {
                   type="password"
                   name="repeatPasswordField"
                 />
+                {IconSpan('/images/unlock.png')}
+                {IconSpan(
+                  showPassword ? '/images/eyeOn.png' : '/images/eyeOff.png',
+                  style.signupIconSpanRight,
+                  togglePasswordVisibility
+                )}
               </label>
             </div>
           </div>
-
-          <button className={style.signupButton} type="submit">
-            Continuar
-          </button>
+          <Button name="Continuar" type="submit" />
         </fieldset>
       </form>
-    </section>
+      <Divider />
+    </div>
   );
 };
