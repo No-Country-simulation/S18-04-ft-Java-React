@@ -1,25 +1,11 @@
 .signup {
   background-color: inherit;
-  border-radius: 5%;
   width: 500px;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.signupFormContent {
-  margin: 10% auto;
-  color: white;
-  width: 80%;
-}
-
-.signupFieldSet {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  margin: 0;
 }
 
 .signupContent {
@@ -27,53 +13,4 @@
   flex-direction: column;
   padding: 5%;
   margin-bottom: 20px;
-}
-
-.signupContentLabel {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-}
-
-.signupLabel {
-  font-size: 18px;
-  line-height: 16px;
-  margin: 15px;
-  font-weight: 400;
-  width: 287px;
-  height: 77px;
-}
-
-.signupInput {
-  border: solid 1px;
-  border-image-source: linear-gradient(90deg, #1d8ff2 0%, #17bccc 45.5%, #0ff29f 100%);
-  border-image-slice: 1;
-  margin-top: 10px;
-  height: 60%;
-  width: 100%;
-  background-color: inherit;
-  padding-left: 50px;
-  padding-right: 50px;
-  font-size: 18px;
-  color: white;
-}
-
-.signupInput:focus {
-  outline: none;
-}
-
-.signupIconSpan {
-  position: absolute;
-  left: 30px;
-  top: 60%;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.signupIconSpanRight {
-  width: auto;
-  left: 260px;
-  top: 60%;
-  cursor: pointer;
 }
