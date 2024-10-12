@@ -25,12 +25,11 @@ export const SignupForm = () => {
       ...prevState,
       [field]: !prevState[field],
     }));
-    console.log('hola aweonada');
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    router.push('/signupSecond');
+    router.push('/signupConfirm');
   };
 
   const handleChange = evt => {
