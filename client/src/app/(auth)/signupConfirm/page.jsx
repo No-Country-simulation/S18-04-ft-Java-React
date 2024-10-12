@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignupSecond = () => {
+const SignupConfirm = () => {
   return (
     <div>
       <main>Datos de Registro</main>
@@ -8,4 +8,4 @@ const SignupSecond = () => {
   );
 };
 
-export default SignupSecond;
+export default SignupConfirm;
