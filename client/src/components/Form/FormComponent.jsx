@@ -64,7 +64,7 @@ export default function FormComponent({
         disabled={isPending}
         className={cn(
           btnClassName,
-          'mt-8 max-w-lg focus-visible:outline-1 focus-visible:outline-accent-50'
+          'focus-visible:outline-accent-50 mt-8 max-w-lg focus-visible:outline-1'
         )}
         tabIndex={Number(fields.at(-1)?.tabindex || 0) + 1}>
         {btnText}

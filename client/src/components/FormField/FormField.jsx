@@ -56,8 +56,8 @@ const FormField = forwardRef(function FormField(
             alt="Icon field"
           />
         ) : null}
-        <div className="absolute inset-0 rounded-md bg-gradient-to-r from-accent-400 to-primary-50"></div>
-        <div className="absolute inset-px rounded-md bg-gradient-field"></div>
+        <div className="from-accent-400 to-primary-50 absolute inset-0 rounded-md bg-gradient-to-r"></div>
+        <div className="bg-gradient-field absolute inset-px rounded-md"></div>
         <input
           {...props}
           id={defaultID}

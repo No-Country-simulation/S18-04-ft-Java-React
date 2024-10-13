@@ -7,7 +7,6 @@ on:
       - completed
     branches:
       - develop
-      - feat/update-button-inputs
 
 concurrency:
   group: gd-${{ github.head_ref }}
@@ -16,19 +15,24 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ secrets.RAILWAY_TOKEN != '' }}
 
     steps:
       - name: Setup/ Checkout
         uses: actions/checkout@v4
 
+      - name: Use Node.js 20.7.0
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version: 20.7.0
+
       - name: Setup/ Install pnpm 9.7.0 manually
         run: npm install -g pnpm@9.7.0
 
-      - name: Install Vercel CLI
+      - name: Install Railway CLI
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up
+        working-directory: ./client
+        run: railway up --service=s18-jr -d
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

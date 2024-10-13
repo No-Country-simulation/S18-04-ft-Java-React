@@ -2,7 +2,7 @@ name: ciFE
 
 on:
   push:
-    branches: ["develop", "main", "feat/update-button-inputs"]
+    branches: ["*"]
   workflow_dispatch:
 
 concurrency:
