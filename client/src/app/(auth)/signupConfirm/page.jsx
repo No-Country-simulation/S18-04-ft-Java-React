@@ -1,9 +1,12 @@
 import React from 'react';
+import SignupConfirmForm from '@/components/SignupConfirmForm/SignupConfirmForm';
 
 const SignupConfirm = () => {
   return (
     <div>
-      <main>Datos de Registro</main>
+      <main>
+        <SignupConfirmForm />
+      </main>
     </div>
   );
 };
