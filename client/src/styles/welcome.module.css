@@ -35,7 +35,8 @@
   flex-direction: column;
   justify-content: space-around;
   height: 125px;
-  width: auto;
+  width: 100%;
+  align-items: center;
 }
 
 .welcomeButton {

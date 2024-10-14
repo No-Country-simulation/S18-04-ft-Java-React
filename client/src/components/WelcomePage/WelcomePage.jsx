@@ -1,20 +1,10 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+
+import Link from 'next/link';
 import Button from '../Button/Button';
 import style from '@/styles/welcome.module.css';
 
-function WelcomePage() {
-  const router = useRouter();
-
-  const handleRouteSignin = () => {
-    router.push('/signin');
-  };
-
-  const handleRouteSignup = () => {
-    router.push('/signup');
-  };
-
+export default function WelcomePage() {
   return (
     <div className={style.welcome}>
       <h3 className={style.welcomeTitle}>
@@ -26,18 +16,17 @@ function WelcomePage() {
       </p>
 
       <div className={style.welcomeContentButton}>
-        <button className={style.welcomeButton} onClick={handleRouteSignin}>
-          Iniciar sesión
-        </button>
-
-        <button
-          className={[style.welcomeButton, style.welcomeButtonColor].join(' ')}
-          onClick={handleRouteSignup}>
-          Registrarse
-        </button>
+        <Button asChild>
+          <Link href="/signin" className="w-full max-w-[244px]">
+            Iniciar sesión
+          </Link>
+        </Button>
+        <Button variant="secondary" asChild>
+          <Link href="/signup" className="w-full max-w-[244px]">
+            Registrarse
+          </Link>
+        </Button>
       </div>
     </div>
   );
 }
-
-export default WelcomePage;
