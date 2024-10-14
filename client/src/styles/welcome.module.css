@@ -1,0 +1,70 @@
+.welcome {
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+}
+
+.welcomeTitle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26.04px;
+  margin-bottom: 20px;
+  width: 264px;
+}
+
+.welcomeTitleSpan {
+  color: #0ff29f;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.welcomeParagraph {
+  color: #b5b5b5;
+  text-align: left;
+  width: 264px;
+  font-size: 20px;
+  line-height: 24.06px;
+  font-weight: 400;
+  margin-bottom: 17%;
+}
+
+.welcomeContentButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 125px;
+  width: auto;
+}
+
+.welcomeButton {
+  width: 264px;
+  height: 40px;
+  background-color: #0ff29f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  font-size: 18px;
+  line-height: 16px;
+  font-weight: 400;
+  color: black;
+}
+
+.welcomeButton:hover {
+  font-size: 19px;
+  box-shadow: 0 4px 30px rgba(12, 252, 167, 0.7);
+  transform: translateY(-5px);
+}
+
+.welcomeButtonColor {
+  background: #9747ff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.welcomeButtonColor:hover {
+  font-size: 19px;
+  box-shadow: 0 4px 30px rgba(151, 71, 255, 0.7);
+  transform: translateY(-5px);
+}

@@ -5,7 +5,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  margin-top: 10%;
+  position: relative;
+}
+
+.signupMargin {
+  margin-top: 0;
 }
 
 .signupContent {
@@ -13,4 +18,22 @@
   flex-direction: column;
   padding: 5%;
   margin-bottom: 20px;
+}
+
+.signupRemoveMarginTop {
+  margin-top: 0;
+}
+
+.signupSubtitle {
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.signupArrow {
+  position: absolute;
+  left: 90px;
+  top: -50px;
+  cursor: pointer;
 }
