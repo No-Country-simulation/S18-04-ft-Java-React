@@ -1,0 +1,21 @@
+.button {
+  width: 240px;
+  height: 40px;
+  background-color: #0ff29f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  font-size: 18px;
+  line-height: 16px;
+  font-weight: 400;
+  color: black;
+}
+
+.button:hover {
+  font-size: 19px;
+  box-shadow:
+    0 4px 15px rgba(255, 255, 255, 0.8),
+    0 4px 30px rgba(12, 252, 167, 0.7);
+  transform: translateY(-5px);
+}

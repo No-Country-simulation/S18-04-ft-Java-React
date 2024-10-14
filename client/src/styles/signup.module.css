@@ -1,0 +1,16 @@
+.signup {
+  background-color: inherit;
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.signupContent {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  margin-bottom: 20px;
+}
