@@ -21,3 +21,11 @@ export const signupSchema = loginShcema.extend({
     .string({ message: 'El nombre es requerido' })
     .min(1, 'El nombre debe tener mas de un caracter'),
 });
+
+
+export const signinSchema = loginShcema.extend({
+  password: z
+    .string({ message: 'La contraseña es requerida' }),
+    email: z
+    .string({ message: 'El correo electronico es obligatorio' })
+});

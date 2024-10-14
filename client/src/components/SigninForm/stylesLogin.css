@@ -1,0 +1,132 @@
+
+.containerLogin {
+    background-color: #0A2140;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    flex-direction: column;
+  }
+  
+  .logo{
+    width: 6rem;
+  }
+
+  .titleGradient {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #4B8BDF, #5CD4A3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .formLogin {
+    background-color: #0A2140;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .formLogin input {
+    padding: 0.5rem;
+    border: 1px solid #5CD4A3;
+    border-radius: 4px;
+    background-color: #0A2140;
+    color: white;
+    width: 100%;
+  }
+
+  .labelForm{
+    margin-bottom: 2rem;
+
+  }
+  
+  .formLogin input:focus {
+    outline: none;
+    border-color: #5CD4A3;
+    box-shadow: 0 0 0 1px #5CD4A3;
+  }
+  .submitButton {
+    background-color: #00FF94;
+    color: #0A2140;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #05e68a;
+  }
+  
+  .submitButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .forgotPassword{
+    font-size: 0.7rem;
+    text-align: center;
+  }
+
+  .socialIcons{
+    display: flex;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .styled-hr {
+    border: none;
+    height: 1px;
+    width: 100px; 
+    background-color: #00ff66; 
+  }
+    
+  .iconLogin{
+    width: 2rem;
+    height: 2rem;
+  }
+
+
+  @media (max-width: 600px) {
+    .containerLogin {
+      padding: 1rem;
+    }
+  
+    .titleGradient {
+      font-size: 1rem;
+    }
+  
+    .formLogin {
+      padding: 1.5rem;
+      max-width: 90%;
+    }
+  
+    .formLogin input {
+      font-size: 0.9rem;
+    }
+  
+    .formLogin button {
+      padding: 0.75rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+

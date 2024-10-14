@@ -4,7 +4,7 @@ import { SignupForm } from '@/components';
 const SignUpPage = () => {
   return (
     <div>
-      <main>
+      <main >
         <SignupForm />
       </main>
     </div>
