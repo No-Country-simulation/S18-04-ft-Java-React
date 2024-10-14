@@ -1,0 +1,21 @@
+.form {
+  margin: 10% auto;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.formFieldSet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.formContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
