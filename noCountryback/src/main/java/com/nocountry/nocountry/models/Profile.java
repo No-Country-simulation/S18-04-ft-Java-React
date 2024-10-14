@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
+import java.util.List;
 import java.util.UUID;
 
+// Perfil del Usuario
 @Getter
 @Setter
 @AllArgsConstructor
@@ -39,4 +42,8 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "user_id",nullable = false,foreignKey = @ForeignKey(name = "FK_PROFILE_USER"))
     private User user;
+
+    @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<EventRecord>eventRecords;
 }

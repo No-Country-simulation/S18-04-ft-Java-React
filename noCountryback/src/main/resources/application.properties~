@@ -1,0 +1,45 @@
+spring.application.name=noCountry
+server.port=8090
+spring.datasource.url=${POSTGRES_URL}
+spring.datasource.username=${POSTGRES_USER}
+spring.datasource.password=${POSTGRES_PASSWORD}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.hikari.maximum-pool-size=10
+
+#Spring Data JPA configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.database=postgresql
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+server.error.include-message=always
+# Enable Hibernate logging
+logging.level.org.hibernate.SQL=info
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=info
+
+# Enable Spring Boot logging
+logging.level.org.springframework=error
+
+spring.profiles.active=dev
+
+spring.security.user.name=admin
+spring.security.user.password=admin
+
+
+jwt.secret=fGgqglUxy7KJoMO+b06brLZnK6qbzxDFpzrqE1OSHGI=
+jwt.duration=${JWT_DURATION}
+authorized.redirect.uri=${baseUrl}
+
+
+
+app.oauth2.authorizedRedirectUris=${OAUTH_REDIRECT_FRONT}
+app.auth.tokenSecret=${AUTH_TOKEN_SECRET}
+app.auth.tokenExpirationMsec=864000000
+
+spring.security.oauth2.client.registration.google.clientId=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.clientSecret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.redirectUri=http://localhost:8090/oauth2/callback/google
+spring.security.oauth2.client.registration.google.redirect-uri=
+
+spring.security.oauth2.client.registration.google.scope=email, profile
