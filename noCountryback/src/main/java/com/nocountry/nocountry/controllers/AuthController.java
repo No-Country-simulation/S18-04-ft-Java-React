@@ -5,10 +5,13 @@ import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
 import com.nocountry.nocountry.dto.response.AuthResponseDTO;
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
 import com.nocountry.nocountry.dto.response.UserResponseDTO;
+import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.AuthService;
+import com.nocountry.nocountry.utils.CookieUtils;
 import io.jsonwebtoken.security.SignatureException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -46,25 +49,14 @@ public class AuthController {
 
     @GetMapping("/check-login")
     public ResponseEntity<?> checkLogin(@CurrentUser UserPrincipal userPrincipal, HttpServletResponse resp) {
-        try {
-            if (userPrincipal != null) {
-                UserResponseDTO response = authService.getUserByUsername(userPrincipal.getUsername(),resp);
-                return ResponseEntity.status(200).body(response);
-            } else {
-                ErrorResponseDTO error = new ErrorResponseDTO("Forbidden", HttpStatus.UNAUTHORIZED,"/api/check-out",LocalDateTime.now());
-                return ResponseEntity.status(403).body(error);
-            }
-        } catch (SignatureException e) {
-            ErrorResponseDTO errorResponse = new ErrorResponseDTO("Invalid token", HttpStatus.UNAUTHORIZED, "Token is invalid or tampered with",LocalDateTime.now());
-            return ResponseEntity.status(401).body(errorResponse);
-        } catch (Exception e) {
-            ErrorResponseDTO errorResponse = new ErrorResponseDTO("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor",LocalDateTime.now());
-            return ResponseEntity.status(500).body(errorResponse);
-        }
+            if (userPrincipal== null) throw new UnAuthorizedException("Forbidden");
+        UserResponseDTO response = authService.getUserByUsername(userPrincipal.getUsername(),resp);
+        return ResponseEntity.status(200).body(response);
     }
 
-    @GetMapping("/saludo")
-    public String saludo() {
-        return "Hola";
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse resp, HttpServletRequest request){
+        CookieUtils.deleteCookie(request,resp,"token");
+        return ResponseEntity.ok().build();
     }
 }

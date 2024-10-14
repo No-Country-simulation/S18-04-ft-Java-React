@@ -2,8 +2,7 @@
   color: white;
   display: flex;
   justify-content: center;
-  width: 80%;
-  margin-bottom: 10%;
+  width: 100%;
 }
 
 .formFieldSet {
@@ -12,10 +11,12 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .formContent {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
