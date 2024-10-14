@@ -1,14 +1,10 @@
-import { SigninForm } from "@/components/SigninForm/SigninForm";
+import { SigninForm } from '@/components/SigninForm/SigninForm';
 
-// Este componente se vera en la ruta /signin (Nombre de la carpeta)
-const SignInPage = () => {
-  return (
-    <div>
-      <main style={{margin: '0 auto', padding: '5rem'}}>
-        <SigninForm/>
-      </main>
-    </div>
-  );
-};
+const SignInPage = () => (
+  <section className="flex size-full flex-col items-center justify-center">
+    <h1 className="sr-only">Iniciar sesion</h1>
+    <SigninForm />
+  </section>
+);
 
 export default SignInPage;

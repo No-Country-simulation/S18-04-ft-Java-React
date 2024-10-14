@@ -5,8 +5,8 @@ import { signinSchema } from '@/schemas/userSchema';
 
 export async function signin(_state, formData) {
   const signinVerified = signinSchema.safeParse({
-    password: formData.get('passwordField'),
-    email: formData.get('emailField'),
+    password: formData.get('password'),
+    email: formData.get('email'),
   });
   if (!signinVerified.success) {
     const errors = Object.fromEntries(

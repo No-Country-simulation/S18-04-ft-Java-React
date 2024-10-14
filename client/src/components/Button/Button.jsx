@@ -10,9 +10,9 @@ const btnCVA = cva(
     variants: {
       variant: {
         primary:
-          'bg-accent-400 text-primary-300 font-medium [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(12,252,167,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
+          'bg-accent-400 text-primary-300 font-semibold [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(12,252,167,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
         secondary:
-          'bg-secondary-300 text-white font-medium [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(94,23,235,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
+          'bg-secondary-200 text-white font-semibold [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(94,23,235,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
         disabled: 'bg-neutral-500 text-neutral-800 cursor-not-allowed',
         transparent: 'bg-transparent text-white border-transparent',
       },
@@ -30,8 +30,6 @@ const Button = forwardRef(function Button(
   { className, variant, size, asChild = false, ...props },
   ref
 ) {
-  //Si asChild es true en lugar de usar un elemento "button", utiliza un "Slot" de radix
-  // Esto es util cuando queres usar el estilo del boton, pero no queres que el elemento sea un boton
   const Comp = asChild ? Slot : 'button';
   return <Comp className={cn(btnCVA({ variant, size, className }))} ref={ref} {...props} />;
 });

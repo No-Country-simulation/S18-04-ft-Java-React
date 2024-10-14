@@ -21,7 +21,7 @@ const RenderFields = ({ field, error }) => {
     tabIndex: field.tabindex,
   };
   if (field.type === 'password') {
-    return <PasswordFormField {...commonProps} />;
+    return <PasswordFormField {...commonProps} activeForgot={field?.activeForgot} />;
   }
   return <FormField {...commonProps} type={field.type} />;
 };
@@ -63,8 +63,8 @@ export default function FormComponent({
         size="full"
         disabled={isPending}
         className={cn(
-          btnClassName,
-          'focus-visible:outline-accent-50 mt-8 max-w-lg focus-visible:outline-1'
+          'mt-8 max-w-[380px] focus-visible:outline-1 focus-visible:outline-accent-50',
+          btnClassName
         )}
         tabIndex={Number(fields.at(-1)?.tabindex || 0) + 1}>
         {btnText}

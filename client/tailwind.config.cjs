@@ -35,10 +35,14 @@ module.exports = {
         },
       },
       fontFamily: {
-        openSans: 'var(--font-open-sans)',
+        dmSans: 'var(--font-dm-sans)',
       },
       backgroundImage: {
+        'gradient-bg': 'var(--bg-gradient)',
+        'gradient-bg-radial': 'var(--bg-radial-gradient)',
         'gradient-green': 'var(--gradient-green-to-blue)',
+        'gradient-green-100': 'var(--gradient-green-to-blue-100)',
+        'gradient-green-200': 'var(--gradient-green-to-blue-200)',
       },
     },
   },
