@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/layoutSignup.module.css';
+import style from '@/styles/layout.module.css';
 
 export default function LayoutSignup({ children }) {
   return (

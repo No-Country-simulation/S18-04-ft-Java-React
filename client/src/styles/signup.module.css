@@ -33,3 +33,21 @@
     max-width: 330px;
   }
 }
+
+.signupRemoveMarginTop {
+  margin-top: 0;
+}
+
+.signupSubtitle {
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.signupArrow {
+  position: absolute;
+  left: 90px;
+  top: -50px;
+  cursor: pointer;
+}

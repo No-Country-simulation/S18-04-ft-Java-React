@@ -32,6 +32,7 @@ function Input({
             onChange={onChange}
             value={value}
             autoComplete={autoComplete}
+            minLength="3"
           />
           {iconRight && (
             <span className={style.iconSpanRight} onClick={onIconRightClick}>

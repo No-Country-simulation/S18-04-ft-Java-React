@@ -3,7 +3,6 @@ import { cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-//Ejemplo de como usar CVA(Class variant authority) para estilizar un boton
 const btnCVA = cva(
   `inline-flex items-center justify-center  rounded-lg no-outline truncate disabled:opacity-60 disabled:cursor-default disabled:bg-neutral-500 disable:text-neutral-800 transition-all ease-in-out duration-300`,
   {

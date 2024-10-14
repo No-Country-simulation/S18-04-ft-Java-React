@@ -27,7 +27,7 @@ export const SignupForm = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    router.push('/signupConfirm');
+    router.push('/signup/confirm');
   };
 
   /*   const handleChange = evt => {
@@ -39,7 +39,7 @@ export const SignupForm = () => {
   };*/
 
   return (
-    <div className={style.signup}>
+    <section className={style.signup}>
       <Form onSubmit={handleSubmit}>
         <div className={style.signupContent}>
           <FormField
@@ -71,6 +71,6 @@ export const SignupForm = () => {
         </Button>
       </Form>
       <Divider />
-    </div>
+    </section>
   );
 };
