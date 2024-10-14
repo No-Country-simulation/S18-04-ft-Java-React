@@ -3,6 +3,9 @@ name: ciFE
 on:
   push:
     branches: ["*"]
+  pull_request:
+    branches:
+      - develop
   workflow_dispatch:
 
 concurrency:
@@ -35,6 +38,10 @@ jobs:
         working-directory: ./client
         run: pnpm lint
 
+      - name: Tests
+        working-directory: ./client
+        run: pnpm test
+
       - name: Build
         working-directory: ./client
-        run: pnpm lint
+        run: pnpm build
