@@ -5,13 +5,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  height: 100%;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -ms-text-size-adjust: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  --gradient-green-to-blue: linear-gradient(
+    90deg,
+    #0a2140f0 0%,
+    #0c3163 10%,
+    #0d3161 80%,
+    #0a2140f0 100%
+  );
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +19,16 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+html {
+  height: 100%;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
 }
 
 body {
@@ -36,13 +46,6 @@ body {
   }
   .no-outline {
     @apply no-underline outline-none focus:outline-none focus-visible:outline-none active:outline-none;
-  }
-  .border-gradient-green-to-blue {
-    border: 1px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(225deg, #0cfca7, #1d90fc);
-    text-decoration: inherit;
-    border-width: 1px;
   }
 }
 

@@ -38,8 +38,7 @@ module.exports = {
         openSans: 'var(--font-open-sans)',
       },
       backgroundImage: {
-        'gradient-field':
-          'linear-gradient(90deg, #0a2140f0 0%, #0C3163 10%, #0D3161 80%, #0a2140f0 100%)',
+        'gradient-green': 'var(--gradient-green-to-blue)',
       },
     },
   },
