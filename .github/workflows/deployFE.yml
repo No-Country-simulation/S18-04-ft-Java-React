@@ -33,6 +33,6 @@ jobs:
 
       - name: Deploy to Railway
         working-directory: ./client
-        run: railway up --service=s18-jr -d
+        run: railway up --service=S18-04-ft-Java-React -d
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
