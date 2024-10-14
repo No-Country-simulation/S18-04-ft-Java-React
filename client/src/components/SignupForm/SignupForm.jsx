@@ -61,12 +61,14 @@ export const SignupForm = () => {
             id="passwordTwo"
             name="passwordTwo"
             icon="/images/unlock.png"
-            label="Contraseña"
+            label="Repetir Contraseña"
             autoComplete="new-password"
           />
         </div>
 
-        <Button type="submit">Continuar</Button>
+        <Button type="submit" className={style.signupSubmitBtn}>
+          Continuar
+        </Button>
       </Form>
       <Divider />
     </div>

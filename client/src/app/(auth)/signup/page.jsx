@@ -2,7 +2,7 @@ import { SignupForm } from '@/components';
 
 const SignUpPage = () => {
   return (
-    <section>
+    <section className="w-full">
       <SignupForm />
     </section>
   );

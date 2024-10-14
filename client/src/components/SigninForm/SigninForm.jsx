@@ -14,7 +14,7 @@ export const SigninForm = () => {
       <FormComponent
         fields={loginFields}
         onSubmit={signin}
-        className="mb-7 w-full"
+        className="mb-7 w-full items-center justify-center max-sm:max-w-[85%]"
         btnClassName="mt-[4.25rem] max-sm:max-w-[85%] mx-auto justify-center items-center"
         btnText="Iniciar Sesion"
       />

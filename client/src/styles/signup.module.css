@@ -1,17 +1,35 @@
 .signup {
   background-color: inherit;
-  width: 500px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
+  max-width: 32rem;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  padding-block-end: 3rem;
 }
 
 .signupContent {
   display: flex;
   flex-direction: column;
-  padding: 5%;
   margin-bottom: 20px;
+  padding-block: 5%;
   gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.signupSubmitBtn {
+  width: 100%;
+  max-width: 85%;
+}
+
+@media only screen and (min-width: 640px) {
+  .signupSubmitBtn {
+    max-width: 330px;
+  }
 }
