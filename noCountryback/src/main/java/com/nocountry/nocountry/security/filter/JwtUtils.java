@@ -40,23 +40,15 @@ public class JwtUtils {
 
     public Date expiration() {return new Date(System.currentTimeMillis() + JWT_EXPIRATION);}
 
-    public String createToke(String username, Map<String, Object> claims) {
+    public String generateToken(UserDetails userDetails) {
 
         return Jwts.builder()
-                .claims(claims)
-                .subject(username)
+                .subject(userDetails.getUsername())
                 .expiration(expiration())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .signWith(getKey())
                 .compact();
     }
-
-    public String generateToken(UserDetails userDetails) {
-        Map<String,Object> claims = new HashMap<>();
-        claims.put("roles",userDetails.getAuthorities());
-        return createToke(userDetails.getUsername() , claims);
-    }
-
 
     public <T> T getClaim(String token, Function<Claims,T> claimsResolver) {
         final Claims claims = getAllClaims(token);

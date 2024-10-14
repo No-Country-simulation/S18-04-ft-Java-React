@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -86,6 +87,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(AUTH_ENDPOINTS_PUBLIC).permitAll();
+                    authConfig.requestMatchers(HttpMethod.GET,"/api/auth/logout").hasAnyRole("USER");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2
