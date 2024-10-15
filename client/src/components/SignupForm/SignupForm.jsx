@@ -1,76 +1,23 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
+import { signup } from './action';
 import style from '../../styles/signup.module.css';
-import Button from '../Button/Button';
 import { Divider } from '../Divider/Divider';
-import Form from '../Form/Form';
-import FormField from '../FormField/FormField';
-import PasswordFormField from '../PasswordField/PasswordField';
+import FormComponent from '../Form/FormComponent';
+import { SocialButtons } from '../SocialButtons/SocialButtons';
+import { registerStepOne } from '@/constants/authFields';
 
 export const SignupForm = () => {
-  /* const [passwordVisibility, setPasswordVisibility] = useState({
-    passwordOne: false,
-    passwordtwo: false,
-  });
-
-  const [formValues, setFormValues] = useState({ passwordOne: '', passwordTwo: '' });*/
-
-  const router = useRouter();
-
-  /* const togglePasswordVisibility = field => {
-    setPasswordVisibility(prevState => ({
-      ...prevState,
-      [field]: !prevState[field],
-    }));
-  };*/
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    router.push('/signup/confirm');
-  };
-
-  /*   const handleChange = evt => {
-    const { name, value } = evt.target;
-    setFormValues(prevValues => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };*/
-
   return (
     <section className={style.signup}>
-      <Form onSubmit={handleSubmit}>
-        <div className={style.signupContent}>
-          <FormField
-            id="user"
-            name="user"
-            icon="/images/user.png"
-            label="Usuario"
-            type="email"
-            autoComplete="new-email"
-          />
-          <PasswordFormField
-            id="passwordOne"
-            name="passwordOne"
-            icon="/images/unlock.png"
-            label="Contraseña"
-            autoComplete="new-password"
-          />
-          <PasswordFormField
-            id="passwordTwo"
-            name="passwordTwo"
-            icon="/images/unlock.png"
-            label="Repetir Contraseña"
-            autoComplete="new-password"
-          />
-        </div>
-
-        <Button type="submit" className={style.signupSubmitBtn}>
-          Continuar
-        </Button>
-      </Form>
+      <FormComponent
+        fields={registerStepOne}
+        className="mb-7 w-full items-center justify-center max-sm:max-w-[85%]"
+        btnClassName="mt-[4.25rem] max-sm:max-w-[85%] mx-auto justify-center items-center"
+        btnText="Continuar"
+        onSubmit={signup}
+      />
       <Divider />
+      <SocialButtons />
     </section>
   );
 };

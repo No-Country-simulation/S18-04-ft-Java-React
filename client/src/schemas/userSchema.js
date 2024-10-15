@@ -19,7 +19,8 @@ export const signinSchema = emailSchema.extend({
 export const signupSchema = signinSchema.extend({
   name: z
     .string({ message: 'El nombre es requerido' })
-    .min(1, 'El nombre debe tener mas de un caracter'),
+    .min(1, 'El nombre debe tener mas de un caracter')
+    .optional(),
 });
 
 /* 

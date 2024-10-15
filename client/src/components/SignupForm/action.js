@@ -1,26 +1,18 @@
 'use server';
-
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { signupSchema } from '@/schemas/userSchema';
 
-// Esta funcion se ejecuta del lado del servidor
-// Se ejecuta al enviar el formulario en el "onSubmit" del form
 export async function signup(_state, formData) {
-  // "signupVerified" es el objeto validado por el esquema
   const signupVerified = signupSchema.safeParse({
-    password: formData.get('passwordField'),
     email: formData.get('emailField'),
-    name: formData.get('nameField'),
+    password: formData.get('passwordField'),
+    validatePassword: formData.get('repeatPasswordField'),
   });
 
-  // Si success es false es que alguna de las validaciones fallo
   if (!signupVerified.success) {
-    // De esta forma se extrean los mensajes de error
-    // Se filtra para recuperar solo los campos que tuvieron fallos
     const errors = Object.fromEntries(
-      signupVerified.error.errors
-        .filter(({ path }) => path)
-        .map(({ path, message }) => [path[0], message])
+      signupVerified.error.errors.map(({ path, message }) => [path[0], message])
     );
     return {
       id: crypto.randomUUID(),
@@ -28,27 +20,63 @@ export async function signup(_state, formData) {
       errors,
     };
   }
-  // Si el objeto no tuvo el error de validacion se hace la peticion a la API
-  // (Esta peticion es de ejemplo, se remplazaria con la real, igual los datos del formulario son de ejemplo)
-  const res = await fetch('/api/signup', {
+
+  const payload = {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       email: signupVerified.data.email,
       password: signupVerified.data.password,
-      name: signupVerified.data.name,
     }),
-  });
+  };
 
-  // Validar la respuesta de la API si falla enviar la respuesta de error
-  if (!res.ok) {
+  try {
+    const res = await fetch('https://nocountry.up.railway.app/api/auth/register', payload);
+
+    if (!res.ok || !res.headers.get('Set-Cookie')) {
+      const errorResponse = await res.json();
+      return {
+        id: crypto.randomUUID(),
+        status: 'FETCH_ERROR',
+        errors: errorResponse.message || 'Error al crear la cuenta',
+      };
+    }
+
+    const cookieHeader = res.headers.get('Set-Cookie');
+
+    console.log(cookieHeader);
+
+    if (!cookieHeader) {
+      return {
+        id: crypto.randomUUID(),
+        status: 'FETCH_ERROR',
+        errors: 'Error: El token no se recibió correctamente',
+      };
+    }
+
+    cookies().set('auth_token', cookieHeader, {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60,
+    });
+
+    const response = await res.json();
+
+    if (!response.id) {
+      return {
+        id: crypto.randomUUID(),
+        status: 'FETCH_ERROR',
+        errors: 'Error: El ID no se recibió correctamente',
+      };
+    }
+
+    redirect(`/signup/confirm/${response.id}`);
+  } catch (error) {
     return {
       id: crypto.randomUUID(),
       status: 'FETCH_ERROR',
-      errors: 'Algun error',
+      errors: 'Error al conectar con el servidor',
     };
   }
-
-  // Ejecutar la logica en caso que el registro sea exitoso
-  // (En este caso se redirecciona a la pagina de inicio)
-  redirect('/');
 }

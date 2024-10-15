@@ -17,7 +17,6 @@ function ConfirmForm() {
   };
   return (
     <section className={cn(style.signup, style.signupMargin)}>
-      {/* Es mejor utilizar la funcion "cn" de lib/utils.js, funciona clases de forma segura y evita duplicar clases*/}
       <Image
         className={style.signupArrow}
         src="/images/arrowLeft.png"
@@ -26,8 +25,7 @@ function ConfirmForm() {
         onClick={handlePreviousForm}
         alt="botón para regresar al formulario anterior"
       />
-      {/* Esto seria un h2 */}
-      <h4 className={style.signupSubtitle}>Completa estos campos para personalizar tu perfil.</h4>
+      <h2 className={style.signupSubtitle}>Completa estos campos para personalizar tu perfil.</h2>
       <Form>
         <div className={style.signupContent}>
           <Input id="firstName" label="Nombre" autoComplete="new-name" />
