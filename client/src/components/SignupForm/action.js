@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { signupSchema } from '@/schemas/userSchema';
 
 export async function signup(_state, formData) {
+  //TODO: Agregar "validatePassword" al signupSchema
   const signupVerified = signupSchema.safeParse({
     email: formData.get('emailField'),
     password: formData.get('passwordField'),
@@ -35,6 +36,8 @@ export async function signup(_state, formData) {
 
     if (!res.ok || !res.headers.get('Set-Cookie')) {
       const errorResponse = await res.json();
+      //TODO: errors debe de ser un objeto con atributos no un string
+      //Ejemplo: errors: { key: 'value' }
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
@@ -45,7 +48,7 @@ export async function signup(_state, formData) {
     const cookieHeader = res.headers.get('Set-Cookie');
 
     console.log(cookieHeader);
-
+    //TODO: Este if es inecesario ya lo validas arriba
     if (!cookieHeader) {
       return {
         id: crypto.randomUUID(),
@@ -64,6 +67,7 @@ export async function signup(_state, formData) {
     const response = await res.json();
 
     if (!response.id) {
+      //TODO: Los mensajes de error escribilos como para mostrarselos a un usuario
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',

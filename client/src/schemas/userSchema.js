@@ -16,6 +16,11 @@ export const signinSchema = emailSchema.extend({
     .max(100, 'La contraseña debe tener hasta 100 caracteres como maximo'),
 });
 
+//TODO: Eliminar el name del esquema si no se va a utilizar
+//TODO: Agregar validate password
+//TODO: La validacion del password de arriba debe de coincidar con la del back
+//TODO: Puedes validar si el password y el validate password son iguales con zod(busca en google como xd)
+//TODO: Si ves necesario cambia los mensajes de error que devuelve
 export const signupSchema = signinSchema.extend({
   name: z
     .string({ message: 'El nombre es requerido' })

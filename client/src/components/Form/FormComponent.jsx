@@ -49,6 +49,7 @@ export default function FormComponent({
     const formData = new FormData(event.currentTarget);
     startTransition(() => dispatch(formData));
   };
+  //TODO: El formulario agregale la clase "relative"
   return (
     <form
       id={id}
@@ -69,6 +70,7 @@ export default function FormComponent({
         tabIndex={Number(fields.at(-1)?.tabindex || 0) + 1}>
         {btnText}
       </Button>
+      {/* TODO: Podes estilizar el span para que el mensaje de error global aparezca centrado */}
       {result?.errors && result.errors?.GLOBAL ? (
         <span className="absolute -bottom-6 left-0 text-sm text-red-400">
           {result.errors.GLOBAL}
