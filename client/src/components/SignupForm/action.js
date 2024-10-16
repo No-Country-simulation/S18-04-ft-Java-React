@@ -5,9 +5,9 @@ import { signupSchema } from '@/schemas/userSchema';
 
 export async function signup(_state, formData) {
   const signupVerified = signupSchema.safeParse({
-    email: formData.get('emailField'),
-    password: formData.get('passwordField'),
-    validatePassword: formData.get('repeatPasswordField'),
+    email: formData.get('email'),
+    password: formData.get('password'),
+    repeatPassword: formData.get('repeatPassword'),
   });
 
   if (!signupVerified.success) {

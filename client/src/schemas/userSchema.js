@@ -15,9 +15,9 @@ export const signinSchema = emailSchema.extend({
 
 export const signupSchema = signinSchema
   .extend({
-    validatePassword: z.string({ required_error: 'Debes confirmar la contraseña' }),
+    repeatPassword: z.string({ required_error: 'Debes confirmar la contraseña' }),
   })
-  .refine(data => data.password === data.validatePassword, {
+  .refine(data => data.password === data.repeatPassword, {
     message: 'Las contraseñas no coinciden',
-    path: ['validatePassword'],
+    path: ['repeatPasswordd'],
   });
