@@ -1,32 +1,23 @@
 import { z } from 'zod';
 
-// Ejemplo de como usar schemas con Zod
-// Esta libreria se utiliza para validar que los valores de los objetos sean correctos
 export const emailSchema = z.object({
   email: z
     .string({ message: 'El correo electronico es obligatorio' })
     .email('El email es invalido'),
 });
 
-// En lugar de repetir el esquema de email, podemos crear uno nuevo apartir del anterior "extendiendo el esquema"
 export const signinSchema = emailSchema.extend({
   password: z
     .string({ required_error: 'La contraseña es requerida' })
-    .min(6, 'La contraseña debe tener al menos 6 carecteres')
+    .min(8, 'La contraseña debe tener al menos 8 caracteres')
     .max(100, 'La contraseña debe tener hasta 100 caracteres como maximo'),
 });
 
-export const signupSchema = signinSchema.extend({
-  name: z
-    .string({ message: 'El nombre es requerido' })
-    .min(1, 'El nombre debe tener mas de un caracter')
-    .optional(),
-});
-
-/* 
-export const signinSchema = loginShcema.extend({
-  password: z.string({ message: 'La contraseña es requerida' }),
-  email: z.string({ message: 'El correo electronico es obligatorio' }),
-});
-
-*/
+export const signupSchema = signinSchema
+  .extend({
+    validatePassword: z.string({ required_error: 'Debes confirmar la contraseña' }),
+  })
+  .refine(data => data.password === data.validatePassword, {
+    message: 'Las contraseñas no coinciden',
+    path: ['validatePassword'],
+  });

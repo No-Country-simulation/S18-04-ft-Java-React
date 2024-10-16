@@ -1,7 +1,7 @@
 export const registerStepOne = [
   {
     id: 'emailField',
-    name: 'emailField',
+    name: 'email',
     type: 'email',
     label: 'Correo electronico',
     icon: '/images/User.svg',
@@ -10,7 +10,7 @@ export const registerStepOne = [
   },
   {
     id: 'passwordField',
-    name: 'passwordField',
+    name: 'password',
     type: 'password',
     label: 'Contraseña',
     icon: '/images/Unlock.svg',
@@ -19,7 +19,7 @@ export const registerStepOne = [
   },
   {
     id: 'repeatPasswordField',
-    name: 'repeatPasswordField',
+    name: 'repeatPassword',
     type: 'password',
     label: 'Repetir contraseña',
     icon: '/images/Unlock.svg',

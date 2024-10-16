@@ -21,40 +21,46 @@ export async function signup(_state, formData) {
     };
   }
 
-  const payload = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email: signupVerified.data.email,
-      password: signupVerified.data.password,
-    }),
-  };
-
   try {
+    const payload = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: signupVerified.data.email,
+        password: signupVerified.data.password,
+      }),
+    };
+
     const res = await fetch('https://nocountry.up.railway.app/api/auth/register', payload);
 
     if (!res.ok || !res.headers.get('Set-Cookie')) {
       const errorResponse = await res.json();
+      console.error({ message: `Error al crear la cuenta`, details: { errorResponse } });
+
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
-        errors: errorResponse.message || 'Error al crear la cuenta',
+        errors: {
+          GLOBAL: `Error al crear la cuenta: ${errorResponse.errorMessage}`,
+        },
       };
     }
 
     const cookieHeader = res.headers.get('Set-Cookie');
-
-    console.log(cookieHeader);
-
     if (!cookieHeader) {
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
-        errors: 'Error: El token no se recibió correctamente',
+        errors: { GLOBAL: 'El token no se recibió correctamente' },
       };
     }
 
-    cookies().set('auth_token', cookieHeader, {
+    const token = cookieHeader
+      .split('; ')
+      .find(row => row.startsWith('token='))
+      .split('=')[1];
+
+    cookies().set('auth_token', token, {
       httpOnly: true,
       secure: true,
       path: '/',
@@ -70,13 +76,19 @@ export async function signup(_state, formData) {
         errors: 'Error: El ID no se recibió correctamente',
       };
     }
-
-    redirect(`/signup/confirm/${response.id}`);
   } catch (error) {
+    console.error({
+      message: `Se ha producido un error inesperado: ${error.message}`,
+      details: { error },
+    });
+
     return {
       id: crypto.randomUUID(),
       status: 'FETCH_ERROR',
-      errors: 'Error al conectar con el servidor',
+      errors: { GLOBAL: 'Se ha producido un error inesperado' },
     };
   }
+
+  // redirect(`/signup/confirm/${response.id}`);
+  redirect(`/signup/confirm`);
 }

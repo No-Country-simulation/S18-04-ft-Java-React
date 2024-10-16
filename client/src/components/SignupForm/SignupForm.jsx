@@ -11,7 +11,7 @@ export const SignupForm = () => {
     <section className={style.signup}>
       <FormComponent
         fields={registerStepOne}
-        className="mb-7 w-full items-center justify-center max-sm:max-w-[85%]"
+        className="relative mb-7 w-full items-center justify-center max-sm:max-w-[85%]"
         btnClassName="mt-[4.25rem] max-sm:max-w-[85%] mx-auto justify-center items-center"
         btnText="Continuar"
         onSubmit={signup}
