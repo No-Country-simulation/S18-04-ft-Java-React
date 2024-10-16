@@ -1,3 +1,4 @@
+//TODO: El atributo name de este objeto debe de coincidir con el del objeto en el esquema de zod
 export const registerStepOne = [
   {
     id: 'emailField',
