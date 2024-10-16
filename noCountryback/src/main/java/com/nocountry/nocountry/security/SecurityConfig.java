@@ -155,7 +155,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://s18-04-ft-java-react-production.up.railway.app", "*"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000/", "https://no-country.up.railway.app","https://nocountry.up.railway.app", "*"));
         configuration.setAllowedMethods(
                 Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));
