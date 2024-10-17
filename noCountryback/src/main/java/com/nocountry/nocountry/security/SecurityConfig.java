@@ -94,7 +94,7 @@ public class SecurityConfig {
                     authConfig.requestMatchers(AUTH_ENDPOINTS_PUBLIC).permitAll();
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/logout").hasAnyRole("USER");
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/check-login").hasAnyRole("USER");
-                    authConfig.anyRequest().authenticated();
+                    authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2
                         .authorizationEndpoint(
@@ -164,7 +164,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("http://localhost:3000/", "https://no-country.up.railway.app","https://nocountry.up.railway.app"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://no-country.up.railway.app","https://nocountry.up.railway.app"));
         configuration.setAllowedMethods(
                 Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));
