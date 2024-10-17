@@ -2,7 +2,6 @@ package com.nocountry.nocountry.services;
 
 import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
-import com.nocountry.nocountry.dto.response.AuthResponseDTO;
 import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import jakarta.servlet.http.HttpServletResponse;
 

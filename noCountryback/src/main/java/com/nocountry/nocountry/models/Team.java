@@ -1,6 +1,5 @@
 package com.nocountry.nocountry.models;
 
-import com.nocountry.nocountry.models.enums.TechnologyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

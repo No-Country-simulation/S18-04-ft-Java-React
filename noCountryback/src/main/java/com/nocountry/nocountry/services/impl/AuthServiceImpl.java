@@ -3,7 +3,6 @@ package com.nocountry.nocountry.services.impl;
 import com.nocountry.nocountry.config.mapper.UserMapper;
 import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
-import com.nocountry.nocountry.dto.response.AuthResponseDTO;
 import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import com.nocountry.nocountry.exceptions.BadRequestException;
 import com.nocountry.nocountry.exceptions.NotFoundException;
@@ -23,17 +22,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 
-
 @Service
 public class AuthServiceImpl implements AuthService {
-
-
 
     @Autowired
     private UserMapper userMapper;
@@ -75,7 +69,6 @@ public class AuthServiceImpl implements AuthService {
                 () -> new NotFoundException("User not found with username: " + dto.getEmail()));
        return generateResponse(user,resp);
     }
-
 
 
     @Transactional

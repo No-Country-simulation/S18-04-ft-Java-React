@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
-import java.util.Optional;
 
 public abstract class  CRUDServiceImpl<T,ID> implements ICRUDService<T,ID> {
 
