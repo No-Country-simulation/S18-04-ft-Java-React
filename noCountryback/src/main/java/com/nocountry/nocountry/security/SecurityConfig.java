@@ -43,7 +43,7 @@ import java.util.List;
 public class SecurityConfig {
 
     private final static String OAUTH2_BASE_URI = "/api/auth/oauth2/authorize";
-    private final static String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/*";
+    private final static String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/**";
     @Autowired
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
     @Autowired
