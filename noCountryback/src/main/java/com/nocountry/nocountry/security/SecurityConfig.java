@@ -68,7 +68,8 @@ public class SecurityConfig {
             "/api/auth/login/oauth",
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/oauth2/callback/**"
+            "/oauth2/callback/**",
+            "/api/auth/oauth2/authorize/**"
     };
 
     @Autowired
