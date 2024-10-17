@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface UserRepo extends GenericRepo<User,UUID> {
-    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users u WHERE u.email = :email", nativeQuery = true)
     Optional<User> findByEmail(String email);
 }
