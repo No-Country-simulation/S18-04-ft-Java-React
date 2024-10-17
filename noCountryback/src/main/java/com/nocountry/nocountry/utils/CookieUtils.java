@@ -31,7 +31,7 @@ public class CookieUtils {
         cookie.setMaxAge(maxAge);
 
         // Construcción manual de encabezado para SameSite y Domain
-        String domain = "no-country.up.railway.app"; // Cambia esto según el entorno o hazlo configurable
+        String domain = "nocountry.up.railway.app"; // Cambia esto según el entorno o hazlo configurable
         String sameSite = "None"; // Cambia a "None" si necesitas compartir cookies entre diferentes dominios
 
         // Aquí agregamos manualmente SameSite y Domain en el encabezado Set-Cookie
