@@ -1,2 +1,0 @@
-package com.nocountry.nocountry.security.oauth2;public class CustomAuthorizationRequestResolver {
-}
