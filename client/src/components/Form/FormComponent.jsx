@@ -68,7 +68,7 @@ export default function FormComponent({
         {btnText}
       </Button>
       {result?.errors && result.errors?.GLOBAL ? (
-        <span className="absolute -bottom-6 left-0 text-sm text-red-400">
+        <span className="left-30 absolute -bottom-0 text-sm text-red-400">
           {result.errors.GLOBAL}
         </span>
       ) : null}

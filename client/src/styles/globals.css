@@ -43,6 +43,11 @@ html {
   .text-pretty {
     text-wrap: pretty;
   }
+  .autofill-inherit:-webkit-autofill {
+    background-color: inherit !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
   .no-outline {
     @apply no-underline outline-none focus:outline-none focus-visible:outline-none active:outline-none;
   }

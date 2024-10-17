@@ -21,6 +21,8 @@ export async function signup(_state, formData) {
     };
   }
 
+  let response;
+
   try {
     const payload = {
       method: 'POST',
@@ -41,7 +43,7 @@ export async function signup(_state, formData) {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
         errors: {
-          GLOBAL: `Error al crear la cuenta: ${errorResponse.errorMessage}`,
+          GLOBAL: 'Error al crear la cuenta',
         },
       };
     }
@@ -60,16 +62,20 @@ export async function signup(_state, formData) {
       .find(row => row.startsWith('token='))
       .split('=')[1];
 
-    cookies().set('auth_token', token, {
+    cookies().set('token', token, {
       httpOnly: true,
       secure: true,
       path: '/',
       maxAge: 60 * 60,
     });
 
-    const response = await res.json();
+    response = await res.json();
+
+    console.log('Respuesta completa:', response);
 
     if (!response.id) {
+      console.error('Error: El ID no se recibió correctamente');
+
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
@@ -89,6 +95,13 @@ export async function signup(_state, formData) {
     };
   }
 
-  // redirect(`/signup/confirm/${response.id}`);
-  redirect(`/signup/confirm`);
+  console.log(response, 'hiiii');
+
+  if (response && response.id) {
+    redirect(`/signup/confirm/${response.id}`);
+  } else {
+    console.error('Error: El ID no está definido en la respuesta');
+  }
+
+  // redirect(`/signup/confirm`);
 }
