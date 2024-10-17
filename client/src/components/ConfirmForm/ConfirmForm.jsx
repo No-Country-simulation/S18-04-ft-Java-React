@@ -1,44 +1,20 @@
 'use client';
+import { updateProfile } from './action';
+import style from '../../styles/signup.module.css';
+import FormComponent from '../Form/FormComponent';
+import { registerStepTwo } from '@/constants/authFields';
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import Button from '../Button/Button';
-import Form from '../Form/Form';
-import Input from '../Input/Input';
-import { cn } from '@/lib/utils';
-import style from '@/styles/signup.module.css';
-
-function ConfirmForm() {
-  const router = useRouter();
-
-  const handlePreviousForm = () => {
-    router.push('/signup');
-  };
+export const ConfirmForm = () => {
   return (
-    <section className={cn(style.signup, style.signupMargin)}>
-      {/* Es mejor utilizar la funcion "cn" de lib/utils.js, funciona clases de forma segura y evita duplicar clases*/}
-      <Image
-        className={style.signupArrow}
-        src="/images/arrowLeft.png"
-        width={20}
-        height={20}
-        onClick={handlePreviousForm}
-        alt="botón para regresar al formulario anterior"
+    <section className={style.signup}>
+      <h2 className={style.signupSubtitle}>Completa estos campos para personalizar tu perfil.</h2>
+      <FormComponent
+        fields={registerStepTwo}
+        className="relative mb-7 w-full items-center justify-center max-sm:max-w-[85%]"
+        btnClassName="mt-[4.25rem] max-sm:max-w-[85%] mx-auto justify-center items-center"
+        btnText="Continuar"
+        onSubmit={updateProfile}
       />
-      {/* Esto seria un h2 */}
-      <h4 className={style.signupSubtitle}>Completa estos campos para personalizar tu perfil.</h4>
-      <Form>
-        <div className={style.signupContent}>
-          <Input id="firstName" label="Nombre" autoComplete="new-name" />
-          <Input id="lastName" label="Apellido" autoComplete="new-last-name" />
-          <Input id="linkedin" label="Linkedin" iconLeft="/images/linkedin.png" />
-          <Input id="github" label="GitHub" iconLeft="/images/github.png" />
-        </div>
-        <Button type="submit">Aceptar</Button>
-      </Form>
     </section>
   );
-}
-
-export default ConfirmForm;
+};

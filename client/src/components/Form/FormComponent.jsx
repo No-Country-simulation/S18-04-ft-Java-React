@@ -7,7 +7,6 @@ import FormField from '../FormField/FormField';
 import PasswordFormField from '../PasswordField/PasswordField';
 import { cn } from '@/lib/utils';
 
-// TODO: Implementar logica para, utilizar textarea y dropdowns
 const RenderFields = ({ field, error }) => {
   const commonProps = {
     id: field.id,
@@ -39,7 +38,6 @@ export default function FormComponent({
 
   useEffect(() => {
     if (result) {
-      // De esta forma se asegura el RESET de isPending
       startTransition(() => {});
     }
   }, [result]);
@@ -54,7 +52,7 @@ export default function FormComponent({
       id={id}
       data-testid={id}
       onSubmit={handleSubmit}
-      className={cn(className, 'flex w-full max-w-3xl flex-col gap-y-7')}>
+      className={cn(className, 'relative flex w-full max-w-3xl flex-col gap-y-7')}>
       {fields.map(field => (
         <RenderFields key={field.name} field={field} error={result?.errors?.[field.name]} />
       ))}
@@ -70,7 +68,7 @@ export default function FormComponent({
         {btnText}
       </Button>
       {result?.errors && result.errors?.GLOBAL ? (
-        <span className="absolute -bottom-6 left-0 text-sm text-red-400">
+        <span className="left-30 absolute -bottom-0 text-sm text-red-400">
           {result.errors.GLOBAL}
         </span>
       ) : null}

@@ -4,9 +4,8 @@ import { forwardRef } from 'react';
 import EyeButton from '../EyeButton/EyeButton';
 import { cn } from '@/lib/utils';
 
-//Ejemplo de estilo de un form field
 const formFieldCVA = cva(
-  'w-full bg-transparent relative z-10 no-outline rounded-md transition-all duration-300 ease text-base  h-12 px-3 py-2 border-gradient  [&:not(:disabled)]:focus:shadow-[0px_2px_22px_rgba(14,252,162,0.25)]',
+  'autofill-inherit w-full bg-transparent relative z-10 no-outline rounded-md transition-all duration-300 ease text-base  h-12 px-3 py-2 border-gradient  [&:not(:disabled)]:focus:shadow-[0px_2px_22px_rgba(14,252,162,0.25)]',
   {
     variants: {
       error: {
@@ -34,7 +33,6 @@ const labelCVA = cva('group relative w-full max-w-lg text-base font-normal leadi
     defaultVariants: { error: false },
   },
 });
-// Icons: EyeOff, Github, Linkedin, Unlock, User, Whatsapp (Actualmente)
 const FormField = forwardRef(function FormField(
   { className = '', id = '', label = '', type = 'text', error, icon, onTypeChange, ...props },
   ref

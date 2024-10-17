@@ -1,7 +1,8 @@
+//TODO: El atributo name de este objeto debe de coincidir con el del objeto en el esquema de zod
 export const registerStepOne = [
   {
     id: 'emailField',
-    name: 'emailField',
+    name: 'email',
     type: 'email',
     label: 'Correo electronico',
     icon: '/images/User.svg',
@@ -10,7 +11,7 @@ export const registerStepOne = [
   },
   {
     id: 'passwordField',
-    name: 'passwordField',
+    name: 'password',
     type: 'password',
     label: 'Contraseña',
     icon: '/images/Unlock.svg',
@@ -19,7 +20,7 @@ export const registerStepOne = [
   },
   {
     id: 'repeatPasswordField',
-    name: 'repeatPasswordField',
+    name: 'repeatPassword',
     type: 'password',
     label: 'Repetir contraseña',
     icon: '/images/Unlock.svg',
@@ -51,32 +52,32 @@ export const loginFields = [
 export const registerStepTwo = [
   {
     id: 'nameField',
-    name: 'nameField',
+    name: 'name',
     type: 'text',
-    label: '* Nombre',
+    label: 'Nombre',
     tabindex: 1,
     autoComplete: 'given-name',
   },
   {
     id: 'lastNameField',
-    name: 'lastNameField',
+    name: 'lastName',
     type: 'text',
-    label: '* Apellido',
+    label: 'Apellido',
     tabindex: 2,
     autoComplete: 'family-name',
   },
   {
     id: 'linkedinField',
-    name: 'linkedinField',
-    type: 'text',
+    name: 'linkedin',
+    type: 'url',
     label: 'Linkedin',
     icon: '/images/Linkedin.svg',
     tabindex: 3,
   },
   {
     id: 'githubField',
-    name: 'githubField',
-    type: 'text',
+    name: 'github',
+    type: 'url',
     label: 'Github',
     icon: '/images/Github.svg',
     tabindex: 4,
