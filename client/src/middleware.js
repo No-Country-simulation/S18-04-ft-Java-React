@@ -1,5 +1,6 @@
 export function middleware(request) {
   const token = request.cookies.get('token')?.value;
+  console.log({ cookie:request.cookies.get('token') });
   console.log({ token });
   if (token && request.nextUrl.pathname.startsWith('/signin')) {
     return Response.redirect(new URL('/', request.url));
