@@ -27,7 +27,7 @@ public class CookieUtils {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        //cookie.setSecure(true);
         cookie.setMaxAge(maxAge);
 
         // Construcción manual de encabezado para SameSite y Domain
@@ -35,7 +35,7 @@ public class CookieUtils {
         String sameSite = "None"; // Cambia a "None" si necesitas compartir cookies entre diferentes dominios
 
         // Aquí agregamos manualmente SameSite y Domain en el encabezado Set-Cookie
-        String cookieHeader = String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; Secure; SameSite=%s; Domain=%s",
+        String cookieHeader = String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; SameSite=%s; Domain=%s",
                 name, value, maxAge, cookie.getPath(), sameSite, domain);
         response.addHeader("Set-Cookie", cookieHeader);
     }
