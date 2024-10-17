@@ -30,8 +30,8 @@ public class CookieUtils {
         cookie.setSecure(true);
         cookie.setMaxAge(maxAge);
         // Aquí agregamos manualmente SameSite y Domain en el encabezado Set-Cookie
-        String cookieHeader = String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; Secure; SameSite=none;",
-                name, value, maxAge);
+        String cookieHeader = String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; Secure; SameSite=Lax; Domain=no-country.up.railway.app",
+                name, value, maxAge, cookie.getPath());
         response.addHeader("Set-Cookie", cookieHeader);
     }
 
