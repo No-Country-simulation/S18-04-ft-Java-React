@@ -29,8 +29,11 @@ public class CookieUtils {
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
         cookie.setMaxAge(maxAge);
-        response.addCookie(cookie);
-}
+        // Aquí agregamos manualmente SameSite y Domain en el encabezado Set-Cookie
+        String cookieHeader = String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; Secure; SameSite=none;",
+                name, value, maxAge);
+        response.addHeader("Set-Cookie", cookieHeader);
+    }
 
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         Cookie[] cookies = request.getCookies();
