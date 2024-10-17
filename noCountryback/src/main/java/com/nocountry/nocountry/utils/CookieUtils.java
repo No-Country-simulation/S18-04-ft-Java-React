@@ -3,6 +3,8 @@ package com.nocountry.nocountry.utils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.util.SerializationUtils;
 
 import java.util.Base64;
@@ -51,36 +53,41 @@ public static Optional<Cookie> getCookie(HttpServletRequest request, String name
 //    }
 
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
-        Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true);
-        cookie.setMaxAge(maxAge);
-        cookie.setAttribute("SameSite", "None"); // O "Lax", según tus necesidades
-        cookie.setDomain("nocountry.up.railway.app"); // Asegúrate de que esto sea adecuado para tu entorno
-        response.addHeader("Set-Cookie", cookie.getValue());
+        ResponseCookie cokiePrueba = ResponseCookie.from( name,value )
+                .httpOnly( true )
+                .sameSite( "None" )
+                .secure( true )
+                .path( "/" )
+                .maxAge( maxAge )
+                .domain( "no-country.up.railway.app" )
+                .build();
+        response.setHeader( HttpHeaders.SET_COOKIE, cokiePrueba.toString() );
+//        Cookie cookie = new Cookie(name, value);
+//        cookie.setPath("/");
+//        cookie.setHttpOnly(true);
+//        cookie.setSecure(true);
+//        cookie.setMaxAge(maxAge);
+//        cookie.setAttribute("SameSite", "None"); // O "Lax", según tus necesidades
+//        cookie.setDomain("nocountry.up.railway.app"); // Asegúrate de que esto sea adecuado para tu entorno
+//        response.addCookie( cookie );
+
 
     }
 
-//    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
-//        Cookie[] cookies = request.getCookies();
-//        if (cookies != null) {
-//            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals(name)) {
-//                    cookie.setValue("");
-//                    cookie.setPath("/");
-//                    cookie.setMaxAge(0);
-//                    response.addCookie(cookie);
-//                }
-//            }
-//        }
-//    }
-public static void deleteCookie(HttpServletResponse response, String name) {
-    Cookie cookie = new Cookie(name, null);
-    cookie.setPath("/");
-    cookie.setMaxAge(0);
-    response.addCookie(cookie);
-}
+    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(name)) {
+                    cookie.setValue("");
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+            }
+        }
+    }
+
 
     public static String serialize(Object object) {
         return Base64
