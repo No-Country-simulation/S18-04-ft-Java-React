@@ -48,6 +48,8 @@ export async function signup(_state, formData) {
       };
     }
 
+    response = await res.json();
+
     const cookieHeader = res.headers.get('Set-Cookie');
     if (!cookieHeader) {
       return {
@@ -68,10 +70,12 @@ export async function signup(_state, formData) {
       path: '/',
       maxAge: 60 * 60,
     });
-
-    response = await res.json();
-
-    console.log('Respuesta completa:', response);
+    cookies().set('USER', JSON.stringify({ id: response.id, email: response.email }), {
+      httpOnly: true,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60,
+    });
 
     if (!response.id) {
       console.error('Error: El ID no se recibió correctamente');
@@ -95,13 +99,9 @@ export async function signup(_state, formData) {
     };
   }
 
-  console.log(response, 'hiiii');
-
   if (response && response.id) {
     redirect(`/signup/confirm/${response.id}`);
   } else {
     console.error('Error: El ID no está definido en la respuesta');
   }
-
-  // redirect(`/signup/confirm`);
 }
