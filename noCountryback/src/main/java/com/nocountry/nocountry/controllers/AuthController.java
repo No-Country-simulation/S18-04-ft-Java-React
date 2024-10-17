@@ -2,23 +2,17 @@ package com.nocountry.nocountry.controllers;
 
 import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
-import com.nocountry.nocountry.dto.response.AuthResponseDTO;
-import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
 import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.AuthService;
 import com.nocountry.nocountry.utils.CookieUtils;
-import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 
 @RestController()
 @RequestMapping("/api/auth")

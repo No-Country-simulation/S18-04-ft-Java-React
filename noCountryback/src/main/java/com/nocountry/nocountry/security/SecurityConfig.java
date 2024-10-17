@@ -1,6 +1,5 @@
 package com.nocountry.nocountry.security;
 
-
 import com.nocountry.nocountry.security.filter.JwtAuthenticationFilter;
 import com.nocountry.nocountry.security.oauth2.*;
 import lombok.RequiredArgsConstructor;

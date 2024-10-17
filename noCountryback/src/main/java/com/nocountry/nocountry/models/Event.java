@@ -10,7 +10,6 @@ import net.minidev.json.annotate.JsonIgnore;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 // Los eventos pueden ser las simulaciones o hackatones: Se describe el nombres y demas atributos

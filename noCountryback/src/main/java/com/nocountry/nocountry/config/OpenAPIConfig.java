@@ -21,8 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                 description = "A system designed to manage tech labor simulations, including user registration, role assignment, team creation, and simulation tracking. Administrators can create simulations and hackathons, and generate skill profiles and CVs.",
                 version = "1.0.0",
                 contact = @Contact(
-                        name = "Tech Simulations",
-                        url = "https://techsimulations.com",
+                        name = "No Country",
+                        url = "https://no-country.up.railway.app/welcome",
                         email = "support@techsimulations.com"
                 ),
                 license = @License(

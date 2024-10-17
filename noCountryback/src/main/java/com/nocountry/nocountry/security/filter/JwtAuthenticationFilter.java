@@ -1,6 +1,5 @@
 package com.nocountry.nocountry.security.filter;
 
-import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.models.User;
 import com.nocountry.nocountry.repository.UserRepo;
 import com.nocountry.nocountry.security.CustomUserDetailsService;
@@ -15,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;

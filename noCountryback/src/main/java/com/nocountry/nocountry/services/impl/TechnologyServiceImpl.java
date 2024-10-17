@@ -4,7 +4,6 @@ import com.nocountry.nocountry.models.Technology;
 import com.nocountry.nocountry.repository.GenericRepo;
 import com.nocountry.nocountry.repository.TechnologyRepo;
 import com.nocountry.nocountry.services.ITechnologyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
