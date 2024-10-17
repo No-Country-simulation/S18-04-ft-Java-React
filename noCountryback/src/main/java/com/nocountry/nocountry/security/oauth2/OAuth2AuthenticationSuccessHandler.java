@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+    Logger logger = org.slf4j.LoggerFactory.getLogger(OAuth2AuthenticationSuccessHandler.class);
     @Autowired
     private  JwtUtils jwtUtils;
     @Autowired
@@ -63,7 +65,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
         String token = jwtUtils.generateToken(userPrincipal);
+        logger.info("Generated token: {}", token);
         CookieUtils.addCookie(response, "token", token, 3600);
+        logger.info(response.toString());
         return UriComponentsBuilder.fromUriString(targetUrl)
 //                .queryParam("token", token)
                 .build().toUriString();
