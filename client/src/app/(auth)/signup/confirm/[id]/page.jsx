@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { split } from 'postcss/lib/list';
 import { ConfirmForm } from '@/components/ConfirmForm/ConfirmForm';
 
 const IdPage = ({ params }) => {
