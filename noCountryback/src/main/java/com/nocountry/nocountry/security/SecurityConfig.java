@@ -93,6 +93,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(AUTH_ENDPOINTS_PUBLIC).permitAll();
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/logout").hasAnyRole("USER");
+                    authConfig.requestMatchers(HttpMethod.GET,"/api/auth/check-login").hasAnyRole("USER");
                     authConfig.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2 -> oauth2
