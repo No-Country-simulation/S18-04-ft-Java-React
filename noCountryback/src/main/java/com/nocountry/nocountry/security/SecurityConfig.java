@@ -4,6 +4,7 @@ package com.nocountry.nocountry.security;
 import com.nocountry.nocountry.security.filter.JwtAuthenticationFilter;
 import com.nocountry.nocountry.security.oauth2.*;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +42,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
+    Logger logger = org.slf4j.LoggerFactory.getLogger(SecurityConfig.class);
     private final static String OAUTH2_BASE_URI = "/api/auth/oauth2/authorize";
     private final static String OAUTH2_REDIRECTION_ENDPOINT = "/oauth2/callback/**";
     @Autowired
@@ -144,8 +145,10 @@ public class SecurityConfig {
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return (request, response, accessDeniedException) -> {
+            logger.info("error: {}", accessDeniedException.getMessage());
             response.setStatus(HttpStatus.FORBIDDEN.value());
-            response.getWriter().write("403 Forbidden: Acceso denegado.");
+            response.getWriter().write("403 Forbidden: Acceso denegado." + accessDeniedException.getMessage());
+
         };
     }
     @Bean
