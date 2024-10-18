@@ -1,5 +1,6 @@
 export function middleware(request) {
   const token = request.cookies.get('token')?.value;
+  
   console.log("---------------------------------------------------------");
   console.log({ cookiess:request.cookies });
   console.log({ cookie:request.cookies.get('token') });
