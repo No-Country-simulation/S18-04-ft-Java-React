@@ -12,42 +12,9 @@
   padding-block-end: 3rem;
 }
 
-.signupContent {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  padding-block: 5%;
-  gap: 1.5rem;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.signupSubmitBtn {
-  width: 100%;
-  max-width: 85%;
-}
-
-@media only screen and (min-width: 640px) {
-  .signupSubmitBtn {
-    max-width: 330px;
-  }
-}
-
-.signupRemoveMarginTop {
-  margin-top: 0;
-}
-
 .signupSubtitle {
-  margin-top: 50px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 14px;
-}
-
-.signupArrow {
-  position: absolute;
-  left: 90px;
-  top: -50px;
-  cursor: pointer;
+  margin-bottom: 10%;
 }
