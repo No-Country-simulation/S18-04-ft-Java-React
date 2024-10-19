@@ -67,6 +67,8 @@ public static Optional<Cookie> getCookie(HttpServletRequest request, String name
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
         cookie.setMaxAge(maxAge);
+        cookie.setAttribute("SameSite", "None"); // O "Lax", según tus necesidades
+        cookie.setDomain("nocountry.up.railway.app"); // Asegúrate de que esto sea adecuado para tu entorno
         response.addCookie( cookie );
 
 
