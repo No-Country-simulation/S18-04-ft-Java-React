@@ -1,12 +1,12 @@
 export function middleware(request) {
-  const token = request.cookies.get('token')?.value;
-  
-  console.log("---------------------------------------------------------");
-  console.log({ cookiess:request.cookies });
-  console.log({ cookie:request.cookies.get('token') });
-  console.log({ token });
-  console.log("---------------------------------------------------------");
-  if (token && request.nextUrl.pathname.startsWith('/signin')) {
+  const user = request.cookies.get('USER')?.value;
+
+  console.log('---------------------------------------------------------');
+  console.log({ cookiess: request.cookies });
+  console.log({ cookie: request.cookies.get('token') });
+  console.log({ token: user });
+  console.log('---------------------------------------------------------');
+  if (!user && request.nextUrl.pathname.startsWith('/home')) {
     return Response.redirect(new URL('/', request.url));
   }
 }
