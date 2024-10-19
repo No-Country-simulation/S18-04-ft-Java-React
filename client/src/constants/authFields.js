@@ -7,7 +7,7 @@ export const registerStepOne = [
     label: 'Correo electronico',
     icon: '/images/User.svg',
     tabindex: 1,
-    autoComplete: 'new-email',
+    autoComplete: 'email',
   },
   {
     id: 'passwordField',

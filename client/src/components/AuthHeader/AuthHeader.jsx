@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const AuthHeader = () => {
   return (
-    <hader className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-6">
+    <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-6">
       <div className="w-fit">
         <Image
           src={defaultProfile}
@@ -34,6 +34,6 @@ export const AuthHeader = () => {
           className="aspect-square object-center"
         />
       </div>
-    </hader>
+    </header>
   );
 };

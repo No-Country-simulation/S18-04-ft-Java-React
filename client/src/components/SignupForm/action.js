@@ -1,25 +1,18 @@
 'use server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { signupSchema } from '@/schemas/userSchema';
+import { validateSchema } from '@/lib/validateSchema';
+import { signupSchema } from '@/schemas/authSchemas';
+const baseURL = process.env.URL;
 
 export async function signup(_state, formData) {
-  const signupVerified = signupSchema.safeParse({
+  const [error, data] = validateSchema(signupSchema, {
     email: formData.get('email'),
     password: formData.get('password'),
-    repeatPassword: formData.get('repeatPassword'),
+    repeatPassword: formData.get('repeatPassword') || null,
   });
 
-  if (!signupVerified.success) {
-    const errors = Object.fromEntries(
-      signupVerified.error.errors.map(({ path, message }) => [path[0], message])
-    );
-    return {
-      id: crypto.randomUUID(),
-      status: 'VALIDATION_ERROR',
-      errors,
-    };
-  }
+  if (error) return error;
 
   let response;
 
@@ -28,12 +21,12 @@ export async function signup(_state, formData) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: signupVerified.data.email,
-        password: signupVerified.data.password,
+        email: data.email,
+        password: data.password,
       }),
     };
 
-    const res = await fetch('https://nocountry.up.railway.app/api/auth/register', payload);
+    const res = await fetch(`${baseURL}/api/auth/register`, payload);
 
     if (!res.ok || !res.headers.get('Set-Cookie')) {
       const errorResponse = await res.json();
@@ -70,12 +63,16 @@ export async function signup(_state, formData) {
       path: '/',
       maxAge: 60 * 60,
     });
-    cookies().set('USER', JSON.stringify({ id: response.id, email: response.email }), {
-      httpOnly: true,
-      secure: true,
-      path: '/',
-      maxAge: 60 * 60,
-    });
+    cookies().set(
+      'USER',
+      JSON.stringify({ id: response.id, email: response.email, isFirstSignin: true }),
+      {
+        httpOnly: true,
+        secure: true,
+        path: '/',
+        maxAge: 60 * 60,
+      }
+    );
 
     if (!response.id) {
       console.error('Error: El ID no se recibió correctamente');
@@ -99,9 +96,5 @@ export async function signup(_state, formData) {
     };
   }
 
-  if (response && response.id) {
-    redirect(`/signup/confirm/${response.id}`);
-  } else {
-    console.error('Error: El ID no está definido en la respuesta');
-  }
+  redirect(`/signup/confirm/${response.id}`);
 }

@@ -2,23 +2,16 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { signinSchema } from '@/schemas/userSchema';
+import { validateSchema } from '@/lib/validateSchema';
+import { signinSchema } from '@/schemas/authSchemas';
+const baseURL = process.env.URL;
 
 export async function signin(_state, formData) {
-  const signinVerified = signinSchema.safeParse({
+  const [error, data] = validateSchema(signinSchema, {
     password: formData.get('password'),
     email: formData.get('email'),
   });
-  if (!signinVerified.success) {
-    const errors = Object.fromEntries(
-      signinVerified.error.errors.map(({ path, message }) => [path[0], message])
-    );
-    return {
-      id: crypto.randomUUID(),
-      status: 'VALIDATION_ERROR',
-      errors,
-    };
-  }
+  if (error) return error;
 
   let response;
 
@@ -27,12 +20,12 @@ export async function signin(_state, formData) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: signinVerified.data.email,
-        password: signinVerified.data.password,
+        email: data.email,
+        password: data.password,
       }),
     };
 
-    const res = await fetch('https://nocountry.up.railway.app/api/auth/login', payload);
+    const res = await fetch(`${baseURL}/api/auth/login`, payload);
 
     if (!res.ok || !res.headers.get('Set-Cookie')) {
       const errorResponse = await res.json();
@@ -69,7 +62,6 @@ export async function signin(_state, formData) {
       path: '/',
       maxAge: 60 * 60,
     });
-
     cookies().set('USER', JSON.stringify({ id: response.id, email: response.email }), {
       httpOnly: true,
       secure: true,
@@ -99,9 +91,5 @@ export async function signin(_state, formData) {
     };
   }
 
-  if (response && response.id) {
-    redirect(`/`);
-  } else {
-    console.error('Error: El ID no está definido en la respuesta');
-  }
+  redirect(`/home`);
 }
