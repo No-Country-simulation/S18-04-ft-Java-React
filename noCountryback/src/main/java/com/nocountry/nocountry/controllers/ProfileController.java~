@@ -37,7 +37,6 @@ public class ProfileController {
 
     @PostMapping
     public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto, @CurrentUser UserPrincipal userPrincipal) {
-
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(mapper.toProfileResponseDTO(service.create(mapper.toProfile(dto))));
     }
