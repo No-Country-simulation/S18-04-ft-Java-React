@@ -53,23 +53,21 @@ public static Optional<Cookie> getCookie(HttpServletRequest request, String name
 //    }
 
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
-        ResponseCookie cokiePrueba = ResponseCookie.from( name,value )
-                .httpOnly( true )
-                .sameSite( "None" )
-                .secure( true )
-                .path( "/" )
-                .maxAge( maxAge )
-                .domain( "no-country.up.railway.app" )
-                .build();
-        response.setHeader( HttpHeaders.SET_COOKIE, cokiePrueba.toString() );
-//        Cookie cookie = new Cookie(name, value);
-//        cookie.setPath("/");
-//        cookie.setHttpOnly(true);
-//        cookie.setSecure(true);
-//        cookie.setMaxAge(maxAge);
-//        cookie.setAttribute("SameSite", "None"); // O "Lax", según tus necesidades
-//        cookie.setDomain("nocountry.up.railway.app"); // Asegúrate de que esto sea adecuado para tu entorno
-//        response.addCookie( cookie );
+//        ResponseCookie cokiePrueba = ResponseCookie.from( name,value )
+//                .httpOnly( true )
+//                .sameSite( "None" )
+//                .secure( true )
+//                .path( "/" )
+//                .maxAge( maxAge )
+//                .domain( "no-country.up.railway.app" )
+//                .build();
+//        response.setHeader( HttpHeaders.SET_COOKIE, cokiePrueba.toString() );
+        Cookie cookie = new Cookie(name, value);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setMaxAge(maxAge);
+        response.addCookie( cookie );
 
 
     }

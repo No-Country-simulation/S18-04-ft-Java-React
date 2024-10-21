@@ -12,6 +12,8 @@ const btnCVA = cva(
           'bg-accent-400 text-primary-300 font-semibold [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(12,252,167,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
         secondary:
           'bg-secondary-200 text-white font-semibold [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(94,23,235,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
+        'secondary-light':
+          'bg-secondary-500 text-white font-semibold [&:not(:disabled)]:hover:shadow-[0px_7px_18px_rgba(94,23,235,0.36)] [&:not(:disabled)]:hover:scale-105 [&:not(:disabled)]:active:scale-100',
         disabled: 'bg-neutral-500 text-neutral-800 cursor-not-allowed',
         transparent: 'bg-transparent text-white border-transparent',
       },

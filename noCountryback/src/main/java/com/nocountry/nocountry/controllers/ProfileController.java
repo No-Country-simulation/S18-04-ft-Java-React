@@ -4,6 +4,8 @@ import com.nocountry.nocountry.config.mapper.ProfileMapper;
 import com.nocountry.nocountry.dto.request.ProfileRequestDTO;
 import com.nocountry.nocountry.dto.response.ProfileResponseDTO;
 import com.nocountry.nocountry.models.Profile;
+import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
+import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.IProfileService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -28,13 +30,14 @@ public class ProfileController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProfileResponseDTO> findById(@PathVariable("id") UUID id) {
-        return ResponseEntity.ok(mapper.toProfileResponseDTO(service.findById(id)));
+    @GetMapping()
+    public ResponseEntity<ProfileResponseDTO> findById( @CurrentUser UserPrincipal userPrincipal ) {
+        return ResponseEntity.ok(mapper.toProfileResponseDTO(service.findProfileByUserId(userPrincipal.getId())));
     }
 
     @PostMapping
-    public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto) {
+    public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto, @CurrentUser UserPrincipal userPrincipal) {
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(mapper.toProfileResponseDTO(service.create(mapper.toProfile(dto))));
     }

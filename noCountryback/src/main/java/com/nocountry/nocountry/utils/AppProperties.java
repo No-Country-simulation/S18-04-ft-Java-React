@@ -30,7 +30,7 @@ public class AppProperties {
         @Value("${authorized.redirect.uri}")
         private String redirectUri;
 //        private List<String> authorizedRedirectUris = List.of(this.redirectUri);
-        private List<String> authorizedRedirectUris = List.of("https://no-country.up.railway.app/client-page");
+        private List<String> authorizedRedirectUris = List.of("https://no-country.up.railway.app/home");
 
         public OAuth2 authorizedRedirectUris(List<String> authorizedRedirectUris) {
             this.authorizedRedirectUris = authorizedRedirectUris;

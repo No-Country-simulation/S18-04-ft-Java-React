@@ -13,7 +13,7 @@
   &:after {
     position: absolute;
     content: ' ';
-    height: 1px;
+    height: 2px;
     width: clamp(43%, 25dvw, 45%);
     background: linear-gradient(90deg, #1d8ff2 5.5%, #32d4e3 38.5%, #0ff29f 65.5%, #14d9b5 98%);
     top: 50%;

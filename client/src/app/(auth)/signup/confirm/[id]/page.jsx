@@ -1,7 +1,6 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { ConfirmForm } from '@/components/ConfirmForm/ConfirmForm';
 
+<<<<<<< HEAD
 const IdPage = ({ params }) => {
   const userString = cookies().get('token');
   let obj;
@@ -21,6 +20,10 @@ const IdPage = ({ params }) => {
       <ConfirmForm />
     </div>
   );
+=======
+const IdPage = () => {
+  return <ConfirmForm />;
+>>>>>>> d9077d97c6a4b4da1554bf47bdddffbccafba5da
 };
 
 export default IdPage;
