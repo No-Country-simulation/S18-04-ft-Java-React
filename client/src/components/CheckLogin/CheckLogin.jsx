@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const payload = {
   method: 'GET',
   headers: { 'Content-Type': 'application/json' },
+  credentials: 'include',
 };
 
 export const CheckLogin = () => {
