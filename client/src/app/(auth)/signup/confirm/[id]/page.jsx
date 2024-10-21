@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { ConfirmForm } from '@/components/ConfirmForm/ConfirmForm';
 
 const IdPage = ({ params }) => {
-  const userString = cookies().get('USER');
+  const userString = cookies().get('token');
   let obj;
   try {
     obj = userString && userString?.value ? JSON.parse(userString.value) : {};
