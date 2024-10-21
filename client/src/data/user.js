@@ -3,7 +3,7 @@ import { getCurrentUser } from './auth';
 
 export function hasAccess(slug) {
   const user = getCurrentUser();
-  return user && user.id === slug;
+  return user && user?.id === slug;
 }
 
 export function isFirstAccess(slug) {
