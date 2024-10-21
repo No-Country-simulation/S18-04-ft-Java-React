@@ -12,7 +12,7 @@ export const CheckLogin = () => {
   useEffect(() => {
     console.log('CheckLogin');
 
-    if (val) {
+    if (!val) {
       try {
         fetch('https://nocountry.up.railway.app/api/auth/check-login', payload).then(res => {
           console.log({ res });
