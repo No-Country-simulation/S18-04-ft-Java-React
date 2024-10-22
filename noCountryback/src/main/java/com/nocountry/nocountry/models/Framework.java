@@ -20,7 +20,7 @@ public class Framework {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "framework_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     @Column(name = "framework_name", nullable = false)
     private String frameworkName;

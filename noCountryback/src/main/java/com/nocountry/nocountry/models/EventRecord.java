@@ -23,7 +23,7 @@ public class EventRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "envent_record_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     private Schedule schedule;

@@ -8,6 +8,8 @@ import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.IProfileService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -18,26 +20,24 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/profiles")
+@RequiredArgsConstructor
 public class ProfileController {
 
     private final IProfileService service;
     private final ProfileMapper mapper;
 
-    public ProfileController(IProfileService service, ProfileMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
-
     @GetMapping()
     public ResponseEntity<ProfileResponseDTO> findById( @CurrentUser UserPrincipal userPrincipal ) {
+        log.info("Current user Profile findById{}", userPrincipal.getName());
         return ResponseEntity.ok(mapper.toProfileResponseDTO(service.findProfileByUserId(userPrincipal.getId())));
     }
 
     @PostMapping
     public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto, @CurrentUser UserPrincipal userPrincipal) {
-
+        log.info("Current user Profile Save{}", userPrincipal.getName());
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(mapper.toProfileResponseDTO(service.create(mapper.toProfile(dto))));
     }

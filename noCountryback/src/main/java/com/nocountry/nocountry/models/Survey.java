@@ -20,7 +20,7 @@ public class Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "survey_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     private Double teamWork;
 

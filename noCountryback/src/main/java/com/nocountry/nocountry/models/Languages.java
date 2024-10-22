@@ -22,7 +22,7 @@ public class Languages {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "language_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     @Column(name = "language_name",nullable = false)
     private String languageName;
