@@ -64,7 +64,7 @@ public static Optional<Cookie> getCookie(HttpServletRequest request, String name
 //        response.setHeader( HttpHeaders.SET_COOKIE, cokiePrueba.toString() );
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
-        cookie.setHttpOnly(true);
+        cookie.setHttpOnly(false);
         cookie.setSecure(true);
         cookie.setMaxAge(maxAge);
         response.addCookie( cookie );
