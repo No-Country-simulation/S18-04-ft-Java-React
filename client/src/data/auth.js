@@ -40,6 +40,17 @@ export const getUserProfile = async () => {
   let response;
   try {
     response = await res.json();
-  } catch (e) {}
+  } catch (e) {
+    return null;
+  }
   return profileMapper(response);
 };
+
+export const saveGoogleToken = (token)=>{
+  cookies().set('token', token, {
+    httpOnly: false,
+    secure: true,
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
