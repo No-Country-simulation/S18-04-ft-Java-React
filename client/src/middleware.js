@@ -9,7 +9,6 @@ export function middleware(request) {
   const token = searchParams.get('token');
   if(token){
     saveGoogleToken(token);
-    searchParams.delete('token');
   }
   if (hasUser() && NO_AUTH_ROUTE.some(route => route === pathname)) {
     return Response.redirect(new URL('/home', request.url));
