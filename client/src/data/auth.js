@@ -28,11 +28,11 @@ export const getCurrentToken = () => {
 };
 
 export const getUserProfile = async () => {
-  //const token = getCurrentToken();
+  const token = getCurrentToken();
 
   const payload = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
     credentials: 'include',
   };
   8;
