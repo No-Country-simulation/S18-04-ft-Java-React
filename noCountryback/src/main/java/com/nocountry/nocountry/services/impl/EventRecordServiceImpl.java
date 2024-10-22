@@ -29,4 +29,9 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
                 .filter(e -> e.getParticipants().stream()
                         .anyMatch(p -> p.getId().toString().equals(userId)) ).toList();
     }
+
+    @Override
+    public List<EventRecord> findAllByRegister(String schedule, UUID roleTypeId, UUID languageId, UUID eventId){
+        return repo.findAllByRegister(schedule, roleTypeId, languageId, eventId);
+    }
 }
