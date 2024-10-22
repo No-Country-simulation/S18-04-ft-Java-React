@@ -22,7 +22,7 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "team_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     private String teamName;
 

@@ -21,7 +21,7 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "session_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     private LocalDate sessionDate;
 

@@ -22,7 +22,7 @@ public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "participant_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     private Boolean isTl;
 

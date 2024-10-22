@@ -19,7 +19,7 @@ public class PPermission {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "permission_id")
-    private UUID id=UUID.randomUUID();
+    private UUID id;
 
     @Column(name = "permission_name")
     private String permissionName;
