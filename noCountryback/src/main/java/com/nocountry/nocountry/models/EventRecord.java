@@ -22,7 +22,7 @@ public class EventRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "envent_record_id")
+    @Column(name = "event_record_id")
     private UUID id;
 
     @Enumerated(EnumType.STRING)
