@@ -63,7 +63,7 @@ export async function signup(_state, formData) {
       path: '/',
       maxAge: 60 * 60,
     });
-   cookies().set('USER', JSON.stringify({ id: response.id, email: response.email }), {
+   cookies().set('USER', JSON.stringify({ id: response.id, email: response.email, isFirstSignin: true }), {
       httpOnly: true,
       secure: true,
       path: '/',
