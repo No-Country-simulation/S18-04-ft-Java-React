@@ -19,14 +19,14 @@ export function middleware(request) {
     const pathParts = pathname.split('/');
     //TODO: Hay que validar que el Id de la ruta sea correcto
     const pathUserId = pathParts[3];
-    if (pathParts.length > 3) {
+   /* if (pathParts.length > 3) {
       getUserProfile().then(user => {
         console.log({ user })
         if(!user){
           return Response.redirect(new URL('/home', request.url));
         }
       })
-    }
+    }*/
   }
 
   /*if ((!hasUser() || !getCurrentToken()) && AUTH_ROUTE.some(route => route === pathname)) {
