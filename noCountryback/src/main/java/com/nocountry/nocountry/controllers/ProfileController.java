@@ -6,6 +6,7 @@ import com.nocountry.nocountry.dto.response.ProfileResponseDTO;
 import com.nocountry.nocountry.models.Profile;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
+import com.nocountry.nocountry.services.IEmailService;
 import com.nocountry.nocountry.services.IProfileService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/profiles")
 @RequiredArgsConstructor
 public class ProfileController {
-
     private final IProfileService service;
     private final ProfileMapper mapper;
 
@@ -38,8 +38,7 @@ public class ProfileController {
     @PostMapping
     public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto, @CurrentUser UserPrincipal userPrincipal) {
         log.info("Current user Profile Save{}", userPrincipal.getName());
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.toProfileResponseDTO(service.create(mapper.toProfile(dto))));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createProfile(dto, userPrincipal));
     }
 
     @PutMapping("/{id}")
