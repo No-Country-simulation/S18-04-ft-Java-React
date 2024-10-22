@@ -28,11 +28,11 @@ export const getCurrentToken = () => {
 };
 
 export const getUserProfile = async () => {
-  const token = getCurrentToken();
+  //const token = getCurrentToken();
 
   const payload = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
+    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
   };
   8;
@@ -40,6 +40,17 @@ export const getUserProfile = async () => {
   let response;
   try {
     response = await res.json();
-  } catch (e) {}
+  } catch (e) {
+    return null;
+  }
   return profileMapper(response);
 };
+
+export const saveGoogleToken = (token)=>{
+  cookies().set('token', token, {
+    httpOnly: false,
+    secure: true,
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
