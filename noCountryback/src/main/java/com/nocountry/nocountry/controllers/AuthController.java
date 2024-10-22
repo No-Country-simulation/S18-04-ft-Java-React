@@ -13,13 +13,15 @@ import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+@Slf4j
 @RestController()
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -52,6 +54,7 @@ public class AuthController {
 
     @GetMapping("/check-login")
     public ResponseEntity<?> checkLogin(@CurrentUser UserPrincipal userPrincipal, HttpServletResponse resp) {
+        log.info("Current user check login{}", userPrincipal.getName());
             if (userPrincipal== null) throw new UnAuthorizedException("Forbidden");
         UserResponseDTO response = authService.getUserByUsername(userPrincipal.getUsername(),resp);
         return ResponseEntity.status(200).body(response);
@@ -61,19 +64,5 @@ public class AuthController {
     public ResponseEntity<?> logout(HttpServletResponse resp, HttpServletRequest request){
         CookieUtils.deleteCookie(request,resp,"token");
         return ResponseEntity.ok().build();
-    }
-    @GetMapping("/oauth2/callback/google")
-    public ResponseEntity<?> oauth2Callback(HttpServletRequest request, HttpServletResponse response, OAuth2AuthenticationToken authentication) {
-        String email = authentication.getPrincipal().getAttribute("email");
-        return userRepo.findByEmail(email)
-                .map(user -> {
-                    String token = jwtUtils.generateToken(user);
-                    CookieUtils.addCookie(response, "token", token, 3600);
-                    String userAgent = request.getHeader("User-Agent");
-                    System.out.println("User-Agent: " + userAgent);
-                    String targetUrl = "https://no-country.up.railway.app/home";
-                    return ResponseEntity.status(HttpStatus.FOUND).location(URI.create(targetUrl)).build();
-                })
-                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found"));
     }
 }
