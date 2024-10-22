@@ -68,7 +68,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         CookieUtils.addCookie(response, "token", token, 3600);
         logger.info(response.toString());
         return UriComponentsBuilder.fromUriString(targetUrl)
-//                .queryParam("token", token)
+                .queryParam("token", token)
                 .build().toUriString();
     }
 
