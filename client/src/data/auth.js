@@ -29,14 +29,7 @@ export const getCurrentToken = () => {
 
 export const getUserProfile = async (tokenFallback) => {
   const token = getCurrentToken();
-  if(!token){
-    cookies().set('token', tokenFallback, {
-      httpOnly: false,
-      secure: true,
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
-  }
+ 
   console.log({ tokenFallback })
   const payload = {
     method: 'GET',
