@@ -42,7 +42,7 @@ public class JwtUtils {
     public String generateToken( String username, UUID userId) {
         Map<String, Object> claims = Map.of("userId",userId);
         return Jwts.builder()
-                .subject(username)
+                .subject(user.getUsername())
                 .claims(claims)
                 .expiration(expiration())
                 .issuedAt(new Date(System.currentTimeMillis()))

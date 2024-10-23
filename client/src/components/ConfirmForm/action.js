@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { getCurrentToken, getCurrentUser } from '@/data/auth';
+import { decodePayload } from '@/data/decodedToken';
 import { validateSchema } from '@/lib/validateSchema';
 import { confirmSchema } from '@/schemas/authSchemas';
 const baseURL = process.env.URL;
@@ -18,6 +19,7 @@ export async function updateProfile(_state, formData) {
 
   try {
     const token = getCurrentToken();
+    const decoded = decodePayload(token);
     const user = getCurrentUser();
     const body = {
       profileName: data.name,
@@ -25,7 +27,7 @@ export async function updateProfile(_state, formData) {
       linkedinUrl: data.linkedin,
       githubUrl: data.github,
       user: {
-        id: user.id,
+        id: user ? user?.id : decoded?.id || ""
       },
     };
     const payload = {

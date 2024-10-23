@@ -1,4 +1,6 @@
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { decodePayload } from './decodedToken';
 import { profileMapper } from './mapper';
 import { userSchema } from '@/schemas/userSchema';
 const baseURL = process.env.URL;
@@ -29,15 +31,7 @@ export const getCurrentToken = () => {
 
 export const getUserProfile = async (tokenFallback) => {
   const token = getCurrentToken();
-  if(!token){
-    cookies().set('token', tokenFallback, {
-      httpOnly: false,
-      secure: true,
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
-  }
-  console.log({ tokenFallback })
+ 
   const payload = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
@@ -45,6 +39,10 @@ export const getUserProfile = async (tokenFallback) => {
   };
   8;
   const res = await fetch(`${baseURL}/api/profiles`, payload);
+  if(res.status === 404){
+    const user = decodePayload(token);
+    redirect(`/signup/confirm/${user?.id || "no-hay-id"}`)
+  }
   let response;
   try {
     response = await res.json();
