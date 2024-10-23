@@ -1,6 +1,5 @@
-import { cookies } from 'next/headers';
-import { getCurrentToken, getUserProfile, saveGoogleToken } from './data/auth';
-import { hasAccess, hasUser, isFirstAccess } from './data/user';
+import { getCurrentToken } from './data/auth';
+import { hasUser } from './data/user';
 
 const NO_AUTH_ROUTE = ['/signin', '/welcome', '/signup'];
 const AUTH_ROUTE = ['/home'];
@@ -8,12 +7,7 @@ const AUTH_ROUTE = ['/home'];
 export function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
   const token = searchParams.get('token');
-  if(token){
-    cookies().set('token', token);
-    const response = new Response('Token procesado', {
-      status: 200, 
-    });
-  }
+
   if (hasUser() && NO_AUTH_ROUTE.some(route => route === pathname)) {
     return Response.redirect(new URL('/home', request.url));
   }
@@ -22,7 +16,7 @@ export function middleware(request) {
     const pathParts = pathname.split('/');
     //TODO: Hay que validar que el Id de la ruta sea correcto
     const pathUserId = pathParts[3];
-   /* if (pathParts.length > 3) {
+    /* if (pathParts.length > 3) {
       getUserProfile().then(user => {
         console.log({ user })
         if(!user){
@@ -32,9 +26,9 @@ export function middleware(request) {
     }*/
   }
 
-  /*if ((!hasUser() || !getCurrentToken()) && AUTH_ROUTE.some(route => route === pathname)) {
+  if (!getCurrentToken() && !token && AUTH_ROUTE.some(route => route === pathname)) { 
     return Response.redirect(new URL('/welcome', request.url));
-  }*/
+  }
 }
 
 export const config = {

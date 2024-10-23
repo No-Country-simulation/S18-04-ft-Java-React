@@ -27,12 +27,12 @@ export const getCurrentToken = () => {
   return cookies().get('token')?.value;
 };
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (tokenFallback) => {
   const token = getCurrentToken();
-
+ 
   const payload = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
+    headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
     credentials: 'include',
   };
   8;
