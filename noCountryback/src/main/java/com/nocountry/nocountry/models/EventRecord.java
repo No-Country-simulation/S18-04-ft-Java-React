@@ -36,7 +36,7 @@ public class EventRecord {
     private RoleType roleType;
 
     @ManyToMany
-    @JoinTable(name = "register_stack",joinColumns = @JoinColumn(name = "event_record_id",referencedColumnName = "envent_record_id"),inverseJoinColumns = @JoinColumn(name = "framework_id",referencedColumnName = "framework_id"))
+    @JoinTable(name = "register_stack",joinColumns = @JoinColumn(name = "event_record_id",referencedColumnName = "event_record_id"),inverseJoinColumns = @JoinColumn(name = "framework_id",referencedColumnName = "framework_id"))
     private List<Framework>stack;
 
 

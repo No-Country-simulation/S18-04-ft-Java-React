@@ -70,4 +70,10 @@ public class EventRecordController {
         return ResponseEntity.ok(service.findAllEventByUserId(userId)
                 .stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
+
+    //Controller para obtener lista de cada rol y demas filtros
+    @GetMapping("/find-all-participant-by-role")
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByRol(@RequestParam("schedule") String schedule, @RequestParam("roleTypeId") UUID roleTypeId, @RequestParam("languageId") UUID languageId,@RequestParam("eventId") UUID eventId) {
+        return ResponseEntity.ok(service.findAllByRegister(schedule,roleTypeId,languageId,eventId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
+    }
 }
