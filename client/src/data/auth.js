@@ -30,7 +30,6 @@ export const getCurrentToken = () => {
 export const getUserProfile = async (tokenFallback) => {
   const token = getCurrentToken();
  
-  console.log({ tokenFallback })
   const payload = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
