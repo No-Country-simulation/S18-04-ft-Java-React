@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.services;
 
 import com.nocountry.nocountry.models.EventRecord;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
