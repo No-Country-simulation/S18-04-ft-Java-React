@@ -5,6 +5,7 @@ import com.nocountry.nocountry.dto.request.LoginRequestDTO;
 import com.nocountry.nocountry.dto.request.RegisterRequestDTO;
 import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import com.nocountry.nocountry.exceptions.BadRequestException;
+import com.nocountry.nocountry.exceptions.EmailServiceException;
 import com.nocountry.nocountry.exceptions.NotFoundException;
 import com.nocountry.nocountry.models.Role;
 import com.nocountry.nocountry.models.User;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -98,5 +100,57 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtUtils.generateToken(user.getUsername(),user.getId());
         CookieUtils.addCookie(response,"token",token,3600);
         return userMapper.toUserResponseDTO(user);
+    }
+
+    public Optional<String> getUserNameByEmail(String email) {
+        Optional<User> userOptional = userRepo.findByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return Optional.ofNullable(user.getProfile().getProfileName());
+        }
+        return Optional.empty();
+    }
+
+    @Transactional
+    public void updatePasswordToken(String token, String email) {
+        Optional<User> optionalUsuario = userRepo.findByEmail(email);
+        if (optionalUsuario.isPresent()) {
+            User user = optionalUsuario.get();
+            user.setResetPasswordToken(token);
+            userRepo.save(user);
+        } else {
+            try {
+                throw new EmailServiceException("User not found with email: " + email);
+            } catch (EmailServiceException e) {
+                throw new RuntimeException("Error processing password recovery request", e);
+            }
+        }
+    }
+
+    public User get(String resetPasswordToken) {
+        if (resetPasswordToken == null) {
+            try {
+                throw new EmailServiceException("Token not provided.");
+            } catch (EmailServiceException e) {
+                throw new RuntimeException("Error al finalizar el restablecimiento de contraseña. Solicite un nuevo token.", e);
+            }
+        }
+        Optional<User> optionalUsuario = userRepo.findByResetPasswordToken(resetPasswordToken);
+        if (optionalUsuario.isPresent()) {
+            return optionalUsuario.get();
+        } else {
+            try {
+                throw new EmailServiceException("Invalid or expired token.");
+            } catch (EmailServiceException e) {
+                throw new RuntimeException("Error al finalizar el restablecimiento de contraseña. Solicite un nuevo token.", e);
+            }
+        }
+    }
+
+    @Transactional
+    public void updatePassword(User user, String password) {
+        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        user.setResetPasswordToken(null);
+        userRepo.save(user);
     }
 }

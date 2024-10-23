@@ -70,7 +70,10 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/oauth2/callback/**",
             "/oauth2/callback/google",
-            "/api/auth/oauth2/authorize/**"
+            "/api/auth/oauth2/authorize/**",
+            "/api/reset-password",
+            "/api/forgot-password",
+            "/api/reset-password"
     };
 
     @Autowired
