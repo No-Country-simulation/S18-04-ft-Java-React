@@ -1,8 +1,8 @@
 import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { getUserProfile } from '@/data/auth';
 
-export async function HomeMain() {
-  const profile = await getUserProfile();
+export async function HomeMain({ token }) {
+  const profile = await getUserProfile(token);
   return (
     <main className="flex w-full flex-col px-3">
       <h1 className="mt-8 text-left text-2xl font-semibold text-white">

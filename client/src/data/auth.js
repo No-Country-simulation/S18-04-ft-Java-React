@@ -27,12 +27,20 @@ export const getCurrentToken = () => {
   return cookies().get('token')?.value;
 };
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (tokenFallback) => {
   const token = getCurrentToken();
-
+  if(!token){
+    cookies().set('token', tokenFallback, {
+      httpOnly: false,
+      secure: true,
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+    });
+  }
+  console.log({ tokenFallback })
   const payload = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
+    headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
     credentials: 'include',
   };
   8;
