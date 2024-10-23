@@ -8,11 +8,16 @@ const AUTH_ROUTE = ['/home'];
 export function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
   const token = searchParams.get('token');
+  console.log({ token });
   if(token){
-    cookies().set('token', token);
-    const response = new Response('Token procesado', {
-      status: 200, 
+    fetch('https://nocountry.up.railway.app/api/auth/check-login', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
+      credentials: 'include',
+    }).then(res => {
+      console.log({ res });
     });
+    //cookies().set('token', token);
   }
   if (hasUser() && NO_AUTH_ROUTE.some(route => route === pathname)) {
     return Response.redirect(new URL('/home', request.url));
