@@ -7,7 +7,6 @@ import com.nocountry.nocountry.exceptions.UnAuthorizedException;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.AuthService;
-import com.nocountry.nocountry.services.IEmailService;
 import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,16 +19,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 @RequestMapping("/api/auth")
 public class AuthController {
-    private final IEmailService emailService;
     AuthService authService;
-    public AuthController(IEmailService emailService, AuthService authService) {
-        this.emailService = emailService;
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     @PostMapping("/login")
     public ResponseEntity<UserResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequestDTO, HttpServletResponse resp) {
-        emailService.registerConfirmation("verasdiegoca78@gmail.com");
 //        AuthResponseDTO response = authService.login(loginRequestDTO,resp);
         UserResponseDTO response = authService.login(loginRequestDTO,resp);
         return ResponseEntity.status(200).body(response);

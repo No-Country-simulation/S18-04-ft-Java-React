@@ -6,7 +6,6 @@ import com.nocountry.nocountry.dto.response.ProfileResponseDTO;
 import com.nocountry.nocountry.models.Profile;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
-import com.nocountry.nocountry.services.IEmailService;
 import com.nocountry.nocountry.services.IProfileService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
