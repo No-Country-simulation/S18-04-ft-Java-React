@@ -38,9 +38,9 @@ public class ProfileController {
 
     @PostMapping
     public ResponseEntity<ProfileResponseDTO> save(@Valid @RequestBody ProfileRequestDTO dto, @CurrentUser UserPrincipal userPrincipal) {
-        log.info("Current user Profile Save{}", userPrincipal.getName());
+        log.info("Current user Profile Save{}", userPrincipal.getEmail());
         Profile profile = service.create(mapper.toProfile(dto));
-        emailService.registerConfirmation(profile.getUser().getEmail());
+        emailService.registerConfirmation(userPrincipal.getEmail());
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(mapper.toProfileResponseDTO(profile));
     }

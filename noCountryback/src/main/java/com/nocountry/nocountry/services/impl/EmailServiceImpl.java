@@ -78,6 +78,7 @@ public class EmailServiceImpl implements IEmailService {
      */
     @Override
     public void sendEmail(String subject, String toEmail, String userName, String senderName) {
+        validateEmailParameters(toEmail, subject, userName, senderName);
         String emailTitle, messageBody, extraMessage = null;
         switch (subject) {
             case REGISTRATION_CONFIRMATION_SUBJECT:
@@ -130,5 +131,20 @@ public class EmailServiceImpl implements IEmailService {
 
     private String getUserNameByEmail(String email) {
         return authService .getUserNameByEmail(email).orElse(DEFAULT_USER_NAME);
+    }
+
+    private void validateEmailParameters(String toEmail, String subject, String userName, String senderName) {
+        if (toEmail == null || toEmail.isEmpty()) {
+            throw new IllegalArgumentException("El correo del destinatario (toEmail) no debe ser nulo ni estar vacío.");
+        }
+        if (subject == null || subject.isEmpty()) {
+            throw new IllegalArgumentException("El asunto del correo no debe ser nulo ni estar vacío.");
+        }
+        if (userName == null || userName.isEmpty()) {
+            throw new IllegalArgumentException("El nombre de usuario no debe ser nulo ni estar vacío.");
+        }
+        if (senderName == null || senderName.isEmpty()) {
+            throw new IllegalArgumentException("El nombre del remitente no debe ser nulo ni estar vacío.");
+        }
     }
 }
