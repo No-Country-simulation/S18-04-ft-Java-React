@@ -27,7 +27,7 @@ export function middleware(request) {
     }*/
   }
 
-  if ((!hasUser() || (!getCurrentToken() && !token)) && AUTH_ROUTE.some(route => route === pathname)) { 
+  if (!getCurrentToken() && !token && AUTH_ROUTE.some(route => route === pathname)) { 
     return Response.redirect(new URL('/welcome', request.url));
   }
 }
