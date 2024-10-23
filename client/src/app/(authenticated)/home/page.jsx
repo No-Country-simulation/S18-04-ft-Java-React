@@ -2,16 +2,13 @@ import { HomeArticles } from '@/components/sections/HomeArticles/HomeArticles';
 import { HomeCountdownSection } from '@/components/sections/HomeCountdownSection/HomeCountdownSection';
 import { HomeMain } from '@/components/sections/HomeMain/HomeMain';
 import { HomeWidget } from '@/components/sections/HomeWidget/HomeWidget';
-import { cookies } from 'next/headers';
 
 async function logPageView(token) {
-  'use server';
-
-  cookies().set('token', token, {
-    httpOnly: false,
-    secure: true,
-    path: '/',
-    maxAge: 60 * 60 * 24 * 7,
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const apiUrl = `${baseUrl}/api/check`;
+  fetch(apiUrl, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', TOKEN: token },
   });
 }
 
