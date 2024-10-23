@@ -1,5 +1,6 @@
 package com.nocountry.nocountry.dto.request;
 
+import com.nocountry.nocountry.dto.response.UserResponseDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -18,5 +19,5 @@ public class ProfileRequestDTO {
     @Pattern(regexp = "^(http://|https://).*", message = "La URL de LinkedIn debe ser válida.")
     private String linkedinUrl;
     private String avatarUrl;
-    private UserRequestDTO user;
+    private UserResponseDTO user;
 }
