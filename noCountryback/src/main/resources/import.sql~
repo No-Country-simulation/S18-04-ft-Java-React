@@ -4,4 +4,7 @@ INSERT INTO role_permission(role_id,permission_id) VALUES('340ddc49-1214-4e00-9a
 
 INSERT INTO users (user_id,email,password) VALUES ('2efb16c6-f56c-4baa-bdea-cd2c8f372725','prueba@gmail.com','$2a$10$DbwTfHm.UXs6GiIPeP29quu/xSUAz8qOMV.vhWutn9P3vr1iZGFum');
 INSERT INTO user_role(user_id,role_id) VALUES ('2efb16c6-f56c-4baa-bdea-cd2c8f372725','340ddc49-1214-4e00-9a77-2334334b23d3');
-INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url, profile_name,profile_lastname) VALUES ('5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b','2efb16c6-f56c-4baa-bdea-cd2c8f372725','https://media.licdn.com/dms/image/v2/D4D03AQFqaUDcS3rsnA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707691761584?e=1733961600&v=beta&t=2sir1mB9zGrZtVb4KRR5ySVneIferEuPUk5OdDT_Q9U','https://github.com/Catriel-Escobar','https://www.linkedin.com/in/catrielescobar/','catriel','escobar');
+INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url, profile_name,profile_lastname) VALUES ('5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b','2efb16c6-f56c-4baa-bdea-cd2c8f372725','https://t2.uc.ltmcdn.com/es/posts/0/3/2/como_alejarse_de_una_persona_toxica_45230_orig.jpg','https://github.com/aasdasd','https://www.linkedin.com/in/asdasdasd/','nombreprueba','apellidoprueba');
+
+INSERT INTO events (event_id, event_name, event_type, event_description, event_participant, event_date_start, event_date_end)
+VALUES ('c5d56816-1743-47cc-8b68-ee8772f950ee', 'Evento noviembre', 'Selection', 'Seleccionado S19-24', 0, '2024-11-04', '2024-12-07');

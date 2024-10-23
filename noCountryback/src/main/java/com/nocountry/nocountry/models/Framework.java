@@ -24,4 +24,10 @@ public class Framework {
 
     @Column(name = "framework_name", nullable = false)
     private String frameworkName;
+
+    @Column(name = "framework_type",nullable = false)
+    private String frameworkType;
+
+    @Column(name = "language",nullable = false)
+    private String language;
 }
