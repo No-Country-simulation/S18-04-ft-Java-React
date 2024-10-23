@@ -8,14 +8,18 @@ const AUTH_ROUTE = ['/home'];
 export function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
   const token = searchParams.get('token');
-  console.log({ token });
-  if(token){
+  if (token) {
+    console.log({ token });
     fetch('https://nocountry.up.railway.app/api/auth/check-login', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
       credentials: 'include',
     }).then(res => {
-      console.log({ res });
+      if (res && res.ok) {
+        res.json().then(data => {
+          console.log({ data });
+        });
+      }
     });
     //cookies().set('token', token);
   }
@@ -27,7 +31,7 @@ export function middleware(request) {
     const pathParts = pathname.split('/');
     //TODO: Hay que validar que el Id de la ruta sea correcto
     const pathUserId = pathParts[3];
-   /* if (pathParts.length > 3) {
+    /* if (pathParts.length > 3) {
       getUserProfile().then(user => {
         console.log({ user })
         if(!user){
