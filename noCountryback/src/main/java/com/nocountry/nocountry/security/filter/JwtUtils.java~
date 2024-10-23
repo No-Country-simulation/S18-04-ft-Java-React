@@ -1,7 +1,6 @@
 package com.nocountry.nocountry.security.filter;
 
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
-import com.nocountry.nocountry.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Map;
 import java.util.function.Function;
 
 @Configuration
@@ -37,11 +35,10 @@ public class JwtUtils {
 
     public Date expiration() {return new Date(System.currentTimeMillis() + JWT_EXPIRATION);}
 
-    public String generateToken( User user) {
-        Map<String, Object> claims = Map.of("userId",user.getId());
+    public String generateToken(UserDetails userDetails) {
+
         return Jwts.builder()
-                .subject(user.getUsername())
-                .claims(claims)
+                .subject(userDetails.getUsername())
                 .expiration(expiration())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .signWith(getKey())

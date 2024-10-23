@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.security.oauth2;
 
 import com.nocountry.nocountry.exceptions.BadRequestException;
+import com.nocountry.nocountry.models.User;
 import com.nocountry.nocountry.security.filter.JwtUtils;
 import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.utils.AppProperties;
@@ -61,9 +62,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        User user = (User) authentication.getPrincipal();
 
-        String token = jwtUtils.generateToken(userPrincipal);
+        String token = jwtUtils.generateToken(user);
         logger.info("Generated token: {}", token);
         CookieUtils.addCookie(response, "token", token, 3600);
         logger.info(response.toString());
