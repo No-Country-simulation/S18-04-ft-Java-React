@@ -95,7 +95,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private UserResponseDTO generateResponse(User user, HttpServletResponse response) {
-        String token = jwtUtils.generateToken(user.getUsername(),user.getId());
+        String token = jwtUtils.generateToken(user);
         CookieUtils.addCookie(response,"token",token,3600);
         return userMapper.toUserResponseDTO(user);
     }

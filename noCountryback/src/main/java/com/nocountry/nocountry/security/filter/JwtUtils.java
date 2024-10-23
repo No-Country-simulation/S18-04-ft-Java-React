@@ -2,6 +2,7 @@ package com.nocountry.nocountry.security.filter;
 
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
 import com.nocountry.nocountry.models.User;
+import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -17,6 +18,7 @@ import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Configuration
@@ -37,10 +39,10 @@ public class JwtUtils {
 
     public Date expiration() {return new Date(System.currentTimeMillis() + JWT_EXPIRATION);}
 
-    public String generateToken( User user) {
-        Map<String, Object> claims = Map.of("userId",user.getId());
+    public String generateToken( String username, UUID userId) {
+        Map<String, Object> claims = Map.of("userId",userId);
         return Jwts.builder()
-                .subject(user.getUsername())
+                .subject(username)
                 .claims(claims)
                 .expiration(expiration())
                 .issuedAt(new Date(System.currentTimeMillis()))
