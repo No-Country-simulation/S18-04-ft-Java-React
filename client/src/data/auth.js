@@ -41,7 +41,7 @@ export const getUserProfile = async (tokenFallback) => {
   const res = await fetch(`${baseURL}/api/profiles`, payload);
   if(res.status === 404){
     const user = decodePayload(token);
-    redirect(`/signup/confirm/${user.id}`)
+    redirect(`/signup/confirm/${user?.id || "no-hay-id"}`)
   }
   let response;
   try {
