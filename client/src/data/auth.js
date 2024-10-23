@@ -1,4 +1,6 @@
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { decodePayload } from './decodedToken';
 import { profileMapper } from './mapper';
 import { userSchema } from '@/schemas/userSchema';
 const baseURL = process.env.URL;
@@ -37,6 +39,10 @@ export const getUserProfile = async (tokenFallback) => {
   };
   8;
   const res = await fetch(`${baseURL}/api/profiles`, payload);
+  if(res.status === 404){
+    const user = decodePayload(token);
+    redirect(`/signup/confirm/${user.id}`)
+  }
   let response;
   try {
     response = await res.json();
