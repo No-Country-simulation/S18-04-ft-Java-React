@@ -4,8 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class ProfileRequestDTO {
+    private UUID id;
     @NotBlank(message = "El nombre del perfil es obligatorio.")
     private String profileName;
     @NotBlank(message = "El apellido del perfil es obligatorio.")
