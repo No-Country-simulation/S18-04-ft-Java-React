@@ -41,7 +41,7 @@ public class EventRecord {
 
 
     @ManyToOne
-    @JoinColumn(name = "language_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_LANGUAGE"))
+    @JoinColumn(name = "language_id",foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_LANGUAGE"))
     private Languages language;
 
     @ManyToOne
