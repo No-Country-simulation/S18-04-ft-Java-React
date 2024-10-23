@@ -1,6 +1,5 @@
-import { cookies } from 'next/headers';
-import { getCurrentToken, getUserProfile, saveGoogleToken } from './data/auth';
-import { hasAccess, hasUser, isFirstAccess } from './data/user';
+import { getCurrentToken } from './data/auth';
+import { hasUser } from './data/user';
 
 const NO_AUTH_ROUTE = ['/signin', '/welcome', '/signup'];
 const AUTH_ROUTE = ['/home'];
