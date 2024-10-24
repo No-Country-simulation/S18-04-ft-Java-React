@@ -71,6 +71,7 @@ public class SecurityConfig {
             "/oauth2/callback/**",
             "/oauth2/callback/google",
             "/api/auth/oauth2/authorize/**"
+
     };
 
     @Autowired
@@ -164,7 +165,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://no-country.up.railway.app","https://nocountry.up.railway.app"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://no-country.up.railway.app","https://nocountry.up.railway.app","http://localhost:8090", "*"));
         configuration.setAllowedMethods(
                 Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));

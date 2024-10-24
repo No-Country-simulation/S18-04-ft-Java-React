@@ -53,13 +53,36 @@ public static Optional<Cookie> getCookie(HttpServletRequest request, String name
 //    }
 
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+//        ResponseCookie cokiePrueba = ResponseCookie.from( name,value )
+//                .httpOnly( true )
+//                .sameSite( "None" )
+//                .secure( true )
+//                .path( "/" )
+//                .maxAge( maxAge )
+//                .build();
+//        response.setHeader( HttpHeaders.SET_COOKIE, cokiePrueba.toString() );
+//        Cookie cookie = new Cookie(name, value);
+//        cookie.setPath("/");
+//        cookie.setHttpOnly(true);
+//        cookie.setSecure(true);
+//        cookie.setMaxAge(maxAge);
+//        response.addCookie( cookie );
 
         Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true);
-        cookie.setMaxAge(maxAge);
-        response.addCookie( cookie );
+        cookie.setPath("/"); // Define el ámbito de la cookie
+        cookie.setHttpOnly(true); // Aumenta la seguridad
+        cookie.setSecure(true); // Necesario para SameSite=None
+        cookie.setMaxAge(maxAge); // Duración de la cookie
+
+        // Asegúrate de que el dominio esté correctamente configurado
+//        cookie.setDomain(".up.railway.app");// Cambia esto según tu dominio real
+
+        // Si se está usando en un contexto donde SameSite es importante
+//        response.addHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=%s; HttpOnly; Secure; SameSite=None; Domain=%s",
+//                name, value, maxAge, cookie.getPath(), cookie.getDomain()));
+//        System.out.println("Adding cookie: " + name + " = " + value);
+        response.addCookie(cookie);
+
 
     }
 
