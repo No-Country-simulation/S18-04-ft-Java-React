@@ -26,7 +26,7 @@ public interface EventRecordMapper {
     @Mapping(source = "roleType", target = "roleType")
     @Mapping(source = "stack", target = "stack")
     @Mapping(source = "language.id", target = "languageId")
-    @Mapping(source = "language.languageName", target = "languageName")
+    @Mapping(source = "language.languageName", target = "lenguageName")
     @Mapping(source = "profile.id", target = "profileId")
     @Mapping(source = "profile.profileName", target = "profileName")
     @Mapping(source = "profile.profileLastname", target = "profileLastname")
