@@ -42,6 +42,9 @@ public class User implements UserDetails {
     @JsonIgnore
     private Profile profile;
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<PPermission> permissions = this.getRoles().stream()
                 .flatMap(role -> role.getPermissions().stream())
