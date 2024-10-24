@@ -12,8 +12,6 @@ public interface EventRecordMapper {
 
     EventRecordMapper INSTANCE = Mappers.getMapper(EventRecordMapper.class);
 
-    @Mapping(source = "schedule", target = "schedule")
-    @Mapping(source = "tl", target = "tl")
     @Mapping(source = "roleType", target = "roleType")
     @Mapping(source = "stack", target = "stack")
     @Mapping(source = "language", target = "language")
@@ -23,7 +21,7 @@ public interface EventRecordMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "schedule", target = "schedule")
     @Mapping(source = "tl", target = "tl")
-    @Mapping(source = "roleType", target = "roleType")
+    @Mapping(source = "roleType.roleTypeName", target = "roleTypeName")
     @Mapping(source = "stack", target = "stack")
     @Mapping(source = "language.id", target = "languageId")
     @Mapping(source = "language.languageName", target = "languageName")

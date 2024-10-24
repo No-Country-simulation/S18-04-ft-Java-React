@@ -94,6 +94,7 @@ public class SecurityConfig {
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/logout").hasAnyRole("USER");
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/check-login").hasAnyRole("USER");
                     authConfig.requestMatchers("/api/profiles").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/event-records/**").hasAnyRole("USER");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2
