@@ -65,9 +65,9 @@ public class EventRecordController {
     }
 
     @GetMapping("/find_all_by_user_id")
-    public ResponseEntity<List<EventRecordResponseDTO>> findAllEventsByUserId(
-            @RequestBody String userId){
-        return ResponseEntity.ok(service.findAllEventByUserId(userId)
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllEventRecordsByUserId(
+            @RequestParam("userId") String userId){
+        return ResponseEntity.ok(service.findAllEventRecordsByUserId(userId)
                 .stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
 
