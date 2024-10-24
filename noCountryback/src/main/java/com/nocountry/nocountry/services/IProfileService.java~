@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface IProfileService extends ICRUDService<Profile, UUID> {
 
-	Profile findProfileByUserId(UUID userId);
+	Optional<Profile> findProfileByUserId(UUID userId);
 }
