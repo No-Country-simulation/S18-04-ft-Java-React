@@ -76,4 +76,5 @@ public class EventRecordController {
     public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByRol(@RequestParam("schedule") String schedule, @RequestParam("roleTypeId") UUID roleTypeId, @RequestParam("languageId") UUID languageId,@RequestParam("eventId") UUID eventId, @RequestParam("frameworkId") UUID frameworkId) {
         return ResponseEntity.ok(service.findAllByRegister(schedule,roleTypeId,languageId,eventId, frameworkId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
+
 }

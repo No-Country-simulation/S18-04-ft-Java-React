@@ -50,7 +50,7 @@ INSERT INTO project_type (project_type_id,project_type_description ,project_type
 
 INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('d5e737ac-316e-46fb-92a6-77aa149ee8e6','Backend','038eff46-b858-4710-9fda-2be48db983fe');
 INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('54d5c728-3757-4968-a35d-28edb51b2795','Frontend','038eff46-b858-4710-9fda-2be48db983fe');
- INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('151e9ec2-921d-43a4-9a57-b12319c99439','UX/UI','038eff46-b858-4710-9fda-2be48db983fe');
+INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('151e9ec2-921d-43a4-9a57-b12319c99439','UX/UI','038eff46-b858-4710-9fda-2be48db983fe');
 INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('b6daedcf-b311-473d-b8e1-33354c2220e6','QA Tester','038eff46-b858-4710-9fda-2be48db983fe');
 INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('709814fb-cd6a-47b1-8ff6-83db4f38bc72','DevOps','038eff46-b858-4710-9fda-2be48db983fe');
 INSERT INTO roles_type (role_type_id,role_type_name,project_type_id) VALUES ('8f562cce-cfac-4452-a25e-e1784a88a15e','Project Manager','038eff46-b858-4710-9fda-2be48db983fe');
@@ -67,8 +67,8 @@ INSERT INTO events (event_id, event_name, event_type, event_description, event_p
 ----------- Event Records ----------------------------
 
 ------------ UX/UI-----------------
-INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('f4cf0c51-12ee-43d1-8ec8-3363a11f4604', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', null, 'c9f0a353-ea06-4b7b-8e4c-1aa308f9b72f', 'a44913b7-34ca-429f-821f-ae8732423c9d');
-INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('4bb002b0-20c5-4b29-81bb-ee39d2fe36f0', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', '3f81bee3-099a-446a-b2b6-c135ee116b92', '2f05583a-83e9-4b4c-a746-7d9eaec9e725', 'a44913b7-34ca-429f-821f-ae8732423c9d');
+INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('f4cf0c51-12ee-43d1-8ec8-3363a11f4604', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', null, '5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b', 'c5d56816-1743-47cc-8b68-ee8772f950ee');
+INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('4bb002b0-20c5-4b29-81bb-ee39d2fe36f0', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', null, '5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b', 'c5d56816-1743-47cc-8b68-ee8772f950ee');
 -- INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('ebe44278-ce04-4a74-951e-1cfeacb08229', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', '3f81bee3-099a-446a-b2b6-c135ee116b92', '36d02394-ac50-41aa-978e-a40bb44a7af3', 'a44913b7-34ca-429f-821f-ae8732423c9d');
 -- INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('f3ae6027-a2fd-417c-a9b5-2c4c2fe13b19', 'FullTime', True, '151e9ec2-921d-43a4-9a57-b12319c99439', '2d23b78b-2577-4721-8d1c-303418ce190d', '34d02aeb-0aae-4d89-882d-d006ba2bc33e', 'a44913b7-34ca-429f-821f-ae8732423c9d');
 -- INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('71470ddf-b6c6-41d0-9cbb-cd6e81ce6500', 'FullTime', False, '151e9ec2-921d-43a4-9a57-b12319c99439', '39431bc6-ba80-4b22-8d7e-073e144e526a', 'b707ff74-d96a-45a2-ac3d-25d2984fbda0', 'a44913b7-34ca-429f-821f-ae8732423c9d');

@@ -3,12 +3,14 @@ package com.nocountry.nocountry.services.impl;
 import com.nocountry.nocountry.models.*;
 import com.nocountry.nocountry.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+@Service
 public class ManagedEventRecordImpl implements IManagedEventRecord {
 
     private final IEventRecordService eventRecordService;
@@ -58,15 +60,17 @@ public class ManagedEventRecordImpl implements IManagedEventRecord {
      * @param numberOfTeams Cantidad de Equipos a crear
      */
     @Override
-    public void executeManagedEventRecord(String schedule, UUID eventId, String eventName,
-                                          UUID frameworkFrontId, UUID languageBackId,
-                                          UUID languageDevId, int backWeight,
+    public void executeManagedEventRecord(String schedule, String eventId, String eventName,
+                                          String frameworkFrontId, String languageBackId,
+                                          String languageDevId, int backWeight,
                                           int frontWeight, int uxWeight,
                                           int qaWeight, int devWeight,
                                           int pmWeight, int numberOfTeams) {
-        initPreParticipants(schedule, eventId, frameworkFrontId, languageBackId, languageDevId);
+        initPreParticipants(schedule, UUID.fromString(eventId), UUID.fromString(frameworkFrontId),
+                UUID.fromString(languageBackId), UUID.fromString(languageDevId));
         initWeighPerTeam(backWeight, frontWeight, uxWeight, qaWeight, devWeight, pmWeight);
-        createTeams(numberOfTeams, eventName, schedule, frameworkFrontId, languageBackId);
+        createTeams(numberOfTeams, eventName, schedule, UUID.fromString(frameworkFrontId),
+                UUID.fromString(languageBackId));
     }
 
     private void initPreParticipants(String schedule, UUID eventId,
