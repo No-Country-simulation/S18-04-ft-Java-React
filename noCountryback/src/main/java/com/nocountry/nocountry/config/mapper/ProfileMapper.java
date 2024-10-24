@@ -5,6 +5,7 @@ import com.nocountry.nocountry.dto.response.ProfileResponseDTO;
 import com.nocountry.nocountry.models.Profile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
@@ -12,20 +13,10 @@ public interface ProfileMapper {
 
     ProfileMapper INSTANCE = Mappers.getMapper(ProfileMapper.class);
 
-    @Mapping(source = "profileName", target = "profileName")
-    @Mapping(source = "profileLastname", target = "profileLastname")
-    @Mapping(source = "githubUrl", target = "githubUrl")
-    @Mapping(source = "linkedinUrl", target = "linkedinUrl")
-    @Mapping(source = "avatarUrl", target = "avatarUrl")
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.email", target = "email")
     ProfileResponseDTO toProfileResponseDTO(Profile profile);
 
-    @Mapping(source = "profileName", target = "profileName")
-    @Mapping(source = "profileLastname", target = "profileLastname")
-    @Mapping(source = "githubUrl", target = "githubUrl")
-    @Mapping(source = "linkedinUrl", target = "linkedinUrl")
-    @Mapping(source = "avatarUrl", target = "avatarUrl")
     @Mapping(source = "user", target = "user")
     Profile toProfile(ProfileRequestDTO dto);
 }
