@@ -65,16 +65,15 @@ public class EventRecordController {
     }
 
     @GetMapping("/find_all_by_user_id")
-    public ResponseEntity<List<EventRecordResponseDTO>> findAllEventRecordsByUserId(
-            @RequestParam("userId") String userId){
-        return ResponseEntity.ok(service.findAllEventRecordsByUserId(userId)
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllEventsByUserId(
+            @RequestBody String userId){
+        return ResponseEntity.ok(service.findAllEventByUserId(userId)
                 .stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
 
     //Controller para obtener lista de cada rol y demas filtros
     @GetMapping("/find-all-participant-by-role")
-    public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByRol(@RequestParam("schedule") String schedule, @RequestParam("roleTypeId") UUID roleTypeId, @RequestParam(name = "languageId",required = false) UUID languageId,@RequestParam("eventId") UUID eventId, @RequestParam("frameworkId") UUID frameworkId) {
-        return ResponseEntity.ok(service.findAllByRegister(schedule,roleTypeId,languageId,eventId, frameworkId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByRol(@RequestParam("schedule") String schedule, @RequestParam("roleTypeId") UUID roleTypeId, @RequestParam(name = "languageId",required = false)  UUID languageId,@RequestParam("eventId") UUID eventId) {
+        return ResponseEntity.ok(service.findAllByRegister(schedule,roleTypeId,languageId,eventId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
-
 }
