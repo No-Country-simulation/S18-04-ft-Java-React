@@ -34,7 +34,7 @@ public class Team {
 
     @ManyToMany
     @JoinTable(name = "team-technologies",joinColumns = @JoinColumn(name = "team_id",referencedColumnName = "team_id"),inverseJoinColumns = @JoinColumn(name = "technology_id",referencedColumnName = "technology_id"))
-    private List<Technology>technologies;
+    private List<Technology> technologies;
 
     private String meetUrl;
 
