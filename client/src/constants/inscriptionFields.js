@@ -3,7 +3,7 @@ export const inscriptionFields = [
     type: 'dropdown',
     label: 'Tipo de simulación',
     id: 'simulationTypeField',
-    name: 'simulationType',
+    name: 'type',
     icon: '/images/svg/Chevron.svg',
     tabindex: 1,
     defaultValue: '1',
@@ -50,5 +50,16 @@ export const inscriptionFields = [
     name: 'stack',
     icon: '/images/svg/PlusCircle.svg',
     tabindex: 4,
+  },
+  {
+    type: 'ask',
+    label: '¿Te gustaría ser Team Leader?',
+    id: 'askTeamLeaderField',
+    name: 'isTeamLeader',
+    tabindex: 5,
+    items: [
+      { id: 'askYes', placeholder: 'Si', value: 'true' },
+      { id: 'askNo', placeholder: 'No', value: 'false' },
+    ],
   },
 ];

@@ -3,6 +3,7 @@
 import { useEffect, useTransition } from 'react';
 import { useFormState } from 'react-dom';
 import Button from '../Button/Button';
+import { FormAsk } from '../FormAsk/FormAsk';
 import { FormDropdown } from '../FormDropdown/FormDropdown';
 import FormField from '../FormField/FormField';
 import { FormStack } from '../FormStack/FormStack';
@@ -30,6 +31,9 @@ const RenderFields = ({ field, error }) => {
   }
   if (field.type === 'stack') {
     return <FormStack {...commonProps} />;
+  }
+  if (field.type === 'ask') {
+    return <FormAsk {...commonProps} items={field?.items} />;
   }
   return <FormField {...commonProps} type={field.type} />;
 };

@@ -29,9 +29,9 @@ export const getCurrentToken = () => {
   return cookies().get('token')?.value;
 };
 
-export const getUserProfile = async (tokenFallback) => {
+export const getUserProfile = async tokenFallback => {
   const token = getCurrentToken();
- 
+
   const payload = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
@@ -39,9 +39,9 @@ export const getUserProfile = async (tokenFallback) => {
   };
   8;
   const res = await fetch(`${baseURL}/api/profiles`, payload);
-  if(res.status === 404){
+  if (res.status === 404) {
     const user = decodePayload(token);
-    redirect(`/signup/confirm/${user?.id || "no-hay-id"}`)
+    redirect(`/signup/confirm/${user?.id || 'no-hay-id'}`);
   }
   let response;
   try {
@@ -52,11 +52,11 @@ export const getUserProfile = async (tokenFallback) => {
   return profileMapper(response);
 };
 
-export const saveGoogleToken = (token)=>{
+export const saveGoogleToken = token => {
   cookies().set('token', token, {
     httpOnly: false,
     secure: true,
     path: '/',
     maxAge: 60 * 60 * 24 * 7,
   });
-}
+};

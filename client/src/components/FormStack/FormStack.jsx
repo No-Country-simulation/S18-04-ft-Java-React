@@ -59,10 +59,16 @@ export const FormStack = ({ name, label, tabIndex, icon, id }) => {
       className="relative flex w-full min-w-full flex-col text-base font-normal leading-4 text-white"
       id={id}
       datatest-id={id}
-      ref={dropdownRef}
-      name={name}
-      value={tags.join(',')}>
+      ref={dropdownRef}>
       <label className="mb-4">{label}</label>
+      <input
+        type="hidden"
+        id={`${id}-hidden`}
+        aria-live="off"
+        className="sr-only"
+        name={name}
+        value={tags.join(',')}
+      />
       <div
         data-state={isDropdownOpen ? 'open' : 'closed'}
         className="no-outline ease border-gradient relative flex min-h-12 flex-wrap items-center gap-x-4 gap-y-3 bg-transparent px-3 py-2 text-base transition-all duration-300">
@@ -100,7 +106,7 @@ export const FormStack = ({ name, label, tabIndex, icon, id }) => {
       {isDropdownOpen && (
         <div
           data-state={isDropdownOpen ? 'open' : 'closed'}
-          className="absolute -bottom-36 z-20 flex w-full flex-col gap-y-3 rounded-md bg-primary-500 p-4">
+          className="absolute -bottom-36 z-20 flex w-full flex-col gap-y-3 rounded-md bg-primary-500 px-6 py-4">
           <input
             ref={inputRef}
             type="text"
