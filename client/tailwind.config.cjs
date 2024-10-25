@@ -46,10 +46,50 @@ module.exports = {
         'gradient-green': 'var(--gradient-green-to-blue)',
         'gradient-green-100': 'var(--gradient-green-to-blue-100)',
         'gradient-green-200': 'var(--gradient-green-to-blue-200)',
+        'gradient-custom':
+          'linear-gradient(90deg, #1D8FF2 5.5%, #32D4E3 38.5%, #0FF29F 65.5%, #14D9B5 98%)',
+      },
+      keyframes: {
+        slideDownAndFade: {
+          from: { opacity: '0', transform: 'translateY(-2px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideLeftAndFade: {
+          from: { opacity: '0', transform: 'translateX(2px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideUpAndFade: {
+          from: { opacity: '0', transform: 'translateY(2px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideRightAndFade: {
+          from: { opacity: '0', transform: 'translateX(-2px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        slideDownAndFade: 'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-gradient-custom': {
+          'background-image':
+            'linear-gradient(90deg, #1D8FF2 5.5%, #32D4E3 38.5%, #0FF29F 65.5%, #14D9B5 98%)',
+          'background-clip': 'text',
+          '-webkit-background-clip': 'text',
+          color: 'transparent',
+        },
+      };
+      addUtilities(newUtilities, ['hover']);
+    },
+  ],
+
   future: {
     hoverOnlyWhenSupported: true,
     removeDeprecatedGapUtilities: true,

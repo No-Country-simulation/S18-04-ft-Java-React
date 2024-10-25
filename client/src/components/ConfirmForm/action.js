@@ -27,7 +27,7 @@ export async function updateProfile(_state, formData) {
       linkedinUrl: data.linkedin,
       githubUrl: data.github,
       user: {
-        id: user ? user?.id : decoded?.id || ""
+        id: user ? user?.id : decoded?.id || '',
       },
     };
     const payload = {

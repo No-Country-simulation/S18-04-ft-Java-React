@@ -3,24 +3,37 @@
 import { useEffect, useTransition } from 'react';
 import { useFormState } from 'react-dom';
 import Button from '../Button/Button';
+import { FormAsk } from '../FormAsk/FormAsk';
+import { FormDropdown } from '../FormDropdown/FormDropdown';
 import FormField from '../FormField/FormField';
+import { FormStack } from '../FormStack/FormStack';
 import PasswordFormField from '../PasswordField/PasswordField';
 import { cn } from '@/lib/utils';
 
 const RenderFields = ({ field, error }) => {
   const commonProps = {
+    autoComplete: field.autoComplete || 'off',
+    error,
+
     id: field.id,
     'data-testid': field.id,
     name: field.name,
     label: field.label,
     defaultValue: field.defaultValue || '',
-    autoComplete: field.autoComplete || 'off',
-    error,
     icon: field.icon,
     tabIndex: field.tabindex,
   };
   if (field.type === 'password') {
     return <PasswordFormField {...commonProps} activeForgot={field?.activeForgot} />;
+  }
+  if (field.type === 'dropdown') {
+    return <FormDropdown {...commonProps} placeholder={field?.placeholder} items={field?.items} />;
+  }
+  if (field.type === 'stack') {
+    return <FormStack {...commonProps} />;
+  }
+  if (field.type === 'ask') {
+    return <FormAsk {...commonProps} items={field?.items} />;
   }
   return <FormField {...commonProps} type={field.type} />;
 };

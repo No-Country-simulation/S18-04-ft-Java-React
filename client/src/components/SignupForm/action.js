@@ -63,12 +63,16 @@ export async function signup(_state, formData) {
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
     });
-   cookies().set('USER', JSON.stringify({ id: response.id, email: response.email, isFirstSignin: true }), {
-      httpOnly: true,
-      secure: true,
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    cookies().set(
+      'USER',
+      JSON.stringify({ id: response.id, email: response.email, isFirstSignin: true }),
+      {
+        httpOnly: true,
+        secure: true,
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+      }
+    );
     if (!response.id) {
       console.error('Error: El ID no se recibió correctamente');
 
