@@ -1,0 +1,9 @@
+set +e
+if [ ! -d "client" ]; then
+  echo "Not found client skip pre-push for client."
+  exit 0
+fi
+
+cd client
+
+npx vitest run --passWithNoTests || { echo -e "$(tput setaf 1)❌Tests failed. Push aborted.$(tput sgr0)"; exit 1; }

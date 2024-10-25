@@ -7,14 +7,13 @@ export const maxDuration = 30;
 export async function GET(req) {
   const token = req.headers.get('TOKEN');
   const currentToken = getCurrentToken();
-  if(!currentToken){
+  if (!currentToken) {
     cookies().set('token', token, {
       httpOnly: false,
       secure: true,
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
     });
-  
   }
 
   return NextResponse.json({ response: 'Checkin' }, { status: 200 });
