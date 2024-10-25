@@ -11,6 +11,4 @@ import java.util.UUID;
 public interface UserRepo extends GenericRepo<User,UUID> {
     @Query(value = "SELECT * FROM users u WHERE u.email = :email", nativeQuery = true)
     Optional<User> findByEmail(@Param("email") String email);
-
-    Optional<User> findByResetPasswordToken(String resetPasswordToken);
 }
