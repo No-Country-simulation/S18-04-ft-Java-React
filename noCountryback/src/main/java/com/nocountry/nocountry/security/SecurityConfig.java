@@ -99,6 +99,9 @@ public class SecurityConfig {
                     authConfig.requestMatchers("/api/participants/**").hasAnyRole("USER");
                     authConfig.requestMatchers("/api/teams/**").hasAnyRole("USER");
                     authConfig.requestMatchers("/api/events/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/languages/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/frameworks/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/auth/logout").hasAnyRole("USER");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2

@@ -15,17 +15,17 @@ import java.util.List;
 @Data
 public class EventRecordRequestDTO {
     @NotNull(message = "El horario es obligatorio")
-    private Schedule schedule;
-    private Boolean tl;
+    private Schedule schedule; // Disponibilidad Horaria
+    private Boolean tl; // Si es Team Leader
     @NotNull(message = "El tipo de rol es obligatorio")
-    private RoleType roleType;
+    private RoleType roleType; // roleType:{ "roleTypeId":"djad-gfa-d-ga-d-ad-a"}
     @NotNull(message = "La stack de tecnologías es obligatoria.")
     @Size(min = 1, message = "La stack de tecnologías debe contener al menos un elemento.")
-    private List<FrameworkResponseDTO> stack;
+    private List<FrameworkResponseDTO> stack; // "stack":[{"frameworkId":""}]
     @NotNull(message = "El language es obligatorio")
-    private LanguagesResponseDTO language;
+    private LanguagesResponseDTO language; // "language":{"languageId":"sadad-ada-d-d"}
     @NotNull(message = "El perfil es obligatorio")
-    private ProfileResponseDTO profile;
+    private ProfileResponseDTO profile; // ""
     @NotNull(message = "El evento es obligatorio")
-    private EventResponseDTO event;
+    private EventResponseDTO event; // "event":{"eventId":"adda-dd-ad-as-da"}
 }
