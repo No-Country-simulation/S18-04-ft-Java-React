@@ -25,8 +25,7 @@ public class ProfileServiceImpl extends CRUDServiceImpl<Profile, UUID> implement
     }
 
     @Override
-    public Profile findProfileByUserId( UUID userId ) {
+    public Optional<Profile> findProfileByUserId( UUID userId ) {
         Profile profile = repo.findProfileByUserId( userId ).orElseThrow(() -> new NotFoundException( "Profile not found" ) );
-        return profile;
     }
 }
