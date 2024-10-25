@@ -31,6 +31,12 @@ public class EventRecord {
     @Column(name = "tl",nullable = false)
     private Boolean tl;
 
+    @Column(name = "assigned")
+    private Boolean assigned=false;
+
+    @Column(name = "number_team")
+    private Integer numberTeam;
+
     @ManyToOne
     @JoinColumn(name = "role_type_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORD_ROLE_TYPE"))
     private RoleType roleType;
