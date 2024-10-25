@@ -93,7 +93,12 @@ public class SecurityConfig {
                     authConfig.requestMatchers(AUTH_ENDPOINTS_PUBLIC).permitAll();
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/logout").hasAnyRole("USER");
                     authConfig.requestMatchers(HttpMethod.GET,"/api/auth/check-login").hasAnyRole("USER");
-                    authConfig.requestMatchers("/api/profiles").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/profiles/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/event-records/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/role-types/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/participants/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/teams/**").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/events/**").hasAnyRole("USER");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2
