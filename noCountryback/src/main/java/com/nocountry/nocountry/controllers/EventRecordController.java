@@ -71,9 +71,21 @@ public class EventRecordController {
                 .stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
     }
 
-    //Controller para obtener lista de cada rol y demas filtros
-    @GetMapping("/find-all-participant-by-role")
-    public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByRol(@RequestParam("schedule") String schedule, @RequestParam("roleTypeId") UUID roleTypeId, @RequestParam("languageId") UUID languageId,@RequestParam("eventId") UUID eventId, @RequestParam("frameworkId") UUID frameworkId) {
-        return ResponseEntity.ok(service.findAllByRegister(schedule,roleTypeId,languageId,eventId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList()));
+    //Controller asignacion de registros y equipos
+    @PostMapping("/update-assigned-records")
+    public ResponseEntity<String> updateAssignedRecords(
+            @RequestParam UUID eventNum,
+            @RequestParam String scheduleNom,
+            @RequestParam String frameworkFront,
+            @RequestParam int frontQuantity,
+            @RequestParam int backQuantity,
+            @RequestParam int qaQuantity,
+            @RequestParam int pmQuantity,
+            @RequestParam int uxQuantity) {
+
+        service.updateAssignedRecords(eventNum, scheduleNom, frameworkFront,
+                frontQuantity, backQuantity, qaQuantity,
+                pmQuantity, uxQuantity);
+        return ResponseEntity.ok("Procedimiento almacenado ejecutado exitosamente.");
     }
 }
