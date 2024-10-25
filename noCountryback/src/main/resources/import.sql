@@ -172,30 +172,46 @@ CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
 )
     LANGUAGE plpgsql
 AS $$
+DECLARE
+    team_counter INTEGER := 1;  -- Contador para el número de equipo
 BEGIN
-    WITH eligible_records AS (
-        SELECT e.event_record_id, rt.role_type_name,
-               ROW_NUMBER() OVER (PARTITION BY rt.role_type_name ORDER BY e.event_record_id) AS rn
-        FROM event_records e
-                 LEFT JOIN register_stack r ON r.event_record_id = e.event_record_id
-                 LEFT JOIN frameworks f ON f.framework_id = r.framework_id
-                 INNER JOIN languages l ON l.language_id = e.language_id
-                 INNER JOIN roles_type rt ON rt.role_type_id = e.role_type_id
-        WHERE e.schedule = scheduleNom
-          AND e.event_id = eventNum
-          AND e.assigned = FALSE
-          AND f.framework_name = frameworkFront
-    )
-    UPDATE event_records e
-    SET assigned = TRUE
-    WHERE e.event_record_id IN (
-        SELECT event_record_id
-        FROM eligible_records
-        WHERE (role_type_name = 'Frontend' AND rn <= frontQuantity) OR
-            (role_type_name = 'Backend' AND rn <= backQuantity) OR
-            (role_type_name = 'UX/UI' AND rn <= uxQuantity) OR
-            (role_type_name = 'Project Manager' AND rn <= pmQuantity) OR
-            (role_type_name = 'QA Tester' AND rn <= qaQuantity)
-    );
+    LOOP
+        WITH eligible_records AS (
+            SELECT e.event_record_id, rt.role_type_name,
+                   ROW_NUMBER() OVER (PARTITION BY rt.role_type_name ORDER BY e.event_record_id) AS rn
+            FROM event_records e
+                     LEFT JOIN register_stack r ON r.event_record_id = e.event_record_id
+                     LEFT JOIN frameworks f ON f.framework_id = r.framework_id
+                     INNER JOIN languages l ON l.language_id = e.language_id
+                     INNER JOIN roles_type rt ON rt.role_type_id = e.role_type_id
+            WHERE e.schedule = scheduleNom
+              AND e.event_id = eventNum
+              AND e.assigned = FALSE
+              AND f.framework_name = frameworkFront
+        )
+        UPDATE event_records e
+        SET assigned = TRUE, number_team = team_counter
+        WHERE e.event_record_id IN (
+            SELECT event_record_id
+            FROM eligible_records
+            WHERE (role_type_name = 'Frontend' AND rn <= frontQuantity) OR
+                (role_type_name = 'Backend' AND rn <= backQuantity) OR
+                (role_type_name = 'UX/UI' AND rn <= uxQuantity) OR
+                (role_type_name = 'Project Manager' AND rn <= pmQuantity) OR
+                (role_type_name = 'QA Tester' AND rn <= qaQuantity)
+        );
+
+        -- Salir del bucle si no hay más registros con assigned = FALSE
+        EXIT WHEN NOT EXISTS (
+            SELECT 1
+            FROM event_records e
+            WHERE e.schedule = scheduleNom
+              AND e.event_id = eventNum
+              AND e.assigned = FALSE
+        );
+
+        -- Incrementar el contador del número de equipo
+        team_counter := team_counter + 1;
+    END LOOP;
 END;
 $$;
