@@ -66,14 +66,17 @@ INSERT INTO users (user_id,email,password) VALUES ('bab2772a-3ff7-48ab-aed4-1d16
 INSERT INTO user_role(user_id,role_id) VALUES ('bab2772a-3ff7-48ab-aed4-1d160aa5d44c','340ddc49-1214-4e00-9a77-2334334b23d3');
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('ed2d9c06-ef73-4f5e-b75f-ac589f2f097c','bab2772a-3ff7-48ab-aed4-1d160aa5d44c','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Charles','Booth');
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('0ecd5feb-5742-42b5-b80c-93283f085eaf', 'FullTime', False, '151e9ec2-921d-43a4-9a57-b12319c99439', null, 'ed2d9c06-ef73-4f5e-b75f-ac589f2f097c', 'a44913b7-34ca-429f-821f-ae8732423c9d');
+
 INSERT INTO users (user_id,email,password) VALUES ('f3feb0c3-38e2-4c6d-8536-2faa5a68d67e','ashley04@example.com','$2a$10$DbwTfHm.UXs6GiIPeP29quu/xSUAz8qOMV.vhWutn9P3vr1iZGFum');
 INSERT INTO user_role(user_id,role_id) VALUES ('f3feb0c3-38e2-4c6d-8536-2faa5a68d67e','340ddc49-1214-4e00-9a77-2334334b23d3');
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('fb1ad524-d240-4a04-a0c7-2e54d2a9d3ef','f3feb0c3-38e2-4c6d-8536-2faa5a68d67e','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Deborah','Simpson');
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('a13c76b3-11ef-44f9-80e3-11e840ee70fa', 'FullTime', False, '151e9ec2-921d-43a4-9a57-b12319c99439', null, 'fb1ad524-d240-4a04-a0c7-2e54d2a9d3ef', 'a44913b7-34ca-429f-821f-ae8732423c9d');
+
 INSERT INTO users (user_id,email,password) VALUES ('464282f2-00dd-4bc8-9803-51cfa6a76bac','dicksonmatthew@example.net','$2a$10$DbwTfHm.UXs6GiIPeP29quu/xSUAz8qOMV.vhWutn9P3vr1iZGFum');
 INSERT INTO user_role(user_id,role_id) VALUES ('464282f2-00dd-4bc8-9803-51cfa6a76bac','340ddc49-1214-4e00-9a77-2334334b23d3');
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('b9fd7ab6-cc27-4ce3-9460-fe8c7ed0f73f','464282f2-00dd-4bc8-9803-51cfa6a76bac','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Tyler','English');
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('89084a0b-e4df-43d9-9252-7fc5f6bfde61', 'FullTime', False, '151e9ec2-921d-43a4-9a57-b12319c99439', null, 'b9fd7ab6-cc27-4ce3-9460-fe8c7ed0f73f', 'a44913b7-34ca-429f-821f-ae8732423c9d');
+
 INSERT INTO users (user_id,email,password) VALUES ('bc137076-a84e-495f-92dd-281a95d9a17b','lmiller@example.org','$2a$10$DbwTfHm.UXs6GiIPeP29quu/xSUAz8qOMV.vhWutn9P3vr1iZGFum');
 INSERT INTO user_role(user_id,role_id) VALUES ('bc137076-a84e-495f-92dd-281a95d9a17b','340ddc49-1214-4e00-9a77-2334334b23d3');
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('f3a43523-2fcd-4cf9-badb-33403260605e','bc137076-a84e-495f-92dd-281a95d9a17b','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Joseph','Patel');
@@ -156,3 +159,43 @@ INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,prof
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('b856b2a3-b0ad-403f-ac8e-0a9e1c7013bb', 'FullTime', False, '8f562cce-cfac-4452-a25e-e1784a88a15e', null, '7bd78d94-f322-4b5c-9193-28a91e35addd', 'a44913b7-34ca-429f-821f-ae8732423c9d');
 
 
+------ Stored Produced ----------------------
+CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
+    IN eventNum UUID,
+    IN scheduleNom VARCHAR(30),
+    IN frameworkFront VARCHAR(30),
+    IN frontQuantity INTEGER,
+    IN backQuantity INTEGER,
+    IN qaQuantity INTEGER,
+    IN pmQuantity INTEGER,
+    IN uxQuantity INTEGER
+)
+    LANGUAGE plpgsql
+AS $$
+BEGIN
+    WITH eligible_records AS (
+        SELECT e.event_record_id, rt.role_type_name,
+               ROW_NUMBER() OVER (PARTITION BY rt.role_type_name ORDER BY e.event_record_id) AS rn
+        FROM event_records e
+                 LEFT JOIN register_stack r ON r.event_record_id = e.event_record_id
+                 LEFT JOIN frameworks f ON f.framework_id = r.framework_id
+                 INNER JOIN languages l ON l.language_id = e.language_id
+                 INNER JOIN roles_type rt ON rt.role_type_id = e.role_type_id
+        WHERE e.schedule = scheduleNom
+          AND e.event_id = eventNum
+          AND e.assigned = FALSE
+          AND f.framework_name = frameworkFront
+    )
+    UPDATE event_records e
+    SET assigned = TRUE
+    WHERE e.event_record_id IN (
+        SELECT event_record_id
+        FROM eligible_records
+        WHERE (role_type_name = 'Frontend' AND rn <= frontQuantity) OR
+            (role_type_name = 'Backend' AND rn <= backQuantity) OR
+            (role_type_name = 'UX/UI' AND rn <= uxQuantity) OR
+            (role_type_name = 'Project Manager' AND rn <= pmQuantity) OR
+            (role_type_name = 'QA Tester' AND rn <= qaQuantity)
+    );
+END;
+$$;
