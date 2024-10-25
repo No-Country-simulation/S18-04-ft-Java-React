@@ -46,10 +46,26 @@ module.exports = {
         'gradient-green': 'var(--gradient-green-to-blue)',
         'gradient-green-100': 'var(--gradient-green-to-blue-100)',
         'gradient-green-200': 'var(--gradient-green-to-blue-200)',
+        'gradient-custom':
+          'linear-gradient(90deg, #1D8FF2 5.5%, #32D4E3 38.5%, #0FF29F 65.5%, #14D9B5 98%)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-gradient-custom': {
+          'background-image':
+            'linear-gradient(90deg, #1D8FF2 5.5%, #32D4E3 38.5%, #0FF29F 65.5%, #14D9B5 98%)',
+          'background-clip': 'text',
+          '-webkit-background-clip': 'text',
+          color: 'transparent',
+        },
+      };
+      addUtilities(newUtilities, ['hover']);
+    },
+  ],
+
   future: {
     hoverOnlyWhenSupported: true,
     removeDeprecatedGapUtilities: true,
