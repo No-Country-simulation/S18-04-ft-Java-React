@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 ---------------- Main Dependencies ----------------
 INSERT INTO permissions (permission_id,permission_name) VALUES ('7c102ad8-59e4-4e93-a56b-e4033de41745','Write');
 INSERT INTO roles (role_id,role_description,role_name) VALUES('340ddc49-1214-4e00-9a77-2334334b23d3','Is a description','ROLE_USER');
@@ -158,6 +159,7 @@ INSERT INTO user_role(user_id,role_id) VALUES ('2623eb1d-6823-4f48-966e-7b875363
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('7bd78d94-f322-4b5c-9193-28a91e35addd','2623eb1d-6823-4f48-966e-7b8753631bb8','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Kevin','Ramos');
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('b856b2a3-b0ad-403f-ac8e-0a9e1c7013bb', 'FullTime', False, '8f562cce-cfac-4452-a25e-e1784a88a15e', null, '7bd78d94-f322-4b5c-9193-28a91e35addd', 'a44913b7-34ca-429f-821f-ae8732423c9d');
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 ------ Stored Produced ----------------------
 CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
@@ -174,6 +176,7 @@ CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
 AS $$
 DECLARE
     team_counter INTEGER := 1;  -- Contador para el número de equipo
+    team_pk UUID;               -- Variable para almacenar el ID del nuevo equipo
 BEGIN
     LOOP
         WITH eligible_records AS (
@@ -215,3 +218,31 @@ BEGIN
     END LOOP;
 END;
 $$;
+
+
+CREATE OR REPLACE FUNCTION create_teams_and_participants()
+    RETURNS VOID AS $$
+DECLARE
+    team_number INTEGER;
+    team_init VARCHAR;
+    schedule VARCHAR;
+    new_team_id UUID;
+BEGIN
+    FOR team_number IN
+        SELECT DISTINCT number_team
+        FROM event_records
+        WHERE assigned = TRUE
+        LOOP
+            -- Generar un nuevo UUID para el equipo
+            new_team_id := gen_random_uuid();
+
+            -- Insertar el equipo en la tabla teams
+            INSERT INTO teams (team_id,meet_url,project_name,team_name,whatsapp_url,participant_id) VALUES (new_team_id,null,null,team_init+team_number+schedule ,null,new_team_id);
+            -- Insertar los participantes en la tabla participants
+            INSERT INTO participants (participant_id, team_id, is_tl,event_record_id)
+            SELECT gen_random_uuid(), new_team_id,e.tl ,e.event_record_id
+            FROM event_records e
+            WHERE number_team = team_number AND assigned = TRUE;
+        END LOOP;
+END;
+$$ LANGUAGE plpgsql;
