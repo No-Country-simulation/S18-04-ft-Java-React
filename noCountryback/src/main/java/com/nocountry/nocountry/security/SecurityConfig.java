@@ -102,6 +102,7 @@ public class SecurityConfig {
                     authConfig.requestMatchers("/api/languages/**").hasAnyRole("USER");
                     authConfig.requestMatchers("/api/frameworks/**").hasAnyRole("USER");
                     authConfig.requestMatchers("/api/auth/logout").hasAnyRole("USER");
+                    authConfig.requestMatchers("/api/project-types/**").hasAnyRole("USER");
                     authConfig.anyRequest().denyAll();
                 })
                 .oauth2Login(oauth2 -> oauth2

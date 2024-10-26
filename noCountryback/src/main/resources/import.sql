@@ -220,29 +220,34 @@ END;
 $$;
 
 
-CREATE OR REPLACE FUNCTION create_teams_and_participants()
-    RETURNS VOID AS $$
+CREATE OR REPLACE PROCEDURE create_teams_and_participants(
+    IN event_pk UUID,
+    IN team_init VARCHAR
+)
+    LANGUAGE plpgsql
+AS $$
 DECLARE
     team_number INTEGER;
-    team_init VARCHAR;
     schedule VARCHAR;
     new_team_id UUID;
 BEGIN
     FOR team_number IN
-        SELECT DISTINCT number_team
-        FROM event_records
+        SELECT DISTINCT e.number_team
+        FROM event_records e
         WHERE assigned = TRUE
         LOOP
             -- Generar un nuevo UUID para el equipo
             new_team_id := gen_random_uuid();
 
             -- Insertar el equipo en la tabla teams
-            INSERT INTO teams (team_id,meet_url,project_name,team_name,whatsapp_url,participant_id) VALUES (new_team_id,null,null,team_init+team_number+schedule ,null,new_team_id);
+            INSERT INTO teams (team_id, meet_url, project_name, team_name, whatsapp_url, participant_id)
+            VALUES (new_team_id, NULL, NULL, team_init + '-' + team_number + '-' + schedule, NULL, new_team_id);
+
             -- Insertar los participantes en la tabla participants
-            INSERT INTO participants (participant_id, team_id, is_tl,event_record_id)
-            SELECT gen_random_uuid(), new_team_id,e.tl ,e.event_record_id
+            INSERT INTO participants (participant_id, team_id, is_tl, event_record_id)
+            SELECT gen_random_uuid(), new_team_id, e.tl, e.event_record_id
             FROM event_records e
-            WHERE number_team = team_number AND assigned = TRUE;
+            WHERE number_team = team_number AND e.event_id = event_pk AND e.assigned = TRUE;
         END LOOP;
 END;
-$$ LANGUAGE plpgsql;
+$$;
