@@ -54,7 +54,7 @@ public class TeamController {
     @GetMapping("/page")
     public ResponseEntity<Page<TeamResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "team_id") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
+            @RequestParam(defaultValue = "teamId") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
 
         Page<Team> teamsPage = service.findAllPage(page, size, sortField, sortOrder);
         List<TeamResponseDTO> teamResponseDTOs = teamsPage.getContent()
