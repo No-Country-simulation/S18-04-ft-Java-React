@@ -7,6 +7,7 @@ export const FormAsk = ({ label, name, items, tabIndex, id }) => {
       {label}
       <label
         htmlFor={items[0].id}
+        data-state="idle"
         className="relative flex size-7 cursor-pointer items-center justify-center rounded-full border border-white p-1 transition-colors ease-in [&:has(input:checked)]:border-accent-300 [&:has(input:checked)]:text-accent-300">
         <input
           id={items[0].id}
@@ -21,6 +22,7 @@ export const FormAsk = ({ label, name, items, tabIndex, id }) => {
 
       <label
         htmlFor={items[1].id}
+        data-state="idle"
         className="relative flex size-7 cursor-pointer items-center justify-center rounded-full border border-white p-1 transition-colors ease-in [&:has(input:checked)]:border-accent-300 [&:has(input:checked)]:text-accent-300">
         <input
           id={items[1].id}

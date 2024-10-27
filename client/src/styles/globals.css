@@ -16,6 +16,10 @@
       #1be0c5 51.49%,
       #0dd5a0 99.65%
     );
+    --gradient-red-to-transparent: radial-gradient(circle at 50% 0, #e90cfc40, #e90cfc00);
+    --gradient-green-to-transparent: radial-gradient(circle at 50% 0, #00ffe040, #00ffe000);
+    --gradient-blue-to-transparent: radial-gradient(circle at 50% 0, #110cfc40, #110cfc00);
+    --gradient-violet-to-transparent: radial-gradient(circle at 50% 0, #575ff240, #575ff200);
 
     --bg-gradient: linear-gradient(
       180.09deg,
@@ -104,11 +108,12 @@ body {
   color: var(--foreground);
   background-color: #050f22;
   background-image: var(--bg-gradient);
+  height: 100%;
   max-width: 100dvw;
+  min-height: 100dvh;
   overflow-x: hidden;
   touch-action: manipulation;
-  height: 100%;
-  background-size: 100dvw 100dvh;
+  background-size: 100% 100%;
 
   &:has(.no-bg-gradient) {
     background: #050f22;

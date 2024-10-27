@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { signin } from './action';
 import css from './stylesLogin.module.css';
 import { Divider } from '../Divider/Divider';
@@ -18,6 +19,11 @@ export const SigninForm = () => {
         btnClassName="mt-[4.25rem] max-sm:max-w-[85%] mx-auto justify-center items-center"
         btnText="Iniciar Sesion"
       />
+      <Link
+        className="text-sm font-medium transition-all ease-linear hover:text-accent-100 hover:underline"
+        href="/signup">
+        ¿Todavía no tienes una cuenta? !Crea tu cuenta!
+      </Link>
       <Divider />
       <SocialButtons />
     </div>

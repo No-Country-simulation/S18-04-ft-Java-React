@@ -1,9 +1,11 @@
-import { InscriptionForm } from '@/components/InscriptionForm/InscriptionForm';
+import { SimulationTypeForm } from '@/components/SimulationTypeForm/SimulationTypeForm';
+import { getProjectType } from '@/data/getProjectType';
 
-export default function FormInscriptions() {
+export default async function FormInscriptions() {
+  const projects = await getProjectType();
   return (
     <div className="flex size-full flex-col">
-      <InscriptionForm />
+      <SimulationTypeForm projects={projects} />
     </div>
   );
 }

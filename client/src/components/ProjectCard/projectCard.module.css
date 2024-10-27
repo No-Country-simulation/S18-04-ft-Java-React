@@ -1,0 +1,21 @@
+.cardContainer {
+  place-self: stretch center;
+  border: 3px #ffffff0d;
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+    skew(0deg, 0deg);
+  opacity: 1;
+  transform-style: preserve-3d;
+
+  &:hover {
+    background-color: #ffffff0d;
+  }
+}
+
+.cardIconContainer {
+  &:after,
+  &:before {
+    content: '';
+    display: table;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}

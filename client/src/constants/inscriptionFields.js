@@ -1,4 +1,4 @@
-export const inscriptionFields = [
+/* 
   {
     type: 'dropdown',
     label: 'Tipo de simulación',
@@ -13,13 +13,24 @@ export const inscriptionFields = [
       { placeholder: 'Mobile App', value: '3' },
     ],
   },
+    {
+    type: 'stack',
+    label: 'Stack',
+    id: 'stackField',
+    name: 'stack',
+    icon: '/images/svg/PlusCircle.svg',
+    tabindex: 4,
+  },
+*/
+
+export const inscriptionFields = [
   {
     type: 'dropdown',
     label: 'Rol',
     id: 'rolField',
     name: 'rol',
     icon: '/images/svg/Chevron.svg',
-    tabindex: 2,
+    tabindex: 1,
     defaultValue: '1',
     items: [
       { placeholder: 'UX/UI', value: '1' },
@@ -35,21 +46,42 @@ export const inscriptionFields = [
     id: 'timeAvailabilityField',
     name: 'timeAvailability',
     icon: '/images/svg/Chevron.svg',
-    tabindex: 3,
-    defaultValue: '1',
+    tabindex: 2,
+    defaultValue: 'Tarde',
     items: [
-      { placeholder: 'Turno Tarde', value: '1' },
-      { placeholder: 'Turno Mañana', value: '2' },
-      { placeholder: 'Full time', value: '3' },
+      { placeholder: 'Turno Tarde', value: 'Tarde' },
+      { placeholder: 'Turno Noche', value: 'Noche' },
+      { placeholder: 'Turno Mañana', value: 'MANANA' },
+      { placeholder: 'Full time', value: 'FullTime' },
     ],
   },
   {
-    type: 'stack',
-    label: 'Stack',
-    id: 'stackField',
-    name: 'stack',
-    icon: '/images/svg/PlusCircle.svg',
+    type: 'dropdown',
+    label: 'Language',
+    id: 'languageField',
+    name: 'language',
+    icon: '/images/svg/Chevron.svg',
+    tabindex: 3,
+    defaultValue: '1',
+    items: [
+      { placeholder: 'Web App', value: '1' },
+      { placeholder: 'No code App', value: '2' },
+      { placeholder: 'Mobile App', value: '3' },
+    ],
+  },
+  {
+    type: 'dropdown',
+    label: 'Frameworks',
+    id: 'frameworksFields',
+    name: 'frameworks',
+    icon: '/images/svg/Chevron.svg',
     tabindex: 4,
+    defaultValue: '1',
+    items: [
+      { placeholder: 'Web App', value: '1' },
+      { placeholder: 'No code App', value: '2' },
+      { placeholder: 'Mobile App', value: '3' },
+    ],
   },
   {
     type: 'ask',
