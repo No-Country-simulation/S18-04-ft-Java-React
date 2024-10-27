@@ -80,6 +80,9 @@ export default function FormComponent({
         tabIndex={Number(fields.at(-1)?.tabindex || 0) + 1}>
         {btnText}
       </Button>
+      { !result?.errors && result  ? 
+        (<span>{result}</span>) : null
+      }
       {result?.errors && result.errors?.GLOBAL ? (
         <span className="left-30 absolute -bottom-6 text-sm text-red-400">
           {result.errors.GLOBAL}
