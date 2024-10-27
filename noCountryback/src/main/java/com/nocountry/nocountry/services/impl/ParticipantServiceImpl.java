@@ -21,7 +21,7 @@ public class ParticipantServiceImpl extends CRUDServiceImpl<Participant, UUID> i
 
     @Override
     protected GenericRepo<Participant, UUID> getRepo() {
-        return null;
+        return repo;
     }
 
     @Override

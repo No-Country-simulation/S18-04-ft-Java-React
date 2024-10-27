@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -54,13 +55,9 @@ public class TeamController {
     @GetMapping("/page")
     public ResponseEntity<Page<TeamResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "teamId") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
-
-        Page<Team> teamsPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<TeamResponseDTO> teamResponseDTOs = teamsPage.getContent()
-                .stream()
-                .map(mapper::toTeamResponseDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(teamResponseDTOs, teamsPage.getPageable(), teamsPage.getTotalElements()), HttpStatus.OK);
+            @RequestParam(defaultValue = "id") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
+        List<TeamResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toTeamResponseDTO).collect(Collectors.toList());
+        Page<TeamResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }

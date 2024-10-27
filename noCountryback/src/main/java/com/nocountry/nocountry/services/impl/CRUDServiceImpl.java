@@ -47,10 +47,10 @@ public abstract class  CRUDServiceImpl<T,ID> implements ICRUDService<T,ID> {
 
     @Override
     public Page<T> findAllPage(int page, int size, String sortField, String sortOrder) {
-        validateSortField(sortField);
         Pageable pageable = PageRequest.of(page, size, getSort(sortField, sortOrder));
         return getRepo().findAll(pageable);
     }
+
 
     private Sort getSort(String sortField, String sortOrder) {
         Sort sort = Sort.by(sortField);
@@ -60,12 +60,5 @@ public abstract class  CRUDServiceImpl<T,ID> implements ICRUDService<T,ID> {
             sort = sort.ascending();
         }
         return sort;
-    }
-
-    private void validateSortField(String sortField) {
-        List<String> allowedSortFields = List.of("eventName", "eventDescription", "eventParticipant", "eventDateStart", "eventDateEnd");
-        if (!allowedSortFields.contains(sortField)) {
-            throw new IllegalArgumentException("Invalid sort field: " + sortField);
-        }
     }
 }
