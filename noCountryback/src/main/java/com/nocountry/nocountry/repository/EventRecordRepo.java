@@ -29,6 +29,6 @@ public interface EventRecordRepo extends GenericRepo<EventRecord, UUID> {
             @Param("team_init") String team_init
     );
 
-    @Query(value = "SELECT e FROM event_records e WHERE e.team_id =:teamId",nativeQuery = true)
+    @Query(value = "SELECT e.event_record_id,e.team_id,e.assigned,e.number_team,e.profile_id,e.tl,e.schedule,e.language_id,e.event_id,e.role_type_id FROM event_records e WHERE e.team_id =:teamId",nativeQuery = true)
     List<EventRecord>findEventRecordByTeam(@Param("teamId") UUID teamId);
 }

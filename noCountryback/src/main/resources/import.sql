@@ -171,7 +171,7 @@ INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language
 INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','30b439ae-9846-47d9-8c49-5fda08f1e313');
 INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','30b439ae-9846-47d9-8c49-5fda08f1e313');
 INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','0945d50a-65d9-4e00-bdd4-ff20268455e9');
-INSERT INTO teams(team_id,event_record_id,team_number,whatsapp_url,team_name,project_name,meet_url) VALUES ('4dc28d2e-d2f7-43c9-92f0-2652b79bced8','b856b2a3-b0ad-403f-ac8e-0a9e1c7013bb',3,null,'S17-03-ft-Java-React',null,null);
+INSERT INTO teams(team_id,event_record_id,team_number,whatsapp_url,team_name,project_name,meet_url) VALUES ('4dc28d2e-d2f7-43c9-92f0-2652b79bced8',null,3,null,'S17-03-ft-Java-React',null,null);
 
 
 
