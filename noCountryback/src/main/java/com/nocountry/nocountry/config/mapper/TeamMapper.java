@@ -17,6 +17,7 @@ public interface TeamMapper {
     @Mapping(source = "tl.id",target = "tlId")
     @Mapping(source = "tl.profile.profileName",target = "tlName")
     @Mapping(source = "tl.profile.profileLastname",target = "tlLastname")
+    @Mapping(source = "participants",target = "participants")
     TeamResponseDTO toTeamResponseDTO(Team team);
 
     @Mapping(source = "teamFrameworks",target = "teamFrameworks")
