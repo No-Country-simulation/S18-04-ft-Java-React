@@ -1,28 +1,3 @@
-/* 
-  {
-    type: 'dropdown',
-    label: 'Tipo de simulación',
-    id: 'simulationTypeField',
-    name: 'type',
-    icon: '/images/svg/Chevron.svg',
-    tabindex: 1,
-    defaultValue: '1',
-    items: [
-      { placeholder: 'Web App', value: '1' },
-      { placeholder: 'No code App', value: '2' },
-      { placeholder: 'Mobile App', value: '3' },
-    ],
-  },
-    {
-    type: 'stack',
-    label: 'Stack',
-    id: 'stackField',
-    name: 'stack',
-    icon: '/images/svg/PlusCircle.svg',
-    tabindex: 4,
-  },
-*/
-
 export const inscriptionFields = [
   {
     type: 'dropdown',
