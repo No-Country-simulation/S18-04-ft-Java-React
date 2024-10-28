@@ -3,6 +3,7 @@ package com.nocountry.nocountry.controllers;
 import com.nocountry.nocountry.config.mapper.EventMapper;
 import com.nocountry.nocountry.dto.request.EventRequestDTO;
 import com.nocountry.nocountry.dto.response.EventResponseDTO;
+import com.nocountry.nocountry.dto.response.TeamResponseDTO;
 import com.nocountry.nocountry.models.Event;
 import com.nocountry.nocountry.services.IEventService;
 import jakarta.validation.Valid;
@@ -53,11 +54,8 @@ public class EventController {
     public ResponseEntity<Page<EventResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "eventName") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<Event> eventsPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<EventResponseDTO> eventResponseDTOs = eventsPage.getContent()
-                .stream()
-                .map(mapper::toEventDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(eventResponseDTOs, eventsPage.getPageable(), eventsPage.getTotalElements()), HttpStatus.OK);
+        List<EventResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toEventDTO).collect(Collectors.toList());
+        Page<EventResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }

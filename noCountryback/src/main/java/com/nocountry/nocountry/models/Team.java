@@ -46,4 +46,7 @@ public class Team {
     @JoinColumn(name = "event_record_id",foreignKey = @ForeignKey(name = "FK_TEAMS_EVENT_RECORDS"))
     private EventRecord tl;
 
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<EventRecord>participants;
 }

@@ -15,8 +15,8 @@ public interface TeamMapper {
     @Mapping(source = "teamFrameworks", target = "teamFrameworks")
     @Mapping(source = "technologies", target = "technologies")
     @Mapping(source = "tl.id",target = "tlId")
-    @Mapping(source = "tl.eventRecord.profile.profileName",target = "tlName")
-    @Mapping(source = "tl.eventRecord.profile.profileLastname",target = "tlLastname")
+    @Mapping(source = "tl.profile.profileName",target = "tlName")
+    @Mapping(source = "tl.profile.profileLastname",target = "tlLastname")
     TeamResponseDTO toTeamResponseDTO(Team team);
 
     @Mapping(source = "teamFrameworks",target = "teamFrameworks")

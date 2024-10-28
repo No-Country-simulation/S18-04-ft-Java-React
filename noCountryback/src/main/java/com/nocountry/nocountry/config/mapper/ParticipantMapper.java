@@ -25,8 +25,8 @@ public interface ParticipantMapper {
     @Mapping(source = "team.projectName", target = "projectName")
     @Mapping(source = "eventRecord.profile.profileLastname", target = "participantLastname")
     @Mapping(source = "eventRecord.profile.profileLastname", target = "participantName")
-    @Mapping(source = "team.tl.eventRecord.profile.profileLastname", target = "tlLastname")
-    @Mapping(source = "team.tl.eventRecord.profile.profileLastname", target = "tlName")
+    @Mapping(source = "team.tl.profile.profileLastname", target = "tlLastname")
+    @Mapping(source = "team.tl.profile.profileLastname", target = "tlName")
     @Mapping(source = "buddy", target = "buddy")
     @Mapping(source = "sessions", target = "sessions")
     ParticipantResponseDTO toParticipantDTO(Participant participant);

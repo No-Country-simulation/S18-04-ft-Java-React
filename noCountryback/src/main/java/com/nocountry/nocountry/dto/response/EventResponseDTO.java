@@ -13,6 +13,5 @@ public record EventResponseDTO(
     String eventDescription,
     Integer eventParticipant,
     LocalDate eventDateStart,
-    LocalDate eventDateEnd,
-    List<EventRecordResponseDTO> eventRecords
+    LocalDate eventDateEnd
 ) { }
