@@ -2,6 +2,7 @@ package com.nocountry.nocountry.dto.response;
 
 import com.nocountry.nocountry.models.*;
 import com.nocountry.nocountry.models.enums.Schedule;
+import com.nocountry.nocountry.models.enums.State;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,6 +23,7 @@ public record EventRecordResponseDTO(
         String eventName,
         String eventDescription,
         LocalDate eventDateStart,
-        LocalDate eventDateEnd
+        LocalDate eventDateEnd,
+        State state
         ) {
 }

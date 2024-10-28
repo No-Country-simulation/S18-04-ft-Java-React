@@ -39,5 +39,6 @@ public interface EventRecordMapper {
     @Mapping(source = "event.eventDescription", target = "eventDescription")
     @Mapping(source = "event.eventDateStart", target = "eventDateStart")
     @Mapping(source = "event.eventDateEnd", target = "eventDateEnd")
+    @Mapping(source = "event.state",target = "state")
     EventRecordResponseDTO toEventRecordDTO(EventRecord eventRecord);
 }
