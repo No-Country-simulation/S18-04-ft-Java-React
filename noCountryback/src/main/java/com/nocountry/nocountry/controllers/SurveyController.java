@@ -2,6 +2,7 @@ package com.nocountry.nocountry.controllers;
 
 import com.nocountry.nocountry.config.mapper.SurveyMapper;
 import com.nocountry.nocountry.dto.request.SurveyRequestDTO;
+import com.nocountry.nocountry.dto.response.EventResponseDTO;
 import com.nocountry.nocountry.dto.response.SurveyResponseDTO;
 import com.nocountry.nocountry.models.Survey;
 import com.nocountry.nocountry.services.ISurveyService;
@@ -56,11 +57,8 @@ public class SurveyController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "creationDate") String sortField,
             @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<Survey> surveysPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<SurveyResponseDTO> surveyResponseDTOs = surveysPage.getContent()
-                .stream()
-                .map(mapper::toSurveyResponseDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(surveyResponseDTOs, surveysPage.getPageable(), surveysPage.getTotalElements()), HttpStatus.OK);
+        List<SurveyResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toSurveyResponseDTO).collect(Collectors.toList());
+        Page<SurveyResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }

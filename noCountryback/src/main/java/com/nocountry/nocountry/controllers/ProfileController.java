@@ -2,6 +2,7 @@ package com.nocountry.nocountry.controllers;
 
 import com.nocountry.nocountry.config.mapper.ProfileMapper;
 import com.nocountry.nocountry.dto.request.ProfileRequestDTO;
+import com.nocountry.nocountry.dto.response.EventResponseDTO;
 import com.nocountry.nocountry.dto.response.ProfileResponseDTO;
 import com.nocountry.nocountry.models.Profile;
 import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
@@ -59,11 +60,8 @@ public class ProfileController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "profileName") String sortField,
             @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<Profile> profilesPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<ProfileResponseDTO> profileResponseDTOs = profilesPage.getContent()
-                .stream()
-                .map(mapper::toProfileResponseDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(profileResponseDTOs, profilesPage.getPageable(), profilesPage.getTotalElements()), HttpStatus.OK);
+        List<ProfileResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toProfileResponseDTO).collect(Collectors.toList());
+        Page<ProfileResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }

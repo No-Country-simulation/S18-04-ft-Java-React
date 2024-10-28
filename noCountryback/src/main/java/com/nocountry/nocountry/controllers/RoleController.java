@@ -2,6 +2,7 @@ package com.nocountry.nocountry.controllers;
 
 import com.nocountry.nocountry.config.mapper.RoleMapper;
 import com.nocountry.nocountry.dto.request.RoleRequestDTO;
+import com.nocountry.nocountry.dto.response.EventResponseDTO;
 import com.nocountry.nocountry.dto.response.RoleResponseDTO;
 import com.nocountry.nocountry.models.Role;
 import com.nocountry.nocountry.services.IRoleService;
@@ -56,11 +57,8 @@ public class RoleController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "roleName") String sortField,
             @RequestParam(defaultValue = "asc") String sortOrder) {
-        Page<Role> rolesPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<RoleResponseDTO> roleResponseDTOs = rolesPage.getContent()
-                .stream()
-                .map(mapper::toRoleResponseDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(roleResponseDTOs, rolesPage.getPageable(), rolesPage.getTotalElements()), HttpStatus.OK);
+        List<RoleResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toRoleResponseDTO).collect(Collectors.toList());
+        Page<RoleResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }
