@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,7 +59,7 @@ public class EventRecord {
     @JoinColumn(name = "event_id",nullable = false,foreignKey = @ForeignKey(name = "FK_EVENT_RECORDS_EVENT"))
     private Event event;
 
-    @OneToMany(mappedBy = "eventRecord",cascade = {CascadeType.ALL},orphanRemoval = true)
-    @JsonIgnore
-    private List<Participant> participants;
+    @ManyToOne
+    @JoinColumn(name = "team_id",foreignKey = @ForeignKey(name = "FK_EVENT_RECORDS_TEAM"))
+    private Team team;
 }

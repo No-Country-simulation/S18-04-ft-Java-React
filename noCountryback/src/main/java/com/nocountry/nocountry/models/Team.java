@@ -28,6 +28,8 @@ public class Team {
 
     private String projectName;
 
+    private Integer teamNumber;
+
     @ManyToMany
     @JoinTable(name = "team_framework",joinColumns = @JoinColumn(name = "team_id",referencedColumnName = "team_id"),inverseJoinColumns = @JoinColumn(name = "framework_id",referencedColumnName = "framework_id"))
     private List<Framework> teamFrameworks;
@@ -41,10 +43,7 @@ public class Team {
     private String whatsappUrl;
 
     @OneToOne
-    @JoinColumn(name = "participant_id", nullable = false,foreignKey = @ForeignKey(name = "FK_TEAMS_PARTICIPANTS"))
-    private Participant tl;
+    @JoinColumn(name = "event_record_id",foreignKey = @ForeignKey(name = "FK_TEAMS_EVENT_RECORDS"))
+    private EventRecord tl;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL,orphanRemoval = true)
-    @JsonIgnore
-    private List<Participant>participants;
 }

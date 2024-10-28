@@ -5,6 +5,10 @@ INSERT INTO roles (role_id,role_description,role_name) VALUES('340ddc49-1214-4e0
 INSERT INTO role_permission(role_id,permission_id) VALUES('340ddc49-1214-4e00-9a77-2334334b23d3','7c102ad8-59e4-4e93-a56b-e4033de41745');
 
 
+INSERT INTO users (user_id,email,password) VALUES ('2efb16c6-f56c-4baa-bdea-cd2c8f372725','prueba@gmail.com','$2a$10$DbwTfHm.UXs6GiIPeP29quu/xSUAz8qOMV.vhWutn9P3vr1iZGFum');
+INSERT INTO user_role(user_id,role_id) VALUES ('2efb16c6-f56c-4baa-bdea-cd2c8f372725','340ddc49-1214-4e00-9a77-2334334b23d3');
+INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url, profile_name,profile_lastname) VALUES ('5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b','2efb16c6-f56c-4baa-bdea-cd2c8f372725','https://t2.uc.ltmcdn.com/es/posts/0/3/2/como_alejarse_de_una_persona_toxica_45230_orig.jpg','https://github.com/aasdasd','https://www.linkedin.com/in/asdasdasd/','nombreprueba','apellidoprueba');
+
 ------------------- Dependencies -------------------
 INSERT INTO frameworks (framework_id, framework_name,framework_type,language) VALUES ('0945d50a-65d9-4e00-bdd4-ff20268455e9', 'React', 'Frontend', 'Typescript');
 INSERT INTO frameworks (framework_id, framework_name,framework_type,language) VALUES ('324f9dc7-560b-4741-bf95-c0bc4d6ab902', 'Angular', 'Frontend', 'Typescript');
@@ -159,95 +163,95 @@ INSERT INTO user_role(user_id,role_id) VALUES ('2623eb1d-6823-4f48-966e-7b875363
 INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url,profile_name,profile_lastname) VALUES ('7bd78d94-f322-4b5c-9193-28a91e35addd','2623eb1d-6823-4f48-966e-7b8753631bb8','https://avatars.githubusercontent.com/u/16294803','https://github.com/asdasdasd','https://www.linkedin.com/in/asdasdasd','Kevin','Ramos');
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id) VALUES ('b856b2a3-b0ad-403f-ac8e-0a9e1c7013bb', 'FullTime', False, '8f562cce-cfac-4452-a25e-e1784a88a15e', null, '7bd78d94-f322-4b5c-9193-28a91e35addd', 'a44913b7-34ca-429f-821f-ae8732423c9d');
 
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
------- Stored Produced ----------------------
-CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
-    IN eventNum UUID,
-    IN scheduleNom VARCHAR(30),
-    IN frameworkFront VARCHAR(30),
-    IN frontQuantity INTEGER,
-    IN backQuantity INTEGER,
-    IN qaQuantity INTEGER,
-    IN pmQuantity INTEGER,
-    IN uxQuantity INTEGER
-)
-    LANGUAGE plpgsql
-AS $$
-DECLARE
-    team_counter INTEGER := 1;  -- Contador para el número de equipo
-    team_pk UUID;               -- Variable para almacenar el ID del nuevo equipo
-BEGIN
-    LOOP
-        WITH eligible_records AS (
-            SELECT e.event_record_id, rt.role_type_name,
-                   ROW_NUMBER() OVER (PARTITION BY rt.role_type_name ORDER BY e.event_record_id) AS rn
-            FROM event_records e
-                     LEFT JOIN register_stack r ON r.event_record_id = e.event_record_id
-                     LEFT JOIN frameworks f ON f.framework_id = r.framework_id
-                     INNER JOIN languages l ON l.language_id = e.language_id
-                     INNER JOIN roles_type rt ON rt.role_type_id = e.role_type_id
-            WHERE e.schedule = scheduleNom
-              AND e.event_id = eventNum
-              AND e.assigned = FALSE
-              AND f.framework_name = frameworkFront
-        )
-        UPDATE event_records e
-        SET assigned = TRUE, number_team = team_counter
-        WHERE e.event_record_id IN (
-            SELECT event_record_id
-            FROM eligible_records
-            WHERE (role_type_name = 'Frontend' AND rn <= frontQuantity) OR
-                (role_type_name = 'Backend' AND rn <= backQuantity) OR
-                (role_type_name = 'UX/UI' AND rn <= uxQuantity) OR
-                (role_type_name = 'Project Manager' AND rn <= pmQuantity) OR
-                (role_type_name = 'QA Tester' AND rn <= qaQuantity)
-        );
-
-        -- Salir del bucle si no hay más registros con assigned = FALSE
-        EXIT WHEN NOT EXISTS (
-            SELECT 1
-            FROM event_records e
-            WHERE e.schedule = scheduleNom
-              AND e.event_id = eventNum
-              AND e.assigned = FALSE
-        );
-
-        -- Incrementar el contador del número de equipo
-        team_counter := team_counter + 1;
-    END LOOP;
-END;
-$$;
-
-
-CREATE OR REPLACE PROCEDURE create_teams_and_participants(
-    IN event_pk UUID,
-    IN team_init VARCHAR
-)
-    LANGUAGE plpgsql
-AS $$
-DECLARE
-    team_number INTEGER;
-    schedule VARCHAR;
-    new_team_id UUID;
-BEGIN
-    FOR team_number IN
-        SELECT DISTINCT e.number_team
-        FROM event_records e
-        WHERE assigned = TRUE
-        LOOP
-            -- Generar un nuevo UUID para el equipo
-            new_team_id := gen_random_uuid();
-
-            -- Insertar el equipo en la tabla teams
-            INSERT INTO teams (team_id, meet_url, project_name, team_name, whatsapp_url, participant_id)
-            VALUES (new_team_id, NULL, NULL, team_init + '-' + team_number + '-' + schedule, NULL, new_team_id);
-
-            -- Insertar los participantes en la tabla participants
-            INSERT INTO participants (participant_id, team_id, is_tl, event_record_id)
-            SELECT gen_random_uuid(), new_team_id, e.tl, e.event_record_id
-            FROM event_records e
-            WHERE number_team = team_number AND e.event_id = event_pk AND e.assigned = TRUE;
-        END LOOP;
-END;
-$$;
+-- CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+--
+-- ------ Stored Produced ----------------------
+-- CREATE OR REPLACE PROCEDURE UpdateAssignedRecords(
+--     IN eventNum UUID,
+--     IN scheduleNom VARCHAR(30),
+--     IN frameworkFront VARCHAR(30),
+--     IN frontQuantity INTEGER,
+--     IN backQuantity INTEGER,
+--     IN qaQuantity INTEGER,
+--     IN pmQuantity INTEGER,
+--     IN uxQuantity INTEGER
+-- )
+--     LANGUAGE plpgsql
+-- AS $$
+-- DECLARE
+--     team_counter INTEGER := 1;  -- Contador para el número de equipo
+--     team_pk UUID;               -- Variable para almacenar el ID del nuevo equipo
+-- BEGIN
+--     LOOP
+--         WITH eligible_records AS (
+--             SELECT e.event_record_id, rt.role_type_name,
+--                    ROW_NUMBER() OVER (PARTITION BY rt.role_type_name ORDER BY e.event_record_id) AS rn
+--             FROM event_records e
+--                      LEFT JOIN register_stack r ON r.event_record_id = e.event_record_id
+--                      LEFT JOIN frameworks f ON f.framework_id = r.framework_id
+--                      INNER JOIN languages l ON l.language_id = e.language_id
+--                      INNER JOIN roles_type rt ON rt.role_type_id = e.role_type_id
+--             WHERE e.schedule = scheduleNom
+--               AND e.event_id = eventNum
+--               AND e.assigned = FALSE
+--               AND f.framework_name = frameworkFront
+--         )
+--         UPDATE event_records e
+--         SET assigned = TRUE, number_team = team_counter
+--         WHERE e.event_record_id IN (
+--             SELECT event_record_id
+--             FROM eligible_records
+--             WHERE (role_type_name = 'Frontend' AND rn <= frontQuantity) OR
+--                 (role_type_name = 'Backend' AND rn <= backQuantity) OR
+--                 (role_type_name = 'UX/UI' AND rn <= uxQuantity) OR
+--                 (role_type_name = 'Project Manager' AND rn <= pmQuantity) OR
+--                 (role_type_name = 'QA Tester' AND rn <= qaQuantity)
+--         );
+--
+--         -- Salir del bucle si no hay más registros con assigned = FALSE
+--         EXIT WHEN NOT EXISTS (
+--             SELECT 1
+--             FROM event_records e
+--             WHERE e.schedule = scheduleNom
+--               AND e.event_id = eventNum
+--               AND e.assigned = FALSE
+--         );
+--
+--         -- Incrementar el contador del número de equipo
+--         team_counter := team_counter + 1;
+--     END LOOP;
+-- END;
+-- $$;
+--
+--
+-- CREATE OR REPLACE PROCEDURE create_teams_and_participants(
+--     IN event_pk UUID,
+--     IN team_init VARCHAR
+-- )
+--     LANGUAGE plpgsql
+-- AS $$
+-- DECLARE
+--     team_number INTEGER;
+--     schedule VARCHAR;
+--     new_team_id UUID;
+-- BEGIN
+--     FOR team_number IN
+--         SELECT DISTINCT e.number_team
+--         FROM event_records e
+--         WHERE assigned = TRUE
+--         LOOP
+--             -- Generar un nuevo UUID para el equipo
+--             new_team_id := gen_random_uuid();
+--
+--             -- Insertar el equipo en la tabla teams
+--             INSERT INTO teams (team_id, meet_url, project_name, team_name, whatsapp_url, participant_id)
+--             VALUES (new_team_id, NULL, NULL, team_init + '-' + team_number + '-' + schedule, NULL, new_team_id);
+--
+--             -- Insertar los participantes en la tabla participants
+--             INSERT INTO participants (participant_id, team_id, is_tl, event_record_id)
+--             SELECT gen_random_uuid(), new_team_id, e.tl, e.event_record_id
+--             FROM event_records e
+--             WHERE number_team = team_number AND e.event_id = event_pk AND e.assigned = TRUE;
+--         END LOOP;
+-- END;
+-- $$;
