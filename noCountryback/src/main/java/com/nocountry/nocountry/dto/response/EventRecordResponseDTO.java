@@ -11,7 +11,7 @@ public record EventRecordResponseDTO(
         UUID id,
         Schedule schedule,
         Boolean tl,
-        RoleType roleType,
+        RoleTypeResponseDTO roleType,
         List<FrameworkResponseDTO> stack,
         UUID languageId,
         String languageName,
