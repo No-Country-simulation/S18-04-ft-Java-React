@@ -43,4 +43,9 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
     public void register_participants_in_teams(UUID eventId, String eventName) {
         repo.callCreateTeamsAndParticipants(eventId, eventName);
     }
+
+    @Override
+    public List<EventRecord> findEventRecordByTeam(UUID teamId) {
+        return repo.findEventRecordByTeam(teamId);
+    }
 }

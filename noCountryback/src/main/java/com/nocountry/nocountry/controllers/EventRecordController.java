@@ -110,4 +110,10 @@ public class EventRecordController {
         RegisterRecordDTO registerForm = new RegisterRecordDTO(roles, languages, schedules, frameworks);
         return ResponseEntity.ok(registerForm);
     }
+
+    @GetMapping("/participants/{teamId}")
+    public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByTeam(@PathVariable("teamId") UUID teamId) {
+        List<EventRecordResponseDTO> participants = service.findEventRecordByTeam(teamId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(participants);
+    }
 }

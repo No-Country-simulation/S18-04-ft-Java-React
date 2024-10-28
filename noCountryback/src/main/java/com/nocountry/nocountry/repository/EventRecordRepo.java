@@ -2,6 +2,7 @@ package com.nocountry.nocountry.repository;
 
 import com.nocountry.nocountry.models.EventRecord;
 import com.nocountry.nocountry.models.Team;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
@@ -28,4 +29,6 @@ public interface EventRecordRepo extends GenericRepo<EventRecord, UUID> {
             @Param("team_init") String team_init
     );
 
+    @Query(value = "SELECT e FROM event_records e WHERE e.team_id =:teamId",nativeQuery = true)
+    List<EventRecord>findEventRecordByTeam(@Param("teamId") UUID teamId);
 }
