@@ -70,15 +70,10 @@ public class EventRecordController {
     @GetMapping("/page")
     public ResponseEntity<Page<EventRecordResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "eventName") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<EventRecord> eventRecordsPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<EventRecordResponseDTO> eventRecordResponseDTOs = eventRecordsPage.getContent()
-                .stream()
-                .map(mapper::toEventRecordDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(new PageImpl<>(eventRecordResponseDTOs,
-                eventRecordsPage.getPageable(),
-                eventRecordsPage.getTotalElements()));
+            @RequestParam(defaultValue = "event.eventName") String sortField, @RequestParam(defaultValue = "desc") String sortOrder) {
+        List<EventRecordResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList());
+        Page<EventRecordResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 
 //    @GetMapping("/find_all_by_user_id")

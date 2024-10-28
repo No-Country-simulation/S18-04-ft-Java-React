@@ -7,7 +7,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {
+        FrameworkMapper.class,
+        EventMapper.class,
+        ProfileMapper.class
+})
 public interface EventRecordMapper {
 
     EventRecordMapper INSTANCE = Mappers.getMapper(EventRecordMapper.class);

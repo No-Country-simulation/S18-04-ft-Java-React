@@ -38,9 +38,9 @@ public class Survey {
 
     @ManyToOne
     @JoinColumn(name = "participant_id", nullable = false,foreignKey = @ForeignKey(name = "FK_SURVERIES_PARTICIPANT"))
-    private Participant participant;
+    private EventRecord participant;
 
     @ManyToOne
     @JoinColumn(name = "buddy_id",nullable = false,foreignKey = @ForeignKey(name = "FK_SUVERIES_BUDDY"))
-    private Participant buddy;
+    private EventRecord buddy;
 }
