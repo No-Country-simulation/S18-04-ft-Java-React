@@ -1,16 +1,16 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import Meet from '/public/images/svg/Meet.svg';
 
 export const Meeting = () => {
   return (
-    <div className="border-gradient mx-10 mb-56 items-center justify-center border p-4 text-center leading-9">
-      <h3 className="font-bold">Próxima reunión con el Team Leader</h3>
-      <p>Fecha: 14 de noviembre, 18:30hs</p>
-      <p>
-        Link a la reunión:
-        <Link href="" className="ml-2 text-primary-50 underline">
-          Unirse a la reunión
+    <div className="p-4">
+      <div className="flex place-content-center">
+        <Image width={30} height={30} src={Meet} alt="meet" />
+        <Link href="" className="ml-2 font-medium text-white underline">
+          Link al Meet
         </Link>
-      </p>
+      </div>
     </div>
   );
 };
