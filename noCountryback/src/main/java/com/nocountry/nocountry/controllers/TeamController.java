@@ -4,8 +4,11 @@ import com.nocountry.nocountry.config.mapper.TeamMapper;
 import com.nocountry.nocountry.dto.request.TeamRequestDTO;
 import com.nocountry.nocountry.dto.response.TeamResponseDTO;
 import com.nocountry.nocountry.models.Team;
+import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
+import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.ITeamService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -20,15 +23,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/teams")
+@RequiredArgsConstructor
 public class TeamController {
 
     private final ITeamService service;
     private final TeamMapper mapper;
 
-    public TeamController(ITeamService service, TeamMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TeamResponseDTO> findById(@PathVariable("id") UUID id) {
@@ -59,5 +59,11 @@ public class TeamController {
         List<TeamResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toTeamResponseDTO).collect(Collectors.toList());
         Page<TeamResponseDTO> listResponse = new PageImpl<>(list);
         return new ResponseEntity<>(listResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/byUser")
+    public ResponseEntity<List<TeamResponseDTO>> findAllByUserId(@CurrentUser UserPrincipal user){
+        List<TeamResponseDTO> list = service.findTeamByProfileId(user.getId()).stream().map(mapper::toTeamResponseDTO).collect(Collectors.toList());
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

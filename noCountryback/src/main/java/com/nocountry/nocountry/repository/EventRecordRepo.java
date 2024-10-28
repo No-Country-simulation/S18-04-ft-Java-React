@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.repository;
 
 import com.nocountry.nocountry.models.EventRecord;
+import com.nocountry.nocountry.models.Team;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
@@ -26,4 +27,5 @@ public interface EventRecordRepo extends GenericRepo<EventRecord, UUID> {
             @Param("event_pk") UUID event_pk,
             @Param("team_init") String team_init
     );
+
 }

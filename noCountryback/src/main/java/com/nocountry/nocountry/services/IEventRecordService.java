@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface IEventRecordService extends ICRUDService<EventRecord, UUID> {
 
-    List<EventRecord> findAllEventByUserId(String userId);
+    //List<EventRecord> findAllEventByUserId(String userId);
     void updateAssignedRecords(UUID eventNum, String scheduleNom, String frameworkFront,
                                int frontQuantity, int backQuantity, int qaQuantity,
                                int pmQuantity, int uxQuantity);
