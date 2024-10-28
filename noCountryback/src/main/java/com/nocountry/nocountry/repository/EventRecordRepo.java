@@ -14,10 +14,16 @@ public interface EventRecordRepo extends GenericRepo<EventRecord, UUID> {
             @Param("eventNum") UUID eventNum,
             @Param("scheduleNom") String scheduleNom,
             @Param("frameworkFront") String frameworkFront,
-            @Param("frontQuantity") int frontQuantity,
-            @Param("backQuantity") int backQuantity,
-            @Param("qaQuantity") int qaQuantity,
-            @Param("pmQuantity") int pmQuantity,
-            @Param("uxQuantity") int uxQuantity
+            @Param("frontQuantity") Integer frontQuantity,
+            @Param("backQuantity") Integer backQuantity,
+            @Param("qaQuantity") Integer qaQuantity,
+            @Param("pmQuantity") Integer pmQuantity,
+            @Param("uxQuantity") Integer uxQuantity
+    );
+
+    @Procedure(procedureName = "create_teams_and_participants")
+    void callCreateTeamsAndParticipants(
+            @Param("event_pk") UUID event_pk,
+            @Param("team_init") String team_init
     );
 }

@@ -13,5 +13,5 @@ public interface IEventRecordService extends ICRUDService<EventRecord, UUID> {
     void updateAssignedRecords(UUID eventNum, String scheduleNom, String frameworkFront,
                                int frontQuantity, int backQuantity, int qaQuantity,
                                int pmQuantity, int uxQuantity);
-
+    void register_participants_in_teams(UUID eventId,String eventName);
 }

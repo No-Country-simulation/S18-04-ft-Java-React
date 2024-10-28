@@ -38,4 +38,9 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
                 frontQuantity, backQuantity, qaQuantity,
                 pmQuantity, uxQuantity);
     }
+
+    @Override
+    public void register_participants_in_teams(UUID eventId, String eventName) {
+        repo.callCreateTeamsAndParticipants(eventId, eventName);
+    }
 }

@@ -3,6 +3,7 @@ package com.nocountry.nocountry.controllers;
 import com.nocountry.nocountry.config.mapper.ParticipantMapper;
 import com.nocountry.nocountry.dto.request.ParticipantRequestDTO;
 import com.nocountry.nocountry.dto.response.ParticipantResponseDTO;
+import com.nocountry.nocountry.dto.response.TeamResponseDTO;
 import com.nocountry.nocountry.models.Participant;
 import com.nocountry.nocountry.services.IParticipantService;
 import jakarta.validation.Valid;
@@ -54,14 +55,11 @@ public class ParticipantController {
     public ResponseEntity<Page<ParticipantResponseDTO>> findAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "participantName") String sortField,
+            @RequestParam(defaultValue = "id") String sortField,
             @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<Participant> participantsPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<ParticipantResponseDTO> participantResponseDTOs = participantsPage.getContent()
-                .stream()
-                .map(mapper::toParticipantDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(participantResponseDTOs, participantsPage.getPageable(), participantsPage.getTotalElements()), HttpStatus.OK);
+        List<ParticipantResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toParticipantDTO).collect(Collectors.toList());
+        Page<ParticipantResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 
     @GetMapping("/find_all_by_team_id")
