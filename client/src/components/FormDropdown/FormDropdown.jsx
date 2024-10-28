@@ -50,7 +50,7 @@ export const FormDropdown = ({
           className="no-outline border-gradient flex w-full min-w-[var(--radix-select-trigger-width)] flex-col bg-primary-500 transition-all ease-in">
           <div className="pointer-events-all relative box-border">
             <Select.Viewport asChild>
-              <div className="flex flex-col gap-y-0">
+              <div className="flex max-h-[360px] flex-col gap-y-0 overflow-auto">
                 {items.map((item, i) => (
                   <SelectItem
                     key={i}

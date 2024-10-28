@@ -2,7 +2,8 @@ import { getCurrentToken } from './data/auth';
 import { hasUser } from './data/user';
 
 const NO_AUTH_ROUTE = ['/signin', '/welcome', '/signup'];
-const AUTH_ROUTE = ['/home', '/inscriptions'];
+const AUTH_ROUTE = ['/home'];
+const AUTH_ROUTE_START_WITH = ['/inscriptions'];
 
 export function middleware(request) {
   const { pathname, searchParams } = request.nextUrl;
@@ -26,7 +27,12 @@ export function middleware(request) {
     }*/
   }
 
-  if (!getCurrentToken() && !token && AUTH_ROUTE.some(route => route === pathname)) {
+  if (
+    !getCurrentToken() &&
+    !token &&
+    (AUTH_ROUTE.some(route => route === pathname) ||
+      AUTH_ROUTE_START_WITH.some(route => pathname.startsWith(route)))
+  ) {
     return Response.redirect(new URL('/welcome', request.url));
   }
 }

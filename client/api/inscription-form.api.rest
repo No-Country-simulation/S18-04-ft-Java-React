@@ -1,0 +1,3 @@
+GET https://nocountry.up.railway.app/api/event-records/register-form/038eff46-b858-4710-9fda-2be48db983fe
+content-type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjb3NAZ21haWwuY29tIiwidXNlcklkIjoiZmMzN2NhOWItZTc2Ny00ZjUzLThiN2YtNjY2ZTAzZTNmNGMwIiwiZXhwIjoxNzMwMDkyOTAyLCJpYXQiOjE3MzAwODkzMDJ9.BW_etYQRgs8Wt8uwFdw0VUdQ0pn21urLeKnM5LpEqeQ

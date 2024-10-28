@@ -13,6 +13,8 @@ module.exports = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        'current-simulation': '#063963 ',
+        label: '#f4f4f4',
         primary: {
           50: '#1d90fc',
           100: '#0A2140',
@@ -48,6 +50,10 @@ module.exports = {
         'gradient-green-200': 'var(--gradient-green-to-blue-200)',
         'gradient-custom':
           'linear-gradient(90deg, #1D8FF2 5.5%, #32D4E3 38.5%, #0FF29F 65.5%, #14D9B5 98%)',
+        'gradient-red-transparent': 'var(--gradient-red-to-transparent)',
+        'gradient-green-transparent': 'var(--gradient-green-to-transparent)',
+        'gradient-blue-transparent': 'var(--gradient-blue-to-transparent)',
+        'gradient-violet-transparent': 'var(--gradient-violet-to-transparent)',
       },
       keyframes: {
         slideDownAndFade: {

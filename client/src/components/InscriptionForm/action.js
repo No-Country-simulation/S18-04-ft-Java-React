@@ -3,7 +3,8 @@
 import { validateSchema } from '@/lib/validateSchema';
 import { inscriptionSchema } from '@/schemas/inscriptionSchema';
 
-export async function sendInscription(_state, formData) {
+export async function sendInscription(request, formData) {
+  console.log({ request });
   const [error, data] = validateSchema(inscriptionSchema, {
     type: formData.get('type'),
     rol: formData.get('rol'),
@@ -14,6 +15,14 @@ export async function sendInscription(_state, formData) {
   console.log({ e: error?.errors });
   if (error) return error;
 
+  const body = {
+    schedule: data.timeAvailability,
+    tl: data.isTeamLeader === 'true',
+    roleType: { roleTypeId: data.rol },
+    stack: [{ frameworkId: data.stack }],
+    language: [{ languageId: data.language }],
+    event: { eventId: 'no-tengo-id' },
+  };
   return {
     id: crypto.randomUUID(),
     status: 'SUCCESS',

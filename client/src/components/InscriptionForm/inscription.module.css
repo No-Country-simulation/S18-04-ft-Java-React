@@ -9,10 +9,8 @@
   margin-inline: auto;
 }
 
-.inscriptionContainer form:has(button[data-state='open']) *:has(button[data-state='closed']) {
-  z-index: -10;
-}
-
-.inscriptionContainer form:has(button[data-state='open']) *:has(div[data-state='closed']) {
-  z-index: -10;
+.inscriptionContainer form:has(button[data-state='open']) {
+  & *:has(button[data-state='closed'], div[data-state='closed'], label[data-state='idle']) {
+    z-index: -10;
+  }
 }
