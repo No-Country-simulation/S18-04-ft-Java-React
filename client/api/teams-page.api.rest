@@ -1,3 +1,7 @@
-GET https://nocountry.up.railway.app/api/teams/page
+@authToken={{$dotenv API_TOKEN}}
+@baseUrl={{$dotenv URL}}
+
+### Recupera todos los equipos (? no me queda claro el uso de esto)
+GET {{baseUrl}}/api/teams/page
 content-type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjb3NAZ21haWwuY29tIiwidXNlcklkIjoiZmMzN2NhOWItZTc2Ny00ZjUzLThiN2YtNjY2ZTAzZTNmNGMwIiwiZXhwIjoxNzMwMDkyOTAyLCJpYXQiOjE3MzAwODkzMDJ9.BW_etYQRgs8Wt8uwFdw0VUdQ0pn21urLeKnM5LpEqeQ
+Cookie: token={{authToken}}

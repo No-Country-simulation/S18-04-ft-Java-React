@@ -1,3 +1,5 @@
+'use server';
+
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { decodePayload } from './decodedToken';
@@ -52,11 +54,7 @@ export const getUserProfile = async tokenFallback => {
   return profileMapper(response);
 };
 
-export const saveGoogleToken = token => {
-  cookies().set('token', token, {
-    httpOnly: false,
-    secure: true,
-    path: '/',
-    maxAge: 60 * 60 * 24 * 7,
-  });
-};
+export async function deleteCookies() {
+  (await cookies()).delete('token');
+  (await cookies()).delete('USER');
+}

@@ -1,5 +1,4 @@
 import { getCurrentToken } from './auth';
-
 const baseURL = process.env.URL;
 
 export const getProjectType = async () => {
@@ -11,8 +10,15 @@ export const getProjectType = async () => {
   });
 
   if (!response.ok) {
-    return [];
+    return {
+      status: response.status,
+      data: [],
+    };
   }
   const data = await response.json();
-  return data;
+
+  return {
+    status: response.status,
+    data,
+  };
 };
