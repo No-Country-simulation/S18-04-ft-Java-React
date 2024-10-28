@@ -14,13 +14,9 @@ export const CheckLogin = () => {
     if (!val) {
       try {
         fetch('https://nocountry.up.railway.app/api/auth/check-login', payload)
-          .then(res => {
-            console.log({ res });
-          })
+          .then(res => {})
           .catch(err => console.log({ err }));
-      } catch (e) {
-        console.log({ e });
-      }
+      } catch (e) {}
       setVal(true);
     }
   }, []);

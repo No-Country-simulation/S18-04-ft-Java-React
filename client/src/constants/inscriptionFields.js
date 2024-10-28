@@ -6,14 +6,6 @@ export const inscriptionFields = [
     name: 'rol',
     icon: '/images/svg/Chevron.svg',
     tabindex: 1,
-    defaultValue: '1',
-    items: [
-      { placeholder: 'UX/UI', value: '1' },
-      { placeholder: 'Desarrollador Web', value: '2' },
-      { placeholder: 'Desarrollador Mobile', value: '3' },
-      { placeholder: 'Project Manager', value: '4' },
-      { placeholder: 'QA', value: '5' },
-    ],
   },
   {
     type: 'dropdown',
@@ -22,13 +14,6 @@ export const inscriptionFields = [
     name: 'timeAvailability',
     icon: '/images/svg/Chevron.svg',
     tabindex: 2,
-    defaultValue: 'Tarde',
-    items: [
-      { placeholder: 'Turno Tarde', value: 'Tarde' },
-      { placeholder: 'Turno Noche', value: 'Noche' },
-      { placeholder: 'Turno Mañana', value: 'MANANA' },
-      { placeholder: 'Full time', value: 'FullTime' },
-    ],
   },
   {
     type: 'dropdown',
@@ -37,12 +22,6 @@ export const inscriptionFields = [
     name: 'language',
     icon: '/images/svg/Chevron.svg',
     tabindex: 3,
-    defaultValue: '1',
-    items: [
-      { placeholder: 'Web App', value: '1' },
-      { placeholder: 'No code App', value: '2' },
-      { placeholder: 'Mobile App', value: '3' },
-    ],
   },
   {
     type: 'dropdown',
@@ -51,12 +30,6 @@ export const inscriptionFields = [
     name: 'frameworks',
     icon: '/images/svg/Chevron.svg',
     tabindex: 4,
-    defaultValue: '1',
-    items: [
-      { placeholder: 'Web App', value: '1' },
-      { placeholder: 'No code App', value: '2' },
-      { placeholder: 'Mobile App', value: '3' },
-    ],
   },
   {
     type: 'ask',
