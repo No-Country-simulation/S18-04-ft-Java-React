@@ -1,0 +1,7 @@
+GET https://nocountry.up.railway.app/api/participants/find_all_by_team_id
+content-type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjb3NAZ21haWwuY29tIiwidXNlcklkIjoiZmMzN2NhOWItZTc2Ny00ZjUzLThiN2YtNjY2ZTAzZTNmNGMwIiwiZXhwIjoxNzMwMDg4MDY3LCJpYXQiOjE3MzAwODQ0Njd9.vTbr_TeLFFg1-9VWhkQ2SMcI80WYmw6apBX9dk1iU8c
+
+{
+    "teamId": "123"
+}
