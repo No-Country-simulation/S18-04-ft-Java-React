@@ -13,6 +13,8 @@ module.exports = {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        'current-simulation': '#063963 ',
+        label: '#f4f4f4',
         primary: {
           50: '#1d90fc',
           100: '#0A2140',
