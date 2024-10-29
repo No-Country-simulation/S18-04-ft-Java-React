@@ -5,7 +5,6 @@ import { inscriptionFields } from '@/constants/inscriptionFields';
 import { mapFormItems } from '@/lib/mapFormItems';
 
 export const InscriptionForm = ({ formItems }) => {
-  console.log({ formItems });
   if (!formItems || typeof formItems !== 'object') {
     console.error('formItems debe ser un objeto válido');
     return (

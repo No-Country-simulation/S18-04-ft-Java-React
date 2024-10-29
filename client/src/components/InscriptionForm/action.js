@@ -4,7 +4,6 @@ import { validateSchema } from '@/lib/validateSchema';
 import { inscriptionSchema } from '@/schemas/inscriptionSchema';
 
 export async function sendInscription(request, formData) {
-  console.log({ request });
   const [error, data] = validateSchema(inscriptionSchema, {
     type: formData.get('type'),
     rol: formData.get('rol'),
