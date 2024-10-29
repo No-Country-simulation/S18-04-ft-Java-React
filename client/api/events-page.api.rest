@@ -1,0 +1,3 @@
+GET https://nocountry.up.railway.app/api/events/page
+content-type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpc2FiZWxtYXJ0aW5lejE5LjMwQGdtYWlsLmNvbSIsInVzZXJJZCI6IjA1MDM4NDlmLTc5MjctNGZjZS05MDNhLTY1ZmIwYjE4M2Y4MyIsImV4cCI6MTczMDA5NjY0OCwiaWF0IjoxNzMwMDkzMDQ4fQ.lfGA4vJbo5gi3yGT-YymOVZtX6E9EgQGCrzYJfRgygY
