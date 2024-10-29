@@ -7,14 +7,14 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8090';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
+  const parts = value.split(`; ${name}=`);//TODO: Si no entra al if hace que devuelva un string vacio almenos
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
-
+//TODO: Esta funcion la podes llevar junto con las funciones de la carpeta data
 async function fetchUserData() {
-  try {
+  try {//TODO: Este try {} catch{} es inecesario
     const token = getCookie('token');
-
+    //TODO: Verifica que el token lo recupere correctamente
     const url = `${baseUrl}/api/teams/byUser`;
 
     const payload = {
@@ -28,17 +28,20 @@ async function fetchUserData() {
 
     const response = await fetch(url, payload);
     console.log(response, 'holaaaa');
-
+    //TODO: Este if es inecesario
     if (response.status === 404) {
       throw new Error('Recurso no encontrado. Verifica la URL del endpoint.');
     }
 
     if (!response.ok) {
+      //TODO: Aca podes hacer algo como esto para evitar que se rompa con "throw"
+      //return [];
       throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
-
+    //TODO: Este if es inecesario, en todo caso podes mapear la respuesta
+    //Pero la API envia un array vacio cuando esta vacio y si un array con el objeto
     if (!data || !Array.isArray(data.participants)) {
       throw new Error('La respuesta del servidor no tiene el formato esperado');
     }
@@ -107,7 +110,7 @@ async function SimulationsPage() {
     </div>
   );
 }
-
+//TODO: Lleve este componente a un archivo distinto
 function SimulationInfo({ simulation }) {
   return (
     <div className="space-y-2">
