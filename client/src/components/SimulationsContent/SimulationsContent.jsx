@@ -1,4 +1,4 @@
-import { Card , CardContent } from '../Card/Card';
+import { Card, CardContent } from '../Card/Card';
 import SimulationInfo from '../SimulationsInfo/SimulationInfo';
 import { fetchUserData } from '@/data/getTeamByUser';
 
