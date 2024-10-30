@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.models;
 
 import com.nocountry.nocountry.models.enums.EventType;
+import com.nocountry.nocountry.models.enums.State;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,6 +44,9 @@ public class Event {
 
     @Column(name = "event_date_end",nullable = false)
     private LocalDate eventDateEnd;
+
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

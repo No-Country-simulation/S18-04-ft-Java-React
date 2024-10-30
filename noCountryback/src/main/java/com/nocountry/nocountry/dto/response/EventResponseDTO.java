@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.dto.response;
 
 import com.nocountry.nocountry.models.enums.EventType;
+import com.nocountry.nocountry.models.enums.State;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,5 +15,5 @@ public record EventResponseDTO(
     Integer eventParticipant,
     LocalDate eventDateStart,
     LocalDate eventDateEnd,
-    List<EventRecordResponseDTO> eventRecords
+    State state
 ) { }

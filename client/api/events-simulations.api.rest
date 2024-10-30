@@ -1,0 +1,7 @@
+@authToken={{$dotenv API_TOKEN}}
+@baseUrl={{$dotenv URL}}
+
+### Recupera los equipos de un usuario
+GET {{baseUrl}}/api/teams/byUser
+content-type: application/json
+Cookie: token={{authToken}}

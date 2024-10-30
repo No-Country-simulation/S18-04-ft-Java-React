@@ -1,7 +1,7 @@
 import { checkLogin } from './data/checkLogin';
 
 const NO_AUTH_ROUTE = ['/signin', '/welcome', '/signup'];
-const AUTH_ROUTE = ['/home'];
+const AUTH_ROUTE = ['/home', '/simulations'];
 const AUTH_ROUTE_START_WITH = ['/inscriptions'];
 
 export async function middleware(request) {

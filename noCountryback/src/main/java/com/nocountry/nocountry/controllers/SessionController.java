@@ -2,6 +2,7 @@ package com.nocountry.nocountry.controllers;
 
 import com.nocountry.nocountry.config.mapper.SessionMapper;
 import com.nocountry.nocountry.dto.request.SessionRequestDTO;
+import com.nocountry.nocountry.dto.response.EventResponseDTO;
 import com.nocountry.nocountry.dto.response.SessionResponseDTO;
 import com.nocountry.nocountry.models.Session;
 import com.nocountry.nocountry.services.ISessionService;
@@ -56,11 +57,8 @@ public class SessionController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "sessionStartTime") String sortField,
             @RequestParam(defaultValue = "desc") String sortOrder) {
-        Page<Session> sessionsPage = service.findAllPage(page, size, sortField, sortOrder);
-        List<SessionResponseDTO> sessionResponseDTOs = sessionsPage.getContent()
-                .stream()
-                .map(mapper::toSessionResponseDTO)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(new PageImpl<>(sessionResponseDTOs, sessionsPage.getPageable(), sessionsPage.getTotalElements()), HttpStatus.OK);
+        List<SessionResponseDTO> list = service.findAllPage(page,size,sortField,sortOrder).stream().map(mapper::toSessionResponseDTO).collect(Collectors.toList());
+        Page<SessionResponseDTO> listResponse = new PageImpl<>(list);
+        return new ResponseEntity<>(listResponse, HttpStatus.OK);
     }
 }

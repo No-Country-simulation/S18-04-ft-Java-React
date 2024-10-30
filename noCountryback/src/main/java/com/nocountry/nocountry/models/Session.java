@@ -30,6 +30,6 @@ public class Session {
     private String sessionObservable;
 
     @ManyToOne
-    @JoinColumn(name = "participant_id", nullable = false, foreignKey = @ForeignKey(name = "FK_SESSIONS_PARTICIPANT"))
-    private Participant participant;
+    @JoinColumn(name = "event_record_id", nullable = false, foreignKey = @ForeignKey(name = "FK_SESSIONS_PARTICIPANT"))
+    private EventRecord participant;
 }

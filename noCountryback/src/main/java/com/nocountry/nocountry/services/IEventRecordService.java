@@ -14,4 +14,7 @@ public interface IEventRecordService extends ICRUDService<EventRecord, UUID> {
                                int frontQuantity, int backQuantity, int qaQuantity,
                                int pmQuantity, int uxQuantity);
     void register_participants_in_teams(UUID eventId,String eventName);
+
+    List<EventRecord>findEventRecordByTeam(UUID teamId);
+
 }

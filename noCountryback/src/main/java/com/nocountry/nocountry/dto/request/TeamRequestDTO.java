@@ -1,7 +1,7 @@
 package com.nocountry.nocountry.dto.request;
 
+import com.nocountry.nocountry.dto.response.EventRecordResponseDTO;
 import com.nocountry.nocountry.models.Framework;
-import com.nocountry.nocountry.models.Participant;
 import com.nocountry.nocountry.models.Technology;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -28,5 +28,5 @@ public class TeamRequestDTO {
     @NotNull(message = "El ID del líder de equipo es obligatorio.")
     private UUID tl;
 
-    private List<Participant> participants;
+    private List<EventRecordResponseDTO> participants;
 }

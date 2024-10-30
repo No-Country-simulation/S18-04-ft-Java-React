@@ -14,6 +14,6 @@ public record TeamResponseDTO(
         String tlId,
         String tlName,
         String tlLastname,
-        List<ParticipantResponseDTO>participants
+        List<EventRecordResponseDTO>participants
 ) {
 }

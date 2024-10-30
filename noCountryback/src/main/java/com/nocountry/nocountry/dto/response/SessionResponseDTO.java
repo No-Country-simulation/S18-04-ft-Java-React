@@ -1,7 +1,5 @@
 package com.nocountry.nocountry.dto.response;
 
-import com.nocountry.nocountry.models.Participant;
-
 import java.time.LocalDate;
 import java.util.UUID;
 

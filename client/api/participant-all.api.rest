@@ -2,10 +2,11 @@
 @baseUrl={{$dotenv URL}}
 
 ### Recupera el equipo de un evento del usuario
+# @prompt teamId ID del tipo del equipo que quieras recuperar 
 GET {{baseUrl}}/api/participants/find_all_by_team_id
 content-type: application/json
 Cookie: token={{authToken}}
 
 {
-    "teamId": "123"
+    "teamId": "{{teamId}}"
 }
