@@ -16,8 +16,8 @@ async function SimulationsPage() {
           alt="Flecha izquierda"
         />
       </Link>
-      <Suspense>
-        <SimulationsContent fallback={<PinningLoader />} />
+      <Suspense fallback={<PinningLoader />}>
+        <SimulationsContent />
       </Suspense>
     </div>
   );
