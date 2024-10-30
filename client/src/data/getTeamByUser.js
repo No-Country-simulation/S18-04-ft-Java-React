@@ -2,11 +2,8 @@ import { getCurrentToken } from './auth';
 
 const baseUrl = process.env.URL;
 
-console.log(baseUrl, 'Base url');
-
 export async function fetchUserData() {
   const token = getCurrentToken('token');
-  console.log(token, 'Soy token');
 
   const url = `${baseUrl}/api/teams/byUser`;
 
@@ -20,8 +17,6 @@ export async function fetchUserData() {
   };
 
   const response = await fetch(url, payload);
-
-  console.log(response.status, 'Response Status');
 
   if (!response.ok) {
     return [];
