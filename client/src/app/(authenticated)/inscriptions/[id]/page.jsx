@@ -1,11 +1,13 @@
-import { InscriptionForm } from '@/components/InscriptionForm/InscriptionForm';
-import { getInscriptionForm } from '@/data/getInscriptionForm';
+import { Suspense } from 'react';
+import InscriptionPage from '@/components/InscriptionPage/InscriptionPage';
+import PinningLoader from '@/components/PinningLoader/PinningLoader';
 
-export default async function FormInscriptions({ params }) {
-  const formItems = await getInscriptionForm(params.id);
+export default function FormInscriptions({ params }) {
   return (
     <div className="flex size-full flex-1 flex-col">
-      <InscriptionForm formItems={formItems} />
+      <Suspense fallback={<PinningLoader />}>
+        <InscriptionPage id={params.id} />
+      </Suspense>
     </div>
   );
 }

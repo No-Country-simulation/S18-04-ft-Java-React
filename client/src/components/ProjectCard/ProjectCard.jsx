@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 import Image from 'next/image';
-import Link from 'next/link';
 import css from './projectCard.module.css';
+import Button from '../Button/Button';
 import { cn } from '@/lib/utils';
 
 const projectCardStyle = cva(
@@ -21,43 +21,47 @@ const projectCardStyle = cva(
   }
 );
 
-export const ProjectCard = ({ h1, h2, desc, items, color = '', id }) => {
+export const ProjectCard = ({ h1, h2, desc, items, color = '', id, name = '' }) => {
   return (
-    <Link
-      href={`/inscriptions/${id}`}
+    <Button
+      type="submit"
+      variant="transparent"
       className={cn(projectCardStyle({ color }), css.cardContainer)}>
-      <div className="flex h-full flex-col justify-between">
-        <div className="flex flex-col items-center justify-center">
-          <h3 className="mt-5 text-3xl font-medium leading-[120%] text-white">{h1}</h3>
-          <p className="self-start font-light">{desc}</p>
-          <h4 className="mb-2 mt-8 w-full text-left text-xl font-medium">{h2}</h4>
-          <div className="flex flex-wrap">
-            {items.map((item, i) => (
-              <div
-                key={i}
-                className="m-1 flex flex-row items-center justify-between gap-4 rounded-md bg-[#ffffff0d] px-4 py-2 leading-5 text-[#acacb5]">
+      <label htmlFor={id} className={'flex size-full'}>
+        <input className="hidden" type="radio" name={name} id={id} value={id} />
+        <div className="flex h-full flex-col justify-between">
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="mt-5 text-3xl font-medium leading-[120%] text-white">{h1}</h3>
+            <p className="self-start font-light">{desc}</p>
+            <h4 className="mb-2 mt-8 w-full text-left text-xl font-medium">{h2}</h4>
+            <div className="flex flex-wrap">
+              {items.map((item, i) => (
                 <div
-                  className={cn(
-                    'flex size-7 flex-col items-center justify-center',
-                    css.cardIconContainer
-                  )}>
-                  <Image
-                    src={item.icon}
-                    alt={item.text}
-                    width={24}
-                    height={24}
+                  key={item.text}
+                  className="m-1 flex flex-row items-center justify-between gap-4 rounded-md bg-[#ffffff0d] px-4 py-2 leading-5 text-[#acacb5]">
+                  <div
                     className={cn(
-                      'aspect-square min-h-6 w-full min-w-6 max-w-none',
-                      item.style || ''
-                    )}
-                  />
+                      'flex size-7 flex-col items-center justify-center',
+                      css.cardIconContainer
+                    )}>
+                    <Image
+                      src={item.icon}
+                      alt={item.text}
+                      width={24}
+                      height={24}
+                      className={cn(
+                        'aspect-square min-h-6 w-full min-w-6 max-w-none',
+                        item.style || ''
+                      )}
+                    />
+                  </div>
+                  <div className="text-base font-medium leading-7">{item.text}</div>
                 </div>
-                <div className="text-base font-medium leading-7">{item.text}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </label>
+    </Button>
   );
 };

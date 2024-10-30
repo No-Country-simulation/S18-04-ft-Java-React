@@ -1,4 +1,5 @@
 import { checkLogin } from './data/checkLogin';
+import { hasAccess } from './data/user';
 
 const NO_AUTH_ROUTE = ['/signin', '/welcome', '/signup'];
 const AUTH_ROUTE = ['/home', '/simulations'];
@@ -14,16 +15,10 @@ export async function middleware(request) {
 
   if (pathname.startsWith('/signup/confirm')) {
     const pathParts = pathname.split('/');
-    //TODO: Hay que validar que el Id de la ruta sea correcto
     const pathUserId = pathParts[3];
-    /* if (pathParts.length > 3) {
-      getUserProfile().then(user => {
-        console.log({ user })
-        if(!user){
-          return Response.redirect(new URL('/home', request.url));
-        }
-      })
-    }*/
+    if (!checking || !hasAccess(pathUserId, token)) {
+      return Response.redirect(new URL('/welcome', request.url));
+    }
   }
 
   if (

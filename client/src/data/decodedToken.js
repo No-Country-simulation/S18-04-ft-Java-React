@@ -11,7 +11,7 @@ function base64UrlDecode(base64Url) {
 }
 
 export const decodePayload = token => {
-  const payloadBase64 = token.split('.')[1];
+  const payloadBase64 = token?.split('.')?.[1];
 
   if (!payloadBase64) {
     return null;

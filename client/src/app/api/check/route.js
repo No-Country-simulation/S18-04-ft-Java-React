@@ -6,7 +6,7 @@ export const maxDuration = 30;
 
 export async function GET(req) {
   const token = req.headers.get('TOKEN');
-  const currentToken = getCurrentToken();
+  const currentToken = await getCurrentToken();
   if (!currentToken) {
     cookies().set('token', token, {
       httpOnly: false,

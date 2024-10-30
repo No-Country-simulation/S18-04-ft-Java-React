@@ -12,6 +12,10 @@
 }
 
 .cardIconContainer {
+  &:has(> .invert-filter) * {
+    filter: invert(60%);
+  }
+
   &:after,
   &:before {
     content: '';

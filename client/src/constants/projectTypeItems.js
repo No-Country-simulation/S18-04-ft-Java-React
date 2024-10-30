@@ -23,7 +23,7 @@ export const DATABI_ITEM = [
   {
     text: 'Machine Learning',
     icon: '/images/svg/MachineLearning.svg',
-    style: 'invert-[60%]',
+    style: 'invert-filter',
   },
   { text: 'ETL Developer', icon: '/images/svg/ETLDeveloper.svg' },
 ];

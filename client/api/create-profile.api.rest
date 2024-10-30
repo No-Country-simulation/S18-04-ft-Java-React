@@ -1,0 +1,17 @@
+@authToken={{$dotenv API_TOKEN}}
+@baseUrl={{$dotenv URL}}
+
+### Recupera la lista de eventos del usuario
+POST {{baseUrl}}/api/profiles
+content-type: application/json
+Cookie: token={{authToken}}
+
+{
+    "profileName": "Marcos",
+    "profileLastname": "Lopez",
+    "linkedinUrl": "https://www.linkedin.com/in/marcos-lopez-dev",
+    "githubUrl": "https://github.com/MarcossIC",
+    "user": {
+      "id": "96e91cda-956e-4d79-b20f-5d94a16fc7b2",
+    },
+}

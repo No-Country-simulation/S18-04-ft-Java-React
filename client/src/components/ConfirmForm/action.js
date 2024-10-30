@@ -18,18 +18,19 @@ export async function updateProfile(_state, formData) {
   if (error) return error;
 
   try {
-    const token = getCurrentToken();
+    const token = await getCurrentToken();
     const decoded = decodePayload(token);
-    const user = getCurrentUser();
+    const user = await getCurrentUser();
     const body = {
       profileName: data.name,
       profileLastname: data.lastName,
       linkedinUrl: data.linkedin,
       githubUrl: data.github,
       user: {
-        id: user ? user?.id : decoded?.id || '',
+        id: user ? user?.id : decoded?.userId || '',
       },
     };
+
     const payload = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
@@ -38,15 +39,14 @@ export async function updateProfile(_state, formData) {
     };
 
     const res = await fetch(`${baseURL}/api/profiles`, payload);
-
+    console.log({ res });
     if (!res.ok) {
-      const errorResponse = await res.json();
-      console.error({ message: 'Error al actualizar el perfil', details: { errorResponse } });
-
+      const message = await res.json();
+      console.log({ message });
       return {
         id: crypto.randomUUID(),
         status: 'FETCH_ERROR',
-        errors: { GLOBAL: 'Error al actualizar el perfil' },
+        errors: { GLOBAL: 'Error al registrar el perfil' },
       };
     }
   } catch (err) {

@@ -32,17 +32,15 @@ export const getCurrentToken = () => {
 };
 
 export const getUserProfile = async tokenFallback => {
-  const token = getCurrentToken();
-
+  const token = await getCurrentToken();
   const payload = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token || tokenFallback}` },
     credentials: 'include',
   };
-  8;
   const res = await fetch(`${baseURL}/api/profiles`, payload);
   if (res.status === 404) {
-    const user = decodePayload(token);
+    const user = decodePayload(token || tokenFallback || '');
     redirect(`/signup/confirm/${user?.userId || 'no-user'}`);
   }
   let response;
