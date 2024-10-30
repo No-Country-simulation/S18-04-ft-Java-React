@@ -1,4 +1,3 @@
-import React from 'react';//TODO: No hace falta esto 
 import SimulationsPage from '@/components/SimulationsPage/SimulationsPage';
 
 function Simulations() {
