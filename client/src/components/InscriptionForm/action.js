@@ -23,8 +23,8 @@ export async function sendInscription(_state, formData) {
     tl: data.isTeamLeader,
     roleType: { roleTypeId: data.rol },
     stack: [{ frameworkId: data.stack }],
-    language: [{ languageId: data.language }],
-    event: { eventId: '' },
+    language: { languageId: data.language },
+    event: { eventId: '00-0000-0000' },
   };
   const res = await fetch(`${baseURL}/api/event-records`, {
     method: 'POST',
