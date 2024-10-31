@@ -4,8 +4,6 @@ import com.nocountry.nocountry.models.RoleType;
 import com.nocountry.nocountry.repository.GenericRepo;
 import com.nocountry.nocountry.repository.RoleTypeRepo;
 import com.nocountry.nocountry.services.IRoleTypeService;
-import com.nocountry.nocountry.utils.CookieUtils;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +23,7 @@ public class RoleTypeServiceImpl extends CRUDServiceImpl<RoleType, UUID> impleme
     }
 
     @Override
-    public List<RoleType> findAllByProjectType( UUID projectTypeId, HttpServletResponse resp ) {
-        var lista = repo.findAllByProjectType(projectTypeId);
-        CookieUtils.addCookie( resp, "id-project", projectTypeId.toString(), 3600 );
-        return lista;
+    public List<RoleType> findAllByProjectType(UUID projectTypeId) {
+        return repo.findAllByProjectType(projectTypeId);
     }
 }
