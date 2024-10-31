@@ -62,10 +62,12 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
 
     @Override
     public EventRecord createDos( EventRecord eventRecord, HttpServletRequest resp ) {
+        log.info( "-----------------------> Funcion createDOs");
+        
         Event event = new Event();
         Optional<Cookie> idProject = CookieUtils.getCookie( resp,"id-project" );
-        if(!idProject.isPresent() ) throw new BadRequestException("id-project not found");
-        log.info( "id-project: {}", idProject.get().getValue() );
+        if( idProject.isEmpty() ) throw new BadRequestException("id-project not found");
+        log.info( "-----------------------> id-project: {}", idProject.get().getValue() );
         event.setId( UUID.fromString( idProject.get().getValue() ) );
         eventRecord.setEvent( event );
         repo.save( eventRecord );
