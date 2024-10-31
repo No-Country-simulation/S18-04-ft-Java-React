@@ -60,7 +60,7 @@ export async function signin(_state, formData) {
       httpOnly: true,
       secure: true,
       path: '/',
-      maxAge: 60 * 60,
+      maxAge: 60 * 60 * 24 * 7,
     });
     cookies().set('USER', JSON.stringify({ id: response.id, email: response.email }), {
       httpOnly: true,
