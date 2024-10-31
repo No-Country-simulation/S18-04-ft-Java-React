@@ -18,6 +18,7 @@ import com.nocountry.nocountry.services.IEventRecordService;
 import com.nocountry.nocountry.services.IFrameworkService;
 import com.nocountry.nocountry.services.ILanguagesService;
 import com.nocountry.nocountry.services.IRoleTypeService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -54,9 +55,9 @@ public class EventRecordController {
     }
 
     @PostMapping
-    public ResponseEntity<EventRecordResponseDTO> save(@Valid @RequestBody EventRecordRequestDTO dto) {
+    public ResponseEntity<EventRecordResponseDTO> save( @Valid @RequestBody EventRecordRequestDTO dto, HttpServletRequest resp) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.toEventRecordDTO(service.create(mapper.toEventRecord(dto))));
+                .body(mapper.toEventRecordDTO(service.createDos(mapper.toEventRecord(dto),resp)));
     }
 
     @PutMapping("/{id}")
