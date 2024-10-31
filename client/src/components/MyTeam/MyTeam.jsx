@@ -12,9 +12,16 @@ export const MyTeam = async ({ teamId }) => {
         <div
           className="flex h-9 w-full items-center justify-center rounded-md bg-[#063963] p-5 text-xl font-medium"
           aria-label="Team">
-          {data.teamName}
+          {data[0]?.teamName}
         </div>
-        {<MyTeamCard name={data.profileName} rol={data.roleType?.roleTypeName} tl={data.tl} />}
+        {data.map((profile, index) => (
+          <MyTeamCard
+            key={index}
+            name={profile.profileName}
+            rol={profile.roleType?.roleTypeName}
+            tl={profile.tl}
+          />
+        ))}
       </div>
       <Meeting />
     </>
