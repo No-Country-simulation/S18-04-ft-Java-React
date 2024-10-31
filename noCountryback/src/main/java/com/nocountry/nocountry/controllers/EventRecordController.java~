@@ -18,7 +18,6 @@ import com.nocountry.nocountry.services.IEventRecordService;
 import com.nocountry.nocountry.services.IFrameworkService;
 import com.nocountry.nocountry.services.ILanguagesService;
 import com.nocountry.nocountry.services.IRoleTypeService;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -105,8 +104,8 @@ public class EventRecordController {
     }
 
     @GetMapping("/register-form/{projectType}")
-    public ResponseEntity<RegisterRecordDTO>findAllForms( @PathVariable("projectType") UUID projectType, HttpServletResponse resp) {
-        List<RoleTypeResponseDTO> roles = roleTypeService.findAllByProjectType(projectType, resp).stream().map(roleTypeMapper::toRoleTypeResponseDTO).collect(Collectors.toList());
+    public ResponseEntity<RegisterRecordDTO>findAllForms(@PathVariable("projectType") UUID projectType) {
+        List<RoleTypeResponseDTO> roles = roleTypeService.findAllByProjectType(projectType).stream().map(roleTypeMapper::toRoleTypeResponseDTO).collect(Collectors.toList());
         List<LanguagesResponseDTO>languages = languagesService.getAll().stream().map(languagesMapper::toLanguagesResponseDTO).collect(Collectors.toList());
         List<FrameworkResponseDTO> frameworks = frameworkService.getAll().stream().map(frameworkMapper::toFrameworkDTO).collect(Collectors.toList());
         List<String> schedules = List.of("Manana","Tarde","Noche","FullTime");
