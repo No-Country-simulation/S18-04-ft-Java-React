@@ -48,4 +48,9 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
     public List<EventRecord> findEventRecordByTeam(UUID teamId) {
         return repo.findEventRecordByTeam(teamId);
     }
+
+    @Override
+    public List<EventRecord> findEventRecordByUser(UUID userId) {
+        return repo.findEventRecordByUser(userId);
+    }
 }

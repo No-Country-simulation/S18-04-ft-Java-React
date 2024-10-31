@@ -31,4 +31,7 @@ public interface EventRecordRepo extends GenericRepo<EventRecord, UUID> {
 
     @Query(value = "SELECT e.event_record_id,e.team_id,e.assigned,e.number_team,e.profile_id,e.tl,e.schedule,e.language_id,e.event_id,e.role_type_id FROM event_records e WHERE e.team_id =:teamId",nativeQuery = true)
     List<EventRecord>findEventRecordByTeam(@Param("teamId") UUID teamId);
+
+    @Query(value = "SELECT  e.event_record_id,e.team_id,e.assigned,e.number_team,e.profile_id,e.tl,e.schedule,e.language_id,e.event_id,e.role_type_id FROM event_records e LEFT JOIN profiles p ON p.profile_id = e.profile_id LEFT JOIN users u ON u.user_id = p.user_id WHERE u.user_id =:userId",nativeQuery = true)
+    List<EventRecord>findEventRecordByUser(@Param("userId") UUID userId);
 }

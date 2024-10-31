@@ -17,4 +17,6 @@ public interface IEventRecordService extends ICRUDService<EventRecord, UUID> {
 
     List<EventRecord>findEventRecordByTeam(UUID teamId);
 
+    List<EventRecord>findEventRecordByUser(UUID userId);
+
 }

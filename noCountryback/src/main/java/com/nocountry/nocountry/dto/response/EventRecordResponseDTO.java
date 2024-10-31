@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public record EventRecordResponseDTO(
         UUID id,
+        String teamName,
         Schedule schedule,
         Boolean tl,
         RoleTypeResponseDTO roleType,

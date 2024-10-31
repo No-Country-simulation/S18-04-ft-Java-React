@@ -169,11 +169,14 @@ INSERT INTO profiles (profile_id,user_id,avatar_url,github_url,linkedin_url, pro
 
 INSERT INTO event_records (event_record_id, schedule, tl, role_type_id, language_id, profile_id, event_id,number_team,assigned) VALUES ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7', 'FullTime', False, '8f562cce-cfac-4452-a25e-e1784a88a15e', null, '5c3b8b6a-0e2e-4b9e-9a7b-7b3e5e4b8a3b', 'a44913b7-34ca-429f-821f-ae8732423c9d',3,true);
 INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','30b439ae-9846-47d9-8c49-5fda08f1e313');
-INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','30b439ae-9846-47d9-8c49-5fda08f1e313');
 INSERT INTO register_stack(event_record_id, framework_id) values ('f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7','0945d50a-65d9-4e00-bdd4-ff20268455e9');
 INSERT INTO teams(team_id,event_record_id,team_number,whatsapp_url,team_name,project_name,meet_url) VALUES ('4dc28d2e-d2f7-43c9-92f0-2652b79bced8',null,3,null,'S17-03-ft-Java-React',null,null);
+UPDATE event_records SET team_id = '4dc28d2e-d2f7-43c9-92f0-2652b79bced8' WHERE event_record_id='f11c3f5d-ca45-46ac-a8f4-0a1b00055ee7';
 
-
+INSERT INTO event_records (event_record_id,schedule,tl,role_type_id,language_id,profile_id,event_id,number_team,assigned) VALUES ('b084603d-3526-49d3-80e0-aceae7bbeefb','ft',false,'54d5c728-3757-4968-a35d-28edb51b2795','3f81bee3-099a-446a-b2b6-c135ee116b92','ca8b6d55-cbb8-4a0e-88b6-798a14f669b2','a44913b7-34ca-429f-821f-ae8732423c9d',3,true);
+INSERT INTO register_stack(event_record_id, framework_id) values ('b084603d-3526-49d3-80e0-aceae7bbeefb','0945d50a-65d9-4e00-bdd4-ff20268455e9');
+INSERT INTO teams(team_id,event_record_id,team_number,whatsapp_url,team_name,project_name,meet_url) VALUES ('4dc28d2e-d2f7-43c9-92f0-2652b79bced8',null,3,null,'S17-03-ft-Java-React',null,null);
+UPDATE event_records SET team_id = '4dc28d2e-d2f7-43c9-92f0-2652b79bced8' WHERE event_record_id='b084603d-3526-49d3-80e0-aceae7bbeefb';
 
 -- CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 --

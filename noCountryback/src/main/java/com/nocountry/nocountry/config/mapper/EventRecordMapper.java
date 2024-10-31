@@ -10,7 +10,8 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring",uses = {
         FrameworkMapper.class,
         EventMapper.class,
-        ProfileMapper.class
+        ProfileMapper.class,
+        TeamMapper.class,
 })
 public interface EventRecordMapper {
 
@@ -25,6 +26,7 @@ public interface EventRecordMapper {
     EventRecord toEventRecord(EventRecordRequestDTO dto);
 
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "team.teamName",target = "teamName")
     @Mapping(source = "schedule", target = "schedule")
     @Mapping(source = "tl", target = "tl")
     @Mapping(source = "roleType", target = "roleType")

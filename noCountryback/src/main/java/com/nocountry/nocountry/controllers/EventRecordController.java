@@ -12,6 +12,8 @@ import com.nocountry.nocountry.models.Framework;
 import com.nocountry.nocountry.models.Languages;
 import com.nocountry.nocountry.models.RoleType;
 import com.nocountry.nocountry.models.enums.Schedule;
+import com.nocountry.nocountry.security.oauth2.user.CurrentUser;
+import com.nocountry.nocountry.security.oauth2.user.UserPrincipal;
 import com.nocountry.nocountry.services.IEventRecordService;
 import com.nocountry.nocountry.services.IFrameworkService;
 import com.nocountry.nocountry.services.ILanguagesService;
@@ -115,5 +117,11 @@ public class EventRecordController {
     public ResponseEntity<List<EventRecordResponseDTO>> findAllParticipantByTeam(@PathVariable("teamId") UUID teamId) {
         List<EventRecordResponseDTO> participants = service.findEventRecordByTeam(teamId).stream().map(mapper::toEventRecordDTO).collect(Collectors.toList());
         return ResponseEntity.ok(participants);
+    }
+
+    @GetMapping("/simulations")
+    private ResponseEntity<List<EventRecordResponseDTO>> findAllSimulations(@CurrentUser UserPrincipal user){
+        List<EventRecordResponseDTO> simulations = service.findEventRecordByUser(user.getId()).stream().map(mapper::toEventRecordDTO).toList();
+        return ResponseEntity.ok(simulations);
     }
 }
