@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { validateSchema } from '@/lib/validateSchema';
 import { inscriptionSchema } from '@/schemas/inscriptionSchema';
+import { getCurrentToken } from '@/data/auth';
 
 const baseURL = process.env.URL;
 
@@ -16,6 +17,7 @@ export async function sendInscription(_state, formData) {
     isTeamLeader: formData.get('isTeamLeader'),
   });
   if (error) return error;
+  const token = await getCurrentToken();
   const body = {
     schedule: data.timeAvailability,
     tl: data.isTeamLeader,
@@ -27,7 +29,7 @@ export async function sendInscription(_state, formData) {
   console.log({ body });
   const res = await fetch(`${baseURL}/api/event-records`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
     credentials: 'include',
     body: JSON.stringify(body),
   });
