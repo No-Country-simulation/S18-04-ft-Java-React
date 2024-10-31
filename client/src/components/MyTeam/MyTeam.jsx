@@ -17,7 +17,7 @@ export const MyTeam = async ({ teamId }) => {
         {data.map((profile, index) => (
           <MyTeamCard
             key={index}
-            name={profile.profileName}
+            name={profile.profileName + ' ' + profile.profileLastname}
             rol={profile.roleType?.roleTypeName}
             tl={profile.tl}
           />
