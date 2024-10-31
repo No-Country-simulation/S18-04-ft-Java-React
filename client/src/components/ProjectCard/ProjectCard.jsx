@@ -27,8 +27,8 @@ export const ProjectCard = ({ h1, h2, desc, items, color = '', id, name = '', fo
     <label
       onClick={() => {
         if (input.current) {
-          input.current.click();
-          form?.requestSubmit();
+          input.current.checked = true; // Marca el radio button al hacer clic
+          form?.requestSubmit?.();
         }
       }}
       htmlFor={id}

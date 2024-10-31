@@ -28,7 +28,7 @@ export const SelectProjectTypeForm = ({ projects }) => {
       ref={formRef}
       id="selectProjectType"
       data-testid="selectProjectType"
-      onSubmit={handleSubmit}
+      action={dispatch}
       className="mx-auto my-12 flex size-full max-w-4xl flex-row flex-wrap items-center justify-center gap-4 px-8">
       {projects.map((project, i) => (
         <ProjectCard
