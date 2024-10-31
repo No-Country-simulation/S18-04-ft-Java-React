@@ -22,7 +22,6 @@ public interface EventRecordMapper {
     @Mapping(source = "roleType", target = "roleType")
     @Mapping(source = "stack", target = "stack")
     @Mapping(source = "language", target = "language")
-    @Mapping(source = "profile", target = "profile")
     EventRecord toEventRecord(EventRecordRequestDTO dto);
 
     @Mapping(source = "id", target = "id")
