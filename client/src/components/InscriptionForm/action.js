@@ -16,8 +16,6 @@ export async function sendInscription(_state, formData) {
     isTeamLeader: formData.get('isTeamLeader'),
   });
   if (error) return error;
-  const cc = cookies().get('id-project');
-  console.log({ cc });
   const body = {
     schedule: data.timeAvailability,
     tl: data.isTeamLeader,
@@ -26,12 +24,14 @@ export async function sendInscription(_state, formData) {
     language: { languageId: data.language }, 
     event: { eventId: '00-0000-0000' },
   };
+  console.log({ body });
   const res = await fetch(`${baseURL}/api/event-records`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
     body: JSON.stringify(body),
   });
+  console.log({ res });
   if (!res.ok) {
     return {
       id: crypto.randomUUID(),
