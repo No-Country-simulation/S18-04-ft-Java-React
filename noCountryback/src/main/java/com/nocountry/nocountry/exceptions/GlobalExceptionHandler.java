@@ -1,6 +1,7 @@
 package com.nocountry.nocountry.exceptions;
 
 import com.nocountry.nocountry.dto.response.ErrorResponseDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -31,6 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             String validationMsg = error.getDefaultMessage();
             validationErrors.put(fieldName, validationMsg);
         });
+        log.info( "-----------------------> validationErrors: {}", validationErrors);
         return new ResponseEntity<>(validationErrors, HttpStatus.BAD_REQUEST);
     }
 
