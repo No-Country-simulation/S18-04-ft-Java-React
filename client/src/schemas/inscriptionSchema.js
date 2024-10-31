@@ -1,9 +1,14 @@
 import { z } from 'zod';
 
 export const inscriptionSchema = z.object({
-  type: z.string(),
+  language: z.string(),
+  frameworks: z.string(),
   rol: z.string(),
   timeAvailability: z.string(),
-  stack: z.string(),
-  isTeamLeader: z.boolean(),
+  isTeamLeader: z
+    .string()
+    .refine(value => value === 'true' || value === 'false', {
+      message: "Debe ser 'true' o 'false'",
+    })
+    .transform(value => value === 'true'),
 });

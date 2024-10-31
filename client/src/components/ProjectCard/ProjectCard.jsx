@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 import Image from 'next/image';
-import { useRef } from 'react';
+import Link from 'next/link';
 import css from './projectCard.module.css';
 import { cn } from '@/lib/utils';
 
@@ -21,20 +21,12 @@ const projectCardStyle = cva(
   }
 );
 
-export const ProjectCard = ({ h1, h2, desc, items, color = '', id, name = '', form }) => {
-  const input = useRef();
+export const ProjectCard = ({ h1, h2, desc, items, color = '', id }) => {
   return (
-    <label
-      onClick={() => {
-        if (input.current) {
-          input.current.checked = true; // Marca el radio button al hacer clic
-          form?.requestSubmit?.();
-        }
-      }}
-      htmlFor={id}
+    <Link
+      href={`/inscriptions/${id}`}
       className={cn(projectCardStyle({ color }), css.cardContainer)}>
-      <input ref={input} className="hidden" type="radio" name={name} id={id} value={id} />
-      <div className="flex size-full h-[555px] max-w-[400px] flex-col justify-between">
+      <div className="flex h-full flex-col justify-between">
         <div className="flex flex-col items-center justify-center">
           <h3 className="mt-5 text-3xl font-medium leading-[120%] text-white">{h1}</h3>
           <p className="self-start font-light">{desc}</p>
@@ -42,7 +34,7 @@ export const ProjectCard = ({ h1, h2, desc, items, color = '', id, name = '', fo
           <div className="flex flex-wrap">
             {items.map((item, i) => (
               <div
-                key={item.text}
+                key={i}
                 className="m-1 flex flex-row items-center justify-between gap-4 rounded-md bg-[#ffffff0d] px-4 py-2 leading-5 text-[#acacb5]">
                 <div
                   className={cn(
@@ -66,6 +58,6 @@ export const ProjectCard = ({ h1, h2, desc, items, color = '', id, name = '', fo
           </div>
         </div>
       </div>
-    </label>
+    </Link>
   );
 };

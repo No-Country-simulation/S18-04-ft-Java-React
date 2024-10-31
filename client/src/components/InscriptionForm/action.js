@@ -1,39 +1,44 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { validateSchema } from '@/lib/validateSchema';
 import { inscriptionSchema } from '@/schemas/inscriptionSchema';
 
 const baseURL = process.env.URL;
 
-export async function sendInscription(request, formData) {
+export async function sendInscription(_state, formData) {
   const [error, data] = validateSchema(inscriptionSchema, {
-    type: formData.get('type'),
     rol: formData.get('rol'),
     timeAvailability: formData.get('timeAvailability'),
-    stack: formData.get('stack'),
+    language: formData.get('language'),
+    frameworks: formData.get('frameworks'),
     isTeamLeader: formData.get('isTeamLeader'),
   });
   if (error) return error;
-  const projetId = await cookies().get('projectType')?.value;
+  const cc = cookies().get('id-project');
+  console.log({ cc });
   const body = {
     schedule: data.timeAvailability,
-    tl: data.isTeamLeader === 'true',
+    tl: data.isTeamLeader,
     roleType: { roleTypeId: data.rol },
     stack: [{ frameworkId: data.stack }],
     language: [{ languageId: data.language }],
-    event: { eventId: projetId },
+    event: { eventId: '' },
   };
-  console.log({ body });
-  /*const ff = await fetch(`${baseURL}/api/event-records`, {
+  const res = await fetch(`${baseURL}/api/event-records`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
     body: JSON.stringify(body),
-  });*/
-  return {
-    id: crypto.randomUUID(),
-    status: 'SUCCESS',
-    errors: {},
-  };
+  });
+  if (!res.ok) {
+    return {
+      id: crypto.randomUUID(),
+      status: 'FETCH_ERROR',
+      errors: { GLOBAL: 'Error al asignar los equipos.' },
+    };
+  }
+
+  redirect('/home');
 }
