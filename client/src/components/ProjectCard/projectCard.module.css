@@ -5,6 +5,7 @@
     skew(0deg, 0deg);
   opacity: 1;
   transform-style: preserve-3d;
+  z-index: 10;
 
   &:hover {
     background-color: #ffffff0d;
@@ -12,6 +13,10 @@
 }
 
 .cardIconContainer {
+  &:has(> .invert-filter) * {
+    filter: invert(60%);
+  }
+
   &:after,
   &:before {
     content: '';

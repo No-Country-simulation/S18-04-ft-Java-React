@@ -1,3 +1,8 @@
-GET https://nocountry.up.railway.app/api/event-records/register-form/038eff46-b858-4710-9fda-2be48db983fe
+@authToken={{$dotenv API_TOKEN}}
+@baseUrl={{$dotenv URL}}
+
+### Recupera los datos necesatios para inscribirte a un evento (Seleccionado, cohorte, etc)
+# @prompt projectTypeId ID del tipo del proyecto(Puedes obtenerlo en projecttype.api.rest) 
+GET {{baseUrl}}/api/event-records/register-form/{{projectTypeId}}
 content-type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjb3NAZ21haWwuY29tIiwidXNlcklkIjoiZmMzN2NhOWItZTc2Ny00ZjUzLThiN2YtNjY2ZTAzZTNmNGMwIiwiZXhwIjoxNzMwMDkyOTAyLCJpYXQiOjE3MzAwODkzMDJ9.BW_etYQRgs8Wt8uwFdw0VUdQ0pn21urLeKnM5LpEqeQ
+Cookie: token={{authToken}}

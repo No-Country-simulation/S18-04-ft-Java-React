@@ -10,7 +10,7 @@ export const getInscriptionForm = async id => {
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
     credentials: 'include',
   });
-  await forbidenValidate(response.status);
+  console.log({ response });
   if (!response.ok) {
     return [];
   }

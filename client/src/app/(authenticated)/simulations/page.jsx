@@ -1,4 +1,3 @@
-import React from 'react';
 import SimulationsPage from '@/components/SimulationsPage/SimulationsPage';
 
 function Simulations() {

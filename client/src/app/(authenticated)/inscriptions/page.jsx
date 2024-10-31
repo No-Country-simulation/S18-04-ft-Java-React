@@ -1,11 +1,13 @@
-import { SimulationTypeForm } from '@/components/SimulationTypeForm/SimulationTypeForm';
-import { getProjectType } from '@/data/getProjectType';
+import { Suspense } from 'react';
+import PinningLoader from '@/components/PinningLoader/PinningLoader';
+import ProjectTypeSelectionPage from '@/components/ProjectTypeSelectionPage/ProjectTypeSelectionPage';
 
-export default async function FormInscriptions() {
-  const projects = await getProjectType();
+export default function FormInscriptions() {
   return (
     <div className="flex size-full flex-1 flex-col">
-      <SimulationTypeForm projects={projects} />
+      <Suspense fallback={<PinningLoader />}>
+        <ProjectTypeSelectionPage />
+      </Suspense>
     </div>
   );
 }

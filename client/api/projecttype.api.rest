@@ -1,3 +1,7 @@
-GET https://nocountry.up.railway.app/api/project-types
+@authToken={{$dotenv API_TOKEN}}
+@baseUrl={{$dotenv URL}}
+
+### Recupera los tipos de projectos disponibles
+GET {{baseUrl}}/api/project-types
 content-type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjb3NAZ21haWwuY29tIiwidXNlcklkIjoiZmMzN2NhOWItZTc2Ny00ZjUzLThiN2YtNjY2ZTAzZTNmNGMwIiwiZXhwIjoxNzMwMDg4MDY3LCJpYXQiOjE3MzAwODQ0Njd9.vTbr_TeLFFg1-9VWhkQ2SMcI80WYmw6apBX9dk1iU8c
+Cookie: token={{authToken}}
