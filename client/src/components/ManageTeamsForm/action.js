@@ -18,7 +18,7 @@ export async function manageTeams(_state, formData) {
   if (error) return error;
 
   try {
-    const token = getCurrentToken();
+    const token = await getCurrentToken();
     const payload = {
       method: 'POST',
       headers: { Cookie: `token=${token}` },

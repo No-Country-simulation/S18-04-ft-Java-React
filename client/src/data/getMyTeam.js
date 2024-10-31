@@ -3,7 +3,7 @@ import { getCurrentToken } from './auth';
 const baseUrl = process.env.URL;
 
 export async function getMyTeam(id) {
-  const token = getCurrentToken('token');
+  const token = await getCurrentToken();
 
   const url = `${baseUrl}/api/event-records/participants/${id}`;
 

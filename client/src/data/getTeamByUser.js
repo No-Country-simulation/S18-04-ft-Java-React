@@ -3,7 +3,7 @@ import { getCurrentToken } from './auth';
 const baseUrl = process.env.URL;
 
 export async function fetchUserData() {
-  const token = getCurrentToken('token');
+  const token = await getCurrentToken();
 
   const url = `${baseUrl}/api/teams/byUser`;
 

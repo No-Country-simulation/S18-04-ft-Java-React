@@ -1,8 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
-import { useFormState } from 'react-dom';
-import { projectTypeSelect } from './action';
 import { ProjectCard } from '../ProjectCard/ProjectCard';
 import { colors, DATABI_ITEM, ITEMS, NOCODE_ITEM } from '@/constants/projectTypeItems';
 
@@ -14,21 +11,10 @@ const getItems = name => {
 };
 
 export const SelectProjectTypeForm = ({ projects }) => {
-  const [result, dispatch] = useFormState(projectTypeSelect, undefined);
-  const formRef = useRef();
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    dispatch(formData);
-  };
-
   return (
-    <form
-      ref={formRef}
+    <div
       id="selectProjectType"
       data-testid="selectProjectType"
-      onSubmit={handleSubmit}
       className="mx-auto my-12 flex size-full max-w-4xl flex-row flex-wrap items-center justify-center gap-4 px-8">
       {projects.map((project, i) => (
         <ProjectCard
@@ -40,9 +26,8 @@ export const SelectProjectTypeForm = ({ projects }) => {
           desc={project.projectTypeDescription}
           items={getItems(project.projectTypeName)}
           name="projectTypeId"
-          form={formRef.current}
         />
       ))}
-    </form>
+    </div>
   );
 };

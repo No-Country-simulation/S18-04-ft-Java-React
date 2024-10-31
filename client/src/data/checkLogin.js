@@ -7,12 +7,12 @@ const payload = {
   credentials: 'include',
 };
 
-export const checkLogin = tokenFallback => {
-  const token = getCurrentToken() || tokenFallback;
+export const checkLogin = async tokenFallback => {
+  const token = await getCurrentToken();
 
   return fetch(`${baseURL}/api/auth/check-login`, {
     ...payload,
-    headers: { ...payload.headers, Cookie: `token=${token}` },
+    headers: { ...payload.headers, Cookie: `token=${token || tokenFallback}` },
   })
     .then(res => {
       return res.status === 200 || res.status === 201;
