@@ -22,7 +22,7 @@ export async function sendInscription(_state, formData) {
     roleType: { roleTypeId: data.rol },
     stack: [{ frameworkId: data.stack }],
     language: { languageId: data.language }, 
-    event: { eventId: '00-0000-0000' },
+    event: { eventId: '96e91cda-956e-4d79-b20f-5d94a16fc7b2' },
   };
   console.log({ body });
   const res = await fetch(`${baseURL}/api/event-records`, {
