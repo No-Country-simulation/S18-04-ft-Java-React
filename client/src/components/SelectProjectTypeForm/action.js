@@ -5,7 +5,12 @@ import { redirect } from 'next/navigation';
 
 export async function projectTypeSelect(_state, formData) {
   const data = formData.get('projectTypeId');
-  console.log({ data });
+  if (!data) {
+    return {
+      id: crypto.randomUUID(),
+      status: 'ERROR',
+    };
+  }
   cookies().set('projectType', data, {
     httpOnly: true,
     secure: true,

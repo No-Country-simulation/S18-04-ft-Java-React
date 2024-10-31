@@ -10,6 +10,7 @@ export const getInscriptionForm = async id => {
     headers: { 'Content-Type': 'application/json', Cookie: `token=${token}` },
     credentials: 'include',
   });
+  console.log({ response });
   if (!response.ok) {
     return [];
   }
