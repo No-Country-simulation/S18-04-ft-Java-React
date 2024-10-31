@@ -55,9 +55,9 @@ public class EventRecordController {
     }
 
     @PostMapping
-    public ResponseEntity<EventRecordResponseDTO> save( @Valid @RequestBody EventRecordRequestDTO dto, HttpServletRequest resp) {
+    public ResponseEntity<EventRecordResponseDTO> save( @Valid @RequestBody EventRecordRequestDTO dto, HttpServletRequest resp, @CurrentUser UserPrincipal userPrincipal) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(mapper.toEventRecordDTO(service.createDos(mapper.toEventRecord(dto),resp)));
+                .body(mapper.toEventRecordDTO(service.createDos(mapper.toEventRecord(dto),resp, userPrincipal.getId())));
     }
 
     @PutMapping("/{id}")

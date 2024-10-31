@@ -19,7 +19,7 @@ public interface IEventRecordService extends ICRUDService<EventRecord, UUID> {
 
     List<EventRecord>findEventRecordByTeam(UUID teamId);
 
-    EventRecord createDos( EventRecord eventRecord, HttpServletRequest resp );
+    EventRecord createDos( EventRecord eventRecord, HttpServletRequest resp, UUID userId );
 
     List<EventRecord>findEventRecordByUser(UUID userId);
 

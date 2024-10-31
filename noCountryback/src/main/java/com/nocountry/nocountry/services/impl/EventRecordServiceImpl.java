@@ -1,10 +1,13 @@
 package com.nocountry.nocountry.services.impl;
 
 import com.nocountry.nocountry.exceptions.BadRequestException;
+import com.nocountry.nocountry.exceptions.NotFoundException;
 import com.nocountry.nocountry.models.Event;
 import com.nocountry.nocountry.models.EventRecord;
+import com.nocountry.nocountry.models.Profile;
 import com.nocountry.nocountry.repository.EventRecordRepo;
 import com.nocountry.nocountry.repository.GenericRepo;
+import com.nocountry.nocountry.repository.ProfileRepo;
 import com.nocountry.nocountry.services.IEventRecordService;
 import com.nocountry.nocountry.utils.CookieUtils;
 import jakarta.servlet.http.Cookie;
@@ -22,8 +25,9 @@ import java.util.UUID;
 public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> implements IEventRecordService {
 
     private final EventRecordRepo repo;
-
-    public EventRecordServiceImpl(EventRecordRepo repo) {
+    private final ProfileRepo profileRepo;
+    public EventRecordServiceImpl(EventRecordRepo repo, ProfileRepo profileRepo) {
+        this.profileRepo = profileRepo;
         this.repo = repo;
     }
 
@@ -61,14 +65,15 @@ public class EventRecordServiceImpl extends CRUDServiceImpl<EventRecord, UUID> i
     }
 
     @Override
-    public EventRecord createDos( EventRecord eventRecord, HttpServletRequest resp ) {
+    public EventRecord createDos( EventRecord eventRecord, HttpServletRequest resp, UUID userId ) {
         log.info( "-----------------------> Funcion createDOs");
-
+        Profile profile = profileRepo.findProfileByUserId( userId ).orElseThrow(() -> new NotFoundException( "Profile not found" ) );
         Event event = new Event();
         Optional<Cookie> idProject = CookieUtils.getCookie( resp,"id-project" );
         if( idProject.isEmpty() ) throw new BadRequestException("id-project not found");
         log.info( "-----------------------> id-project: {}", idProject.get().getValue() );
         event.setId( UUID.fromString( idProject.get().getValue() ) );
+        eventRecord.setProfile( profile );
         eventRecord.setEvent( event );
         repo.save( eventRecord );
         return eventRecord;

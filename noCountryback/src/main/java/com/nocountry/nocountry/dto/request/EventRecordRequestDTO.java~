@@ -26,6 +26,6 @@ public class EventRecordRequestDTO {
     private LanguagesResponseDTO language; // "language":{"languageId":"sadad-ada-d-d"}
     @NotNull(message = "El perfil es obligatorio")
     private ProfileResponseDTO profile; // ""
-//    @NotNull(message = "El evento es obligatorio")
-//    private EventResponseDTO event; // "event":{"eventId":"adda-dd-ad-as-da"}
+    @NotNull(message = "El evento es obligatorio")
+    private EventResponseDTO event; // "event":{"eventId":"adda-dd-ad-as-da"}
 }
