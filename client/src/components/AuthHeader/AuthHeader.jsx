@@ -5,15 +5,15 @@ import defaultProfile from '/public/images/defaultProfile.png';
 import noCountryLogo from '/public/images/noCountryLogo.png';
 import Bell from '/public/images/Bell.png';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 
 export const AuthHeader = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const toggleSidebar = useCallback(() => {
+    setIsSidebarOpen(prev => !prev);
+  }, []);
 
   return (
     <header className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 pt-6">

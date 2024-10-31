@@ -82,6 +82,8 @@ export async function signup(_state, formData) {
         errors: 'Error: El ID no se recibió correctamente',
       };
     }
+
+    redirect(`/signup/confirm/${response.id}`);
   } catch (error) {
     console.error({
       message: `Se ha producido un error inesperado: ${error.message}`,
@@ -94,6 +96,4 @@ export async function signup(_state, formData) {
       errors: { GLOBAL: 'Se ha producido un error inesperado' },
     };
   }
-
-  redirect(`/signup/confirm/${response.id}`);
 }

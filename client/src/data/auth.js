@@ -40,6 +40,10 @@ export const getUserProfile = async tokenFallback => {
   };
   const res = await fetch(`${baseURL}/api/profiles`, payload);
   if (res.status === 404) {
+    // No existe el perfil
+    // Mandalo pa la pagina donde crea su perfil
+    // es un error pero no es un error
+
     const user = decodePayload(token || tokenFallback || '');
     redirect(`/signup/confirm/${user?.userId || 'no-user'}`);
   }

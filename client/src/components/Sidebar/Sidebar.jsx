@@ -1,10 +1,19 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect } from 'react';
 import { navItems } from '@/constants/navItems';
 
 function Sidebar({ isOpen, onToggle }) {
+  const pathName = usePathname();
+
+  useEffect(() => {
+    if (isOpen) {
+      onToggle();
+    }
+  }, [pathName, isOpen, onToggle]);
+
   return (
     <div
       className={`flex flex-col items-center transition-all duration-300 ${isOpen ? 'w-64' : 'w-20'}`}>
