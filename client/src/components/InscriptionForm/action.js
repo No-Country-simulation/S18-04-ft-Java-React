@@ -38,9 +38,8 @@ export async function sendInscription(_state, formData) {
     return {
       id: crypto.randomUUID(),
       status: 'FETCH_ERROR',
-      errors: { GLOBAL: 'Error al asignar los equipos.' },
+      errors: { GLOBAL: 'Error al asignar los equipos!' },
     };
   }
-
   redirect('/home');
 }
