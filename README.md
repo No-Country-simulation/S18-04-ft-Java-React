@@ -139,6 +139,9 @@ Proyecto creado por:
         <a href="https://github.com/milenkandrade" style="text-decoration: none;">
           <img src="https://img.shields.io/badge/GitHub-milenkandrade-blue" alt="GitHub">
         </a>
+        <a href="https://www.linkedin.com/in/marcia-milenka-andrade-llanos/" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-Marcia%20Milenka%20Andrade-blue?style=flat-square" alt="LinkedIn">
+        </a>
       </div>
     </td>
   </tr>
