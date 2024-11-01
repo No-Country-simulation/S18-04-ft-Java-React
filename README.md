@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="" alt="Logo No Country"/>
+  <img src="https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730498213/banner_emcukq.png" alt="Logo No Country"/>
 </p>
 
 <div align="center">
