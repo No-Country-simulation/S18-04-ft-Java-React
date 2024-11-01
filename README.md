@@ -1,3 +1,4 @@
+<h1 align="center">Equipo S18-04-ft-Java-React</h1>
 <p align="center">
   <img src="https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730498213/banner_emcukq.png" alt="Logo No Country"/>
 </p>
@@ -24,8 +25,17 @@
 </div>
 
 
+## Organización
 
-# Documentación de API
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://slack.com)
+[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com)
+[![Project](https://img.shields.io/badge/Project-00A86B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/orgs/No-Country-simulation/projects/92)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/1234567890) <!-- Reemplaza el número de teléfono con el adecuado -->
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com)
+
+
+## Documentación de API
 
 La documentación de la API se puede acceder a través de Swagger. Utiliza la siguiente URL para ver todos los endpoints disponibles, así como los detalles sobre las solicitudes y respuestas.
 
@@ -42,10 +52,10 @@ Este proyecto fue posible gracias a la organización de simulaciones laborales p
 Proyecto creado por:
 
 <table style="display: flex; justify-content: center;">
-  <tr>
+  <tr align="center">
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/anderson2093.png?size=50" alt="Anderson Cusma" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/anderson2093.png?size=100" alt="Anderson Cusma" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Anderson Cusma</strong> | PM
         </p>
@@ -61,7 +71,7 @@ Proyecto creado por:
     </td>
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/BrendaComas.png?size=50" alt="Brenda Comas" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/BrendaComas.png?size=100" alt="Brenda Comas" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Brenda Comas</strong> | UX/UI
         </p>
@@ -80,7 +90,7 @@ Proyecto creado por:
     </td>
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/Catriel-Escobar.png?size=50" alt="Catriel Escobar" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/Catriel-Escobar.png?size=100" alt="Catriel Escobar" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Catriel Escobar</strong> | Back-End
         </p>
@@ -95,10 +105,10 @@ Proyecto creado por:
       </div>
     </td>
   </tr>
-  <tr>
+  <tr align="center">
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/DVTecno.png?size=50" alt="Diego Veras" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/DVTecno.png?size=100" alt="Diego Veras" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Diego Veras</strong> | Back-end
         </p>
@@ -114,7 +124,7 @@ Proyecto creado por:
     </td>
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/MarcossIC.png?size=50" alt="Marcos Lopez" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/MarcossIC.png?size=100" alt="Marcos Lopez" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Marcos Lopez</strong> | Front-End
         </p>
@@ -130,7 +140,7 @@ Proyecto creado por:
     </td>
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/milenkandrade.png?size=50" alt="Marcia Andrade" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/milenkandrade.png?size=100" alt="Marcia Andrade" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Marcia Andrade</strong> | Front-End
         </p>
@@ -145,10 +155,10 @@ Proyecto creado por:
       </div>
     </td>
   </tr>
-  <tr>
+  <tr align="center">
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/rogelioolarte.png?size=50" alt="Rogelio Olarte" style="border-radius: 50%; margin-right: 10px; height: 50px; width: 50px;">
+        <img src="https://github.com/rogelioolarte.png?size=100" alt="Rogelio Olarte" style="border-radius: 50%; margin-right: 10px; height: 100px; width: 100px;">
         <p>
           <strong>Rogelio Olarte</strong> | Back-End
         </p>
@@ -164,7 +174,7 @@ Proyecto creado por:
     </td>
     <td>
       <div style="display: flex; align-items: center;">
-        <img src="https://github.com/SoyIsabelMM.png?size=50" alt="Mary Isabel Martinez" style="border-radius: 50%; margin-right: 10px;">
+        <img src="https://github.com/SoyIsabelMM.png?size=100" alt="Mary Isabel Martinez" style="border-radius: 50%; margin-right: 10px;">
         <p>
           <strong>Mary Isabel Martinez</strong> | Front-End
         </p>
@@ -183,16 +193,20 @@ Proyecto creado por:
 
 
 
-<div style="display: flex; align-items: center;">
-    <img src="https://github.com/ximenaellis.png?size=50" alt="Ximena Ellis" style="border-radius: 50%; margin-right: 10px; width: 50px; height: 50px;">
-    <p>
-        <strong>Ximena Ellis</strong> | Team Leader
-    </p>
-</div>
+<p align="center">
+    <img src="https://github.com/ximenaellis.png?size=100" alt="Ximena Ellis" style="border-radius: 50%; width: 100px; height: 100px;">
+    <br>
+    <strong>Ximena Ellis</strong> | Team Leader
+</p>
 
-Ximena fue una líder inspiradora, impulsando al equipo con entusiasmo y comprensión de la problemática. Su conocimiento en diseño guió nuestras decisiones en la aplicación, y sus habilidades blandas fortalecieron la cohesión en cada sprint, siendo clave para el éxito del equipo.
+<p align="center">
+Ximena fue una líder inspiradora, impulsando al equipo con entusiasmo y comprensión de la problemática. Su conocimiento en diseño ayudo nuestras decisiones en la app, y sus habilidades blandas fortalecieron la cohesión en cada sprint, siendo clave para el éxito del equipo.
+</p>
 
-[![Behance](https://img.shields.io/badge/Behance-Ximena_Ellis-blue)](https://www.behance.net/ximenaellis)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ximena_Ellis-blue)](https://www.linkedin.com/in/ximenaellis/)  
-[![GitHub](https://img.shields.io/badge/GitHub-ximenaellis-blue)](https://github.com/ximenaellis)
+<p align="center">
+    <a href="https://www.behance.net/ximenaellis"><img src="https://img.shields.io/badge/Behance-Ximena_Ellis-blue" alt="Behance"></a>
+    <a href="https://www.linkedin.com/in/ximenaellis/"><img src="https://img.shields.io/badge/LinkedIn-Ximena_Ellis-blue" alt="LinkedIn"></a>
+    <a href="https://github.com/ximenaellis"><img src="https://img.shields.io/badge/GitHub-ximenaellis-blue" alt="GitHub"></a>
+</p>
+
 
