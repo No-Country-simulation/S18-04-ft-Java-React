@@ -181,3 +181,18 @@ Proyecto creado por:
   </tr>
 </table>
 
+
+
+<div style="display: flex; align-items: center;">
+    <img src="https://github.com/ximenaellis.png?size=50" alt="Ximena Ellis" style="border-radius: 50%; margin-right: 10px; width: 50px; height: 50px;">
+    <p>
+        <strong>Ximena Ellis</strong> | Team Leader
+    </p>
+</div>
+
+Ximena fue una líder inspiradora, impulsando al equipo con entusiasmo y comprensión de la problemática. Su conocimiento en diseño guió nuestras decisiones en la aplicación, y sus habilidades blandas fortalecieron la cohesión en cada sprint, siendo clave para el éxito del equipo.
+
+[![Behance](https://img.shields.io/badge/Behance-Ximena_Ellis-blue)](https://www.behance.net/ximenaellis)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ximena_Ellis-blue)](https://www.linkedin.com/in/ximenaellis/)  
+[![GitHub](https://img.shields.io/badge/GitHub-ximenaellis-blue)](https://github.com/ximenaellis)
+
