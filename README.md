@@ -1,4 +1,3 @@
-<h1 align="center">Equipo S18-04-ft-Java-React</h1>
 <p align="center">
   <img src="https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730498213/banner_emcukq.png" alt="Logo No Country"/>
 </p>
@@ -25,6 +24,83 @@
 </div>
 
 
+<h1 align="center">Equipo S18-04-ft-Java-React</h1
+
+                                                
+<br>
+
+**No Country** es una aplicación diseñada para facilitar el registro de perfiles en simulaciones laborales recurrentes organizadas por No Country Simulation. Esta app permite a los usuarios crear un perfil único donde se almacena toda su información profesional relevante (stack tecnológico, experiencia, etc.), de manera que solo necesiten agregar algunos detalles específicos para cada simulación. Esta funcionalidad elimina la necesidad de ingresar desde cero toda la información en cada evento, haciendo el proceso más eficiente y sencillo.
+
+## Vistas de la Aplicación
+
+Aquí tienes una vista previa de las pantallas principales de la app:
+
+![Vistas de la Aplicación](https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730561330/xrnumwbfbks9wemziztk.png)
+
+## Enlace al Diseño en Figma
+
+Para visualizar el diseño de la aplicación, consulta el enlace a Figma a continuación:
+
+- **Enlace al diseño en Figma:** [No Country App - Figma](https://www.figma.com/design/SdEGl2OiZOUwA0SHGljEyb/No-Country-App)
+
+
+
+## Requerimientos del Proyecto
+
+Para más información sobre los requerimientos y funcionalidades, consulta el siguiente documento:
+
+- [Documentación de Requerimientos](https://docs.google.com/document/d/1m3cfRQRfbDSGD2LNHfpChX33HrbRxtJCkP8uqvSLv-M/edit?tab=t.0#heading=h.r2bw3box34ax)
+
+
+
+
+## Características Principales
+
+- **Perfil Único**: Almacena los detalles profesionales de los usuarios, facilitando el registro en cada simulación sin necesidad de ingresar la misma información repetidamente.
+- **Simulaciones Laborales**: Los usuarios pueden inscribirse rápidamente a las simulaciones mensuales, seleccionando solo la información específica requerida para cada evento.
+- **Interfaz Intuitiva**: La aplicación cuenta con un diseño simple y accesible, facilitando la experiencia del usuario.
+- **Compatibilidad Multiplataforma**: Acceso desde diferentes dispositivos para mayor flexibilidad.
+
+## Instalación y Ejecución
+
+### Prerrequisitos
+
+Asegúrate de tener instalado lo siguiente antes de iniciar la aplicación:
+
+- **Java 21** o superior
+- **Node.js** (versión 20 o superior)
+- **PostgreSQL** como base de datos
+
+### Configuración
+
+1. Clona este repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/No-Country-simulation/S18-04-ft-Java-React.git
+   cd S18-04-ft-Java-React
+   ```
+
+2. Configuración de PostgreSQL
+   - Crea una base de datos en PostgreSQL.
+   - En src/main/resources/application.properties, agrega:
+   ```bash
+   spring.datasource.url=jdbc:postgresql://localhost:5432/tu_base_datos
+   spring.datasource.username=tu_usuario
+   spring.datasource.password=tu_contraseña
+   ```
+
+3. Configura las variables de entorno en tu archivo .env.
+4. Ejecución del Backend:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   
+5. Ejecución del Frontend:
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+    
 ## Organización
 
 [![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://slack.com)
