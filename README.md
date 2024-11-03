@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730498213/banner_emcukq.png" alt="Logo No Country"/>
+<img src="https://res.cloudinary.com/dcq6ecx2k/image/upload/v1730658107/pbwaemm0jcrvcsywa8gm.png" alt="Logo No Country" width="100%" height="auto"/>
 </p>
 
 <div align="center">
@@ -29,7 +29,7 @@
                                                 
 <br>
 
-**No Country** es una aplicación diseñada para facilitar el registro de perfiles en simulaciones laborales recurrentes organizadas por No Country Simulation. Esta app permite a los usuarios crear un perfil único donde se almacena toda su información profesional relevante (stack tecnológico, experiencia, etc.), de manera que solo necesiten agregar algunos detalles específicos para cada simulación. Esta funcionalidad elimina la necesidad de ingresar desde cero toda la información en cada evento, haciendo el proceso más eficiente y sencillo.
+**No Country App** es una aplicación diseñada para facilitar el registro de perfiles en simulaciones laborales recurrentes organizadas por No Country Simulation. Esta app permite a los usuarios crear un perfil único donde se almacena toda su información profesional relevante (stack tecnológico, experiencia, etc.), de manera que solo necesiten agregar algunos detalles específicos para cada simulación. Esta funcionalidad elimina la necesidad de ingresar desde cero toda la información en cada evento, haciendo el proceso más eficiente y sencillo.
 
 ## Vistas de la Aplicación
 
